@@ -40,7 +40,8 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     c-c++
+     (c-c++ :variables c-c++-backend 'rtags
+            c-c++-enable-clang-support t)
      auto-completion
      ;; better-defaults
      emacs-lisp
@@ -189,7 +190,7 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(monokai spacemacs-dark
-                                 dracula leuven
+                                 dracula moe tangotango
                                  )
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
@@ -458,7 +459,9 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  ;; (evil-global-set-key 'normal "s" 'evil-avy-goto-char-timer)
+  (evil-global-set-key 'insert (kbd "\C-\]") 'company-complete)
+  (evil-global-set-key 'normal (kbd "\C-\]") 'company-complete)
+  (evil-global-set-key 'normal (kbd "\C-cl") 'org-store-link)
   (defun eshell-copy-last-command-output ()
     (interactive)
     (save-excursion
@@ -478,6 +481,7 @@ before packages are loaded."
         ))
     )
   (spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
+  (spacemacs/set-leader-keys "o" 'helm-multi-swoop-org)
   (xclip-mode 1)
   )
 
@@ -536,7 +540,7 @@ This function is called at the very end of Spacemacs initialization."
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (evil-snipe yasnippet-snippets helm-rtags helm-company helm-c-yasnippet google-c-style fuzzy disaster company-statistics company-rtags rtags company-c-headers clang-format auto-yasnippet yasnippet ac-ispell auto-complete dracula-theme xclip mmm-mode markdown-toc markdown-mode gh-md company monokai-theme ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org symon string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish define-word counsel-projectile column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
+    (tangotango-theme moe-theme evil-snipe yasnippet-snippets helm-rtags helm-company helm-c-yasnippet google-c-style fuzzy disaster company-statistics company-rtags rtags company-c-headers clang-format auto-yasnippet yasnippet ac-ispell auto-complete dracula-theme xclip mmm-mode markdown-toc markdown-mode gh-md company monokai-theme ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package treemacs-projectile treemacs-evil toc-org symon string-inflection spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin persp-mode pcre2el password-generator paradox overseer org-plus-contrib org-bullets open-junk-file nameless move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flx-ido fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu elisp-slime-nav editorconfig dumb-jump dotenv-mode doom-modeline diminish define-word counsel-projectile column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line)))
  '(paradox-github-token t)
  '(pdf-view-midnight-colors (quote ("#5f5f87" . "#ffffff")))
  '(pos-tip-background-color "#FFFACE")
@@ -572,5 +576,5 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(avy-lead-face-0 ((t (:background "brightblack" :foreground "brightcyan")))))
+ '(avy-lead-face-0 ((((class color) (min-colors 89)) (:background "#e6a8df" :foreground "#626262")))))
 )

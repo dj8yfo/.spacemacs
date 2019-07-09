@@ -483,6 +483,7 @@ before packages are loaded."
   (spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
   (spacemacs/set-leader-keys "o" 'helm-multi-swoop-org)
   (spacemacs/set-leader-keys "sgp" 'helm-projectile-rg)
+  (spacemacs/set-leader-keys "r/" 'helm-rg)
   (xclip-mode 1)
   )
 

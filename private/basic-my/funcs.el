@@ -1,0 +1,18 @@
+(defun eshell-copy-last-command-output ()
+  (interactive)
+  (save-excursion
+    (eshell-mark-output 1)
+    (kill-ring-save (point-min) (point-max))
+    (widen)
+    )
+  (unwind-protect
+      (kill-buffer "*last_eshell_command*")
+    (let ((buffer (get-buffer-create "*last_eshell_command*")))
+      (switch-to-buffer-other-window buffer)
+      ;; (set-buffer buffer)
+      (erase-buffer)
+      (goto-char (point-min))
+      (yank)
+      (compilation-mode)
+      ))
+  )

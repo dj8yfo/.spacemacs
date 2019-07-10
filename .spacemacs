@@ -39,6 +39,7 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     basic-my
      helm
      (c-c++ :variables c-c++-backend 'rtags
             c-c++-enable-clang-support t)
@@ -462,24 +463,7 @@ before packages are loaded."
   (evil-global-set-key 'insert (kbd "\C-\]") 'company-complete)
   (evil-global-set-key 'normal (kbd "\C-\]") 'company-complete)
   (evil-global-set-key 'normal (kbd "\C-cl") 'org-store-link)
-  (defun eshell-copy-last-command-output ()
-    (interactive)
-    (save-excursion
-      (eshell-mark-output 1)
-      (kill-ring-save (point-min) (point-max))
-      (widen)
-      )
-    (unwind-protect
-        (kill-buffer "*last_eshell_command*")
-      (let ((buffer (get-buffer-create "*last_eshell_command*")))
-        (switch-to-buffer-other-window buffer)
-        ;; (set-buffer buffer)
-        (erase-buffer)
-        (goto-char (point-min))
-        (yank)
-        (compilation-mode)
-        ))
-    )
+  
   (spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
   (spacemacs/set-leader-keys "o" 'helm-multi-swoop-org)
   (spacemacs/set-leader-keys "sgp" 'helm-projectile-rg)

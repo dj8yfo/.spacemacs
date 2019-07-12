@@ -58,7 +58,7 @@ This function should only modify configuration layer settings."
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      syntax-checking
-     gtags
+     ;; gtags
      lsp
      (java :variables java-backend 'lsp)
      kotlin
@@ -478,7 +478,7 @@ before packages are loaded."
   (xclip-mode 1)
   (find-file "~/NOTES.org")
   (display-buffer "*spacemacs*" '(display-buffer-same-window . nil))
-  ;; (add-to-list 'exec-path "/home/sysmanj/Documents/soft/KotlinLanguageServer/server/build/install/server/bin")
+  (add-to-list 'exec-path "/home/sysmanj/Documents/soft/KotlinLanguageServer/server/build/install/server/bin")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

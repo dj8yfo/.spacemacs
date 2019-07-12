@@ -58,6 +58,9 @@ This function should only modify configuration layer settings."
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      syntax-checking
+     gtags
+     lsp
+     (java :variables java-backend 'lsp)
      kotlin
      ;; version-control
      )
@@ -473,6 +476,8 @@ before packages are loaded."
   (spacemacs/set-leader-keys "sgp" 'helm-projectile-rg)
   (spacemacs/set-leader-keys "r/" 'helm-rg)
   (xclip-mode 1)
+  (find-file "~/NOTES.org")
+  (display-buffer "*spacemacs*" '(display-buffer-same-window . nil))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

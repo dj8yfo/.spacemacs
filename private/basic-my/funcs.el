@@ -16,3 +16,10 @@
       (compilation-mode)
       ))
   )
+
+(defun export-notes-to-html ()
+  (interactive)
+  (find-file "~/NOTES.org")
+  (org-html-export-as-html)
+  (write-file "~/NOTES.html")
+  )

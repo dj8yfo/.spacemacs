@@ -33,7 +33,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(html
      ;; ----------------------------------------------------------------
      ;; Example of usefulf layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -72,7 +72,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(xclip helm-rg zeal-at-point)
+   dotspacemacs-additional-packages '(xclip helm-rg zeal-at-point emmet-mode)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -476,6 +476,7 @@ before packages are loaded."
   (spacemacs/set-leader-keys "sgp" 'helm-projectile-rg)
   (spacemacs/set-leader-keys "r/" 'helm-rg)
   (spacemacs/set-leader-keys "zp" 'zeal-at-point)
+  (spacemacs/set-leader-keys "io" 'org-insert-heading)
   (xclip-mode 1)
   (find-file "~/NOTES.org")
   (display-buffer "*spacemacs*" '(display-buffer-same-window . nil))
@@ -538,7 +539,7 @@ This function is called at the very end of Spacemacs initialization."
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (zeal-at-point xclip ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text mmm-mode markdown-toc markdown-mode macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-rg helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gh-md fuzzy flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f s disaster diminish define-word company-statistics company-c-headers company column-enforce-mode color-identifiers-mode dash cmake-mode clean-aindent-mode clang-format bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup farmhouse-theme)))
+    (web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode prettier-js less-css-mode impatient-mode htmlize simple-httpd helm-css-scss haml-mode emmet-mode company-web web-completion-data xclip ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text mmm-mode markdown-toc markdown-mode macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-rg helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gh-md fuzzy flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f s disaster diminish define-word company-statistics company-c-headers company column-enforce-mode color-identifiers-mode dash cmake-mode clean-aindent-mode clang-format bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup farmhouse-theme)))
  '(paradox-github-token t)
  '(pdf-view-midnight-colors (quote ("#5f5f87" . "#ffffff")))
  '(pos-tip-background-color "#FFFACE")

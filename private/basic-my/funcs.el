@@ -22,4 +22,5 @@
   (find-file "~/NOTES.org")
   (org-html-export-as-html)
   (write-file "~/NOTES.html")
+  (write-file "/home/sysmanj/Documents/code/tasking/NOTES.html")
   )

@@ -477,10 +477,18 @@ before packages are loaded."
   (spacemacs/set-leader-keys "r/" 'helm-rg)
   (spacemacs/set-leader-keys "zp" 'zeal-at-point)
   (spacemacs/set-leader-keys "io" 'org-insert-heading)
+  (spacemacs/set-leader-keys ":" 'eval-expression)
+  (spacemacs/set-leader-keys "." 'helm-buffers-list)
+  (spacemacs/set-leader-keys "hs" 'highlight-symbol-at-point)
+  (spacemacs/set-leader-keys "rh" 'clean-hightlight-regexp-all)
+  (global-set-key (kbd "\C-x.") 'helm-eshell-history)
+  (global-set-key (kbd "\C-x/") 'helm-complex-command-history)
+  (global-set-key (kbd "\C-x,") 'command-history)
   (xclip-mode 1)
   (find-file "~/NOTES.org")
   (display-buffer "*spacemacs*" '(display-buffer-same-window . nil))
   (add-to-list 'exec-path "/home/sysmanj/Documents/soft/KotlinLanguageServer/server/build/install/server/bin")
+  (global-set-key (kbd "TAB") 'my-insert-tab-char)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

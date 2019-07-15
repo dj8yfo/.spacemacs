@@ -24,3 +24,15 @@
   (write-file "~/NOTES.html")
   (write-file "/home/sysmanj/Documents/code/tasking/NOTES.html")
   )
+
+(defun periodic-refresh-lsp-kotlin ()
+  (run-with-timer 20 40 'lsp-restart-workspace)
+  )
+
+(defun my-insert-tab-char ()
+  (interactive)
+  (insert "\t"))
+
+(defun clean-hightlight-regexp-all ()
+  (interactive)
+  (unhighlight-regexp t))

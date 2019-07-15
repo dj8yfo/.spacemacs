@@ -30,7 +30,7 @@
 ;;; Code:
 
 (defconst basic-my-packages
-  '()
+  '(key-chord)
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:
@@ -60,3 +60,14 @@ Each entry is either:
 
 
 ;;; packages.el ends here
+(defun basic-my/init-key-chord ()
+  (use-package key-chord
+    :ensure t
+    :config
+    (key-chord-mode 1)
+    (key-chord-define-global "jj" 'avy-goto-word-1)
+    (key-chord-define-global "jl" 'avy-goto-line)
+    (key-chord-define-global "jk" 'avy-goto-char))
+  	(key-chord-define-global "uu" 'undo-tree-visualize)
+    (key-chord-define-global "yy" 'helm-show-kill-ring)
+  )

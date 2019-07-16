@@ -40,7 +40,6 @@
 (defun clean-hightlight-regexp-all ()
   (interactive)
   (unhighlight-regexp t))
-
 (defun switch-to-eshell ()
   (interactive)
   (switch-to-buffer "*eshell*"))

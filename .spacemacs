@@ -33,7 +33,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(html
+   '(
+     html
      ;; ----------------------------------------------------------------
      ;; Example of usefulf layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -51,7 +52,9 @@ This function should only modify configuration layer settings."
      markdown
      multiple-cursors
      treemacs
-     (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t)
+     (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t
+                 evil-snipe-auto-disable-substitute nil)
+     
      ;; org
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -487,6 +490,9 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ace-isearch-function (quote avy-goto-word-1))
+ '(ace-isearch-input-length 4)
+ '(ace-isearch-use-jump nil)
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(ansi-color-names-vector
@@ -497,6 +503,7 @@ This function is called at the very end of Spacemacs initialization."
  '(custom-safe-themes
    (quote
     ("bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" default)))
+ '(evil-regexp-search nil)
  '(evil-want-Y-yank-to-eol nil)
  '(fci-rule-color "#3C3D37")
  '(global-visual-fill-column-mode t)

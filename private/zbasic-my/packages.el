@@ -1,4 +1,4 @@
-;;; packages.el --- basic-my layer packages file for Spacemacs.
+;;; packages.el --- zbasic-my layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2018 Sylvain Benner & Contributors
 ;;
@@ -29,7 +29,7 @@
 
 ;;; Code:
 
-(defconst basic-my-packages
+(defconst zbasic-my-packages
   '(key-chord ggtags)
   "The list of Lisp packages required by the basic-my layer.
 
@@ -60,7 +60,7 @@ Each entry is either:
 
 
 ;;; packages.el ends here
-(defun basic-my/init-key-chord ()
+(defun zbasic-my/init-key-chord ()
   (use-package key-chord
     :ensure t
     :config
@@ -72,7 +72,7 @@ Each entry is either:
     (key-chord-define-global "yy" 'helm-show-kill-ring)
   )
 
-(defun basic-my/post-init-ggtags ()
+(defun zbasic-my/post-init-ggtags ()
 
   (add-hook 'ggtags-mode-hook '(lambda ()
                                  (evil-global-set-key 'normal (kbd "M-.") 'helm-gtags-dwim)

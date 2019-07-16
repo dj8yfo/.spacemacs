@@ -40,7 +40,7 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      colors
-     basic-my
+     zbasic-my
      helm
      (c-c++ :variables c-c++-backend 'rtags
             c-c++-enable-clang-support t)

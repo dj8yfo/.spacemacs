@@ -2,6 +2,7 @@
 (evil-global-set-key 'insert (kbd "\C-\]") 'company-complete)
 (evil-global-set-key 'normal (kbd "\C-\]") 'company-complete)
 (evil-global-set-key 'normal (kbd "\C-cl") 'org-store-link)
+(evil-global-set-key 'normal (kbd "C-/") 'evil-jump-forward)
 
 (spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
 (spacemacs/set-leader-keys "o" 'helm-multi-swoop-org)

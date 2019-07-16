@@ -30,7 +30,7 @@
 ;;; Code:
 
 (defconst zbasic-my-packages
-  '(key-chord ggtags)
+  '(key-chord ggtags ace-isearch)
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:
@@ -65,7 +65,7 @@ Each entry is either:
     :ensure t
     :config
     (key-chord-mode 1)
-    (key-chord-define-global "jj" 'avy-goto-word-1)
+    (key-chord-define-global "hh" 'avy-goto-word-1)
     (key-chord-define-global "jl" 'avy-goto-line)
     (key-chord-define-global "jk" 'avy-goto-char))
   	(key-chord-define-global "uu" 'undo-tree-visualize)
@@ -87,4 +87,21 @@ Each entry is either:
   (spacemacs/set-leader-keys "gy" 'helm-gtags-find-symbol)
   (spacemacs/set-leader-keys "gu" 'helm-gtags-update-tags)
 
+  )
+
+(defun zbasic-my/init-ace-isearch ()
+  (use-package ace-isearch
+    :ensure t
+    :config
+    (global-ace-isearch-mode +1)
+    (custom-set-variables
+     '(ace-isearch-function 'avy-goto-word-1)
+                          '(ace-isearch-use-jump t)
+                          '(ace-isearch-input-length 2)
+                          '(ace-isearch-jump-delay 0.3))
+    (define-key isearch-mode-map (kbd "C-'") 'ace-isearch-jump-during-isearch)
+    (evil-global-set-key 'normal (kbd "/") 'isearch-forward)
+    (evil-global-set-key 'normal (kbd "?") 'isearch-backward)
+    ;; (setq ace-isearch-function-from-isearch 'helm-occur-from-isearch)
+    )
   )

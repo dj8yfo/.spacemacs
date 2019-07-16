@@ -1,0 +1,20 @@
+
+(evil-global-set-key 'insert (kbd "\C-\]") 'company-complete)
+(evil-global-set-key 'normal (kbd "\C-\]") 'company-complete)
+(evil-global-set-key 'normal (kbd "\C-cl") 'org-store-link)
+
+(spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
+(spacemacs/set-leader-keys "o" 'helm-multi-swoop-org)
+(spacemacs/set-leader-keys "sgp" 'helm-projectile-rg)
+(spacemacs/set-leader-keys "r/" 'helm-rg)
+(spacemacs/set-leader-keys "zp" 'zeal-at-point)
+(spacemacs/set-leader-keys "io" 'org-insert-heading)
+(spacemacs/set-leader-keys ":" 'eval-expression)
+(spacemacs/set-leader-keys "." 'helm-buffers-list)
+(spacemacs/set-leader-keys "hs" 'highlight-symbol-at-point)
+(spacemacs/set-leader-keys "rh" 'clean-hightlight-regexp-all)
+(spacemacs/set-leader-keys "ee" 'switch-to-eshell)
+
+(global-set-key (kbd "\C-x.") 'helm-eshell-history)
+(global-set-key (kbd "\C-x/") 'helm-complex-command-history)
+(global-set-key (kbd "\C-x,") 'command-history)

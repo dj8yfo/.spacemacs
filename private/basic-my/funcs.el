@@ -26,7 +26,11 @@
   )
 
 (defun periodic-refresh-lsp-kotlin ()
-  (run-with-timer 20 40 'lsp-restart-workspace)
+  (run-with-timer 20 60 '(lambda ()
+                           (when (equal major-mode 'kotlin-mode)
+                             (lsp-restart-workspace))
+                           )
+                  )
   )
 
 (defun my-insert-tab-char ()
@@ -36,3 +40,7 @@
 (defun clean-hightlight-regexp-all ()
   (interactive)
   (unhighlight-regexp t))
+
+(defun switch-to-eshell ()
+  (interactive)
+  (switch-to-buffer "*eshell*"))

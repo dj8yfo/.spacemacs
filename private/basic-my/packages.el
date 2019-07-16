@@ -30,7 +30,7 @@
 ;;; Code:
 
 (defconst basic-my-packages
-  '(key-chord)
+  '(key-chord ggtags)
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:
@@ -70,4 +70,21 @@ Each entry is either:
     (key-chord-define-global "jk" 'avy-goto-char))
   	(key-chord-define-global "uu" 'undo-tree-visualize)
     (key-chord-define-global "yy" 'helm-show-kill-ring)
+  )
+
+(defun basic-my/post-init-ggtags ()
+
+  (add-hook 'ggtags-mode-hook '(lambda ()
+                                 (evil-global-set-key 'normal (kbd "M-.") 'helm-gtags-dwim)
+                                 (evil-global-set-key 'insert (kbd "M-.") 'helm-gtags-dwim)))
+
+  (spacemacs/set-leader-keys "gd" 'helm-gtags-find-tag)
+  (spacemacs/set-leader-keys "gR" 'helm-gtags-resume)
+  (spacemacs/set-leader-keys "gs" 'helm-gtags-select)
+  (spacemacs/set-leader-keys "gp" 'helm-gtags-previous-history)
+  (spacemacs/set-leader-keys "gn" 'helm-gtags-next-history)
+  (spacemacs/set-leader-keys "gD" 'helm-gtags-find-tag-other-window)
+  (spacemacs/set-leader-keys "gy" 'helm-gtags-find-symbol)
+  (spacemacs/set-leader-keys "gu" 'helm-gtags-update-tags)
+
   )

@@ -58,7 +58,7 @@ This function should only modify configuration layer settings."
      ;;        shell-default-position 'bottom)
      ;; spell-checking
      syntax-checking
-     ;; gtags
+     gtags
      lsp
      (java :variables java-backend 'lsp)
      kotlin
@@ -195,9 +195,9 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(farmhouse-dark
+   dotspacemacs-themes '(moe-dark farmhouse-dark
                          monokai spacemacs-dark
-                         dracula moe tangotango
+                         dracula tangotango
                          )
 
 
@@ -467,28 +467,12 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (evil-global-set-key 'insert (kbd "\C-\]") 'company-complete)
-  (evil-global-set-key 'normal (kbd "\C-\]") 'company-complete)
-  (evil-global-set-key 'normal (kbd "\C-cl") 'org-store-link)
-  
-  (spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
-  (spacemacs/set-leader-keys "o" 'helm-multi-swoop-org)
-  (spacemacs/set-leader-keys "sgp" 'helm-projectile-rg)
-  (spacemacs/set-leader-keys "r/" 'helm-rg)
-  (spacemacs/set-leader-keys "zp" 'zeal-at-point)
-  (spacemacs/set-leader-keys "io" 'org-insert-heading)
-  (spacemacs/set-leader-keys ":" 'eval-expression)
-  (spacemacs/set-leader-keys "." 'helm-buffers-list)
-  (spacemacs/set-leader-keys "hs" 'highlight-symbol-at-point)
-  (spacemacs/set-leader-keys "rh" 'clean-hightlight-regexp-all)
-  (global-set-key (kbd "\C-x.") 'helm-eshell-history)
-  (global-set-key (kbd "\C-x/") 'helm-complex-command-history)
-  (global-set-key (kbd "\C-x,") 'command-history)
   (xclip-mode 1)
   (find-file "~/NOTES.org")
   (display-buffer "*spacemacs*" '(display-buffer-same-window . nil))
   (add-to-list 'exec-path "/home/sysmanj/Documents/soft/KotlinLanguageServer/server/build/install/server/bin")
-  (global-set-key (kbd "TAB") 'my-insert-tab-char)
+  ;; (global-set-key (kbd "TAB") 'my-insert-tab-char)
+  (setq-default indent-tabs-mode nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

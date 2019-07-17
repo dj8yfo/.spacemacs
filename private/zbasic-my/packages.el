@@ -97,7 +97,7 @@ Each entry is either:
     (custom-set-variables
      '(ace-isearch-function 'avy-goto-word-1)
                           '(ace-isearch-use-jump nil)
-                          '(ace-isearch-input-length 6)
+                          '(ace-isearch-input-length 5)
                           '(ace-isearch-jump-delay 1.5)
                           )
     (define-key isearch-mode-map (kbd "C-n") 'ace-isearch-jump-during-isearch)

@@ -182,7 +182,7 @@ It should only modify the values of Spacemacs settings."
    ;; `recents' `bookmarks' `projects' `agenda' `todos'.
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
-   dotspacemacs-startup-lists '((recents . 5)
+   dotspacemacs-startup-lists '((recents . 20)
                                 (projects . 7))
 
    ;; True if the home buffer should respond to resize events. (default t)
@@ -491,7 +491,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ace-isearch-function (quote avy-goto-word-1))
- '(ace-isearch-input-length 4)
  '(ace-isearch-use-jump nil)
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])

@@ -30,7 +30,7 @@
 ;;; Code:
 
 (defconst zbasic-my-packages
-  '(key-chord ggtags ace-jump-mode ace-isearch)
+  '(key-chord ggtags ace-jump-mode ace-isearch helm-swoop)
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:
@@ -68,8 +68,8 @@ Each entry is either:
     (key-chord-define-global "gh" 'ace-jump-word-mode)
     (key-chord-define-global "gl" 'ace-jump-line-mode)
     (key-chord-define-global "gk" 'ace-jump-char-mode))
-  	(key-chord-define-global "uu" 'undo-tree-visualize)
-    (key-chord-define-global "yy" 'helm-show-kill-ring)
+  (key-chord-define-global "uu" 'undo-tree-visualize)
+  (key-chord-define-global "yy" 'helm-show-kill-ring)
   )
 
 (defun zbasic-my/post-init-ggtags ()
@@ -104,16 +104,69 @@ Each entry is either:
     (global-ace-isearch-mode +1)
     (custom-set-variables
      '(ace-isearch-function 'ace-jump-word-mode)
-                          '(ace-isearch-use-jump nil)
-                          '(ace-isearch-input-length 5)
-                          '(ace-isearch-jump-delay 1.5)
-                          '(ace-isearch-function-from-isearch 'helm-swoop-from-isearch)
-                          )
+     '(ace-isearch-use-jump nil)
+     '(ace-isearch-input-length 5)
+     '(ace-isearch-jump-delay 1.5)
+     '(ace-isearch-function-from-isearch 'helm-swoop-from-isearch-override)
+     ;; '(search-nonincremental-instead nil)
+     )
+
     (define-key isearch-mode-map (kbd "C-j") 'ace-isearch-jump-during-isearch-helm-swoop)
+    (define-key isearch-mode-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
+    (define-key isearch-mode-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key helm-swoop-map (kbd "C-j") 'ace-isearch-jump-during-isearch-helm-swoop)
     (evil-global-set-key 'normal (kbd "/") 'isearch-forward)
     (evil-global-set-key 'normal (kbd "?") 'isearch-backward)
     (key-chord-define-global "//" 'rep-isearch-forward)
     (key-chord-define-global "??" 'rep-isearch-backward)
     )
+  )
+
+(defun zbasic-my/post-init-helm-swoop ()
+  (defvar helm-swoop-pattern "")            ; Keep helm-pattern value
+  (add-hook 'helm-exit-minibuffer-hook
+            '(lambda ()(if isearch-regexp
+                           (setq regexp-search-ring (cons helm-swoop-pattern regexp-search-ring))
+                         (setq search-ring (cons helm-swoop-pattern search-ring))
+                         ))
+            ))
+
+(defun zbasic-my/post-init-ace-isearch ()
+  (defun ace-isearch--jumper-function ()
+      (cond ((and (= (length isearch-string) 1)
+                  (not (or isearch-regexp
+                           (ace-isearch--isearch-regexp-function)))
+                  (ace-isearch--fboundp ace-isearch-function
+                    (or (eq ace-isearch-use-jump t)
+                        (and (eq ace-isearch-use-jump 'printing-char)
+                             (eq this-command 'isearch-printing-char))))
+                  (sit-for ace-isearch-jump-delay))
+             (isearch-exit)
+             ;; go back to the point where isearch started
+             (goto-char isearch-opoint)
+             (if (or (< (point) (window-start)) (> (point) (window-end)))
+                 (message "Notice: Character '%s' could not be found in the \"selected visible window\"." isearch-string))
+             (funcall ace-isearch-function (string-to-char isearch-string))
+             ;; work-around for emacs 25.1
+             (setq isearch--current-buffer (buffer-name (current-buffer))
+                   isearch-string ""))
+
+            ((and (> (length isearch-string) 1)
+                  (< (length isearch-string) ace-isearch-input-length)
+                  (not isearch-success)
+                  (sit-for ace-isearch-jump-delay))
+             (if (ace-isearch--fboundp ace-isearch-fallback-function
+                   ace-isearch-use-fallback-function)
+                 (funcall ace-isearch-fallback-function)))
+
+            ((and (>= (length isearch-string) ace-isearch-input-length)
+                  ;; (not isearch-regexp)
+                  (ace-isearch--fboundp ace-isearch-function-from-isearch
+                    ace-isearch-use-function-from-isearch)
+                  (sit-for ace-isearch-func-delay))
+             (isearch-exit)
+             (funcall ace-isearch-function-from-isearch)
+             ;; work-around for emacs 25.1
+             (setq isearch--current-buffer (buffer-name (current-buffer))
+                   isearch-string ""))))
   )

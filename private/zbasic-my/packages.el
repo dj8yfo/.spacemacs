@@ -31,6 +31,12 @@
 
 (defconst zbasic-my-packages
   '(key-chord ggtags ace-jump-mode ace-isearch helm-swoop)
+
+  ;; My incsearched setup worked seamlessly good:
+  ;; helm-swoop-20180215.1154
+  ;; helm-core-20190712.1716
+  ;; ace-isearch-20190630.1552
+  ;; ace-jump-mode-20140616.815
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:

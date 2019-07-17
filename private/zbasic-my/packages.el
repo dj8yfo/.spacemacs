@@ -65,9 +65,9 @@ Each entry is either:
     :ensure t
     :config
     (key-chord-mode 1)
-    (key-chord-define-global "hh" 'ace-jump-word-mode)
-    (key-chord-define-global "hl" 'ace-jump-line-mode)
-    (key-chord-define-global "jk" 'ace-jump-char-mode))
+    (key-chord-define-global "gh" 'ace-jump-word-mode)
+    (key-chord-define-global "gl" 'ace-jump-line-mode)
+    (key-chord-define-global "gk" 'ace-jump-char-mode))
   	(key-chord-define-global "uu" 'undo-tree-visualize)
     (key-chord-define-global "yy" 'helm-show-kill-ring)
   )

@@ -3,6 +3,8 @@
 (evil-global-set-key 'normal (kbd "\C-\]") 'company-complete)
 (evil-global-set-key 'normal (kbd "\C-cl") 'org-store-link)
 (evil-global-set-key 'normal (kbd "C-M-n") 'evil-jump-forward)
+(evil-global-set-key 'normal (kbd "n") 'evil-next-respect-isearch)
+(evil-global-set-key 'normal (kbd "N") 'evil-previous-respect-isearch)
 
 (spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
 (spacemacs/set-leader-keys "o" 'helm-multi-swoop-org)

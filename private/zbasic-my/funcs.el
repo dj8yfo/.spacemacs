@@ -133,3 +133,12 @@
     (let (search-nonincremental-instead)
       (isearch-exit))
     (helm-swoop :$query $query)))
+
+(defun evil-next-respect-isearch ()
+ (interactive)
+  (setq evil-regexp-search isearch-regexp)
+  (evil-search-next))
+(defun evil-previous-respect-isearch ()
+  (interactive)
+  (setq evil-regexp-search isearch-regexp)
+  (evil-search-previous))

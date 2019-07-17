@@ -30,7 +30,7 @@
 ;;; Code:
 
 (defconst zbasic-my-packages
-  '(key-chord ggtags ace-isearch)
+  '(key-chord ggtags ace-jump-mode ace-isearch)
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:
@@ -47,7 +47,7 @@ Each entry is either:
       if value is non-nil
 
     - :location: Specify a custom installation location.
-      The following values are legal:
+      Theher-window following values are legal:
 
       - The symbol `elpa' (default) means PACKAGE will be
         installed using the Emacs package manager.
@@ -65,9 +65,9 @@ Each entry is either:
     :ensure t
     :config
     (key-chord-mode 1)
-    (key-chord-define-global "hh" 'avy-goto-word-1)
-    (key-chord-define-global "hl" 'avy-goto-line)
-    (key-chord-define-global "jk" 'avy-goto-char))
+    (key-chord-define-global "hh" 'ace-jump-word-mode)
+    (key-chord-define-global "hl" 'ace-jump-line-mode)
+    (key-chord-define-global "jk" 'ace-jump-char-mode))
   	(key-chord-define-global "uu" 'undo-tree-visualize)
     (key-chord-define-global "yy" 'helm-show-kill-ring)
   )
@@ -89,21 +89,31 @@ Each entry is either:
 
   )
 
+
+
+(defun zbasic-my/init-ace-jump-mode ()
+  (use-package ace-jump-mode
+    :defer t
+    :ensure t)
+  )
+
 (defun zbasic-my/init-ace-isearch ()
   (use-package ace-isearch
     :ensure t
     :config
     (global-ace-isearch-mode +1)
     (custom-set-variables
-     '(ace-isearch-function 'avy-goto-word-1)
+     '(ace-isearch-function 'ace-jump-word-mode)
                           '(ace-isearch-use-jump nil)
                           '(ace-isearch-input-length 5)
                           '(ace-isearch-jump-delay 1.5)
+                          '(ace-isearch-function-from-isearch 'helm-swoop-from-isearch)
                           )
-    (define-key isearch-mode-map (kbd "C-n") 'ace-isearch-jump-during-isearch)
+    (define-key isearch-mode-map (kbd "C-j") 'ace-isearch-jump-during-isearch-helm-swoop)
+    (define-key helm-swoop-map (kbd "C-j") 'ace-isearch-jump-during-isearch-helm-swoop)
     (evil-global-set-key 'normal (kbd "/") 'isearch-forward)
     (evil-global-set-key 'normal (kbd "?") 'isearch-backward)
-    (key-chord-define-global "//" 'ace-isearch-jump-during-isearch)
-    (key-chord-define-global "??" 'ace-isearch-jump-during-isearch)
+    (key-chord-define-global "//" 'rep-isearch-forward)
+    (key-chord-define-global "??" 'rep-isearch-backward)
     )
   )

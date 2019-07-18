@@ -121,6 +121,8 @@ Each entry is either:
     (define-key isearch-mode-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key isearch-mode-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key helm-swoop-map (kbd "C-j") 'ace-isearch-jump-during-isearch-helm-swoop)
+    (define-key helm-swoop-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
+    (define-key helm-swoop-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
     (evil-global-set-key 'normal (kbd "/") 'isearch-forward)
     (evil-global-set-key 'normal (kbd "?") 'isearch-backward)
     (key-chord-define-global "//" 'rep-isearch-forward)

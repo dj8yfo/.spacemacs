@@ -74,13 +74,13 @@
     ;;   (isearch-yank-string my-search))
     (isearch-repeat-backward)
     (if (< (length my-search) ace-isearch-input-length)
-        (run-with-timer 0.1 nil 'ace-isearch-jump-during-isearch-helm-swoop))
+        (run-with-timer 0.05 nil 'ace-isearch-jump-during-isearch-helm-swoop))
     )
   )
 
 
 (defun ace-jump-last-search ()
-  (let ((ace-jump-mode-scope 'window))
+  (let ((ace-jump-mode-scope 'global))
     ;; (message "wTFFFF? started")
     (ace-jump-do (extract-last-search))
     ))
@@ -98,9 +98,10 @@
   (interactive)
   (if (< (length isearch-string) ace-isearch-input-length)
       (cond ((eq ace-isearch--ace-jump-or-avy 'ace-jump)
-             (let ((ace-jump-mode-scope 'window))
+             (progn
                (isearch-exit)
-               (ace-jump-do (extract-last-search))))
+               (evil-scroll-line-to-center nil)
+               (run-with-timer 0.05 nil 'ace-jump-last-search)))
             ((eq ace-isearch--ace-jump-or-avy 'avy)
              (let ((avy-all-windows nil))
                (avy-isearch))))
@@ -109,7 +110,7 @@
       (progn
         ;; (message "wTFFFF? init")
         ;; (message (format "swoop: %s" helm-swoop-pattern))
-        (run-with-timer 0.1 nil 'ace-jump-last-search)
+        (run-with-timer 0.05 nil 'ace-jump-last-search)
         (helm-exit-minibuffer)
         )
       )
@@ -117,7 +118,7 @@
     ((eq ace-isearch--ace-jump-or-avy 'avy)
      (progn
        ;; (message (format "swoop: %s" helm-swoop-pattern))
-       (run-with-timer 0.1 nil 'avy-jump-last-search)
+       (run-with-timer 0.05 nil 'avy-jump-last-search)
        (helm-exit-minibuffer)
        )
      )

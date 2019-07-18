@@ -1,11 +1,24 @@
 
-(evil-global-set-key 'insert (kbd "C-M-/") 'company-complete)
-(evil-global-set-key 'normal (kbd "C-M-/") 'company-complete)
+(global-set-key (kbd "C-l") 'company-complete)
 (evil-global-set-key 'normal (kbd "\C-cl") 'org-store-link)
 (evil-global-set-key 'normal (kbd "C-M-n") 'evil-jump-forward)
 (evil-global-set-key 'normal (kbd "n") 'evil-next-respect-isearch)
 (evil-global-set-key 'normal (kbd "N") 'evil-previous-respect-isearch)
+(evil-global-set-key 'normal (kbd ">") 'goto-delimiter-forward)
+(evil-global-set-key 'visual (kbd ">") 'goto-delimiter-forward)
+(evil-global-set-key 'operator (kbd ">") 'goto-delimiter-forward)
+(evil-global-set-key 'normal (kbd "H") 'goto-delimiter-backward-stop)
+(evil-global-set-key 'visual (kbd "H") 'goto-delimiter-backward-stop)
+(evil-global-set-key 'operator (kbd "H") 'goto-delimiter-backward-stop)
+(evil-global-set-key 'normal (kbd "<") 'goto-delimiter-backward)
+(evil-global-set-key 'visual (kbd "<") 'goto-delimiter-backward)
+(evil-global-set-key 'operator (kbd "<") 'goto-delimiter-backward)
+(global-set-key (kbd "\C-m") 'backward-delete-char)
 (evil-define-key 'normal evil-matchit-mode-map
+  "M" 'evilmi-jump-items)
+(evil-define-key 'visual evil-matchit-mode-map
+  "M" 'evilmi-jump-items)
+(evil-define-key 'operator evil-matchit-mode-map
   "M" 'evilmi-jump-items)
 (spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
 (spacemacs/set-leader-keys "o" 'helm-multi-swoop-org)
@@ -24,4 +37,5 @@
 (global-set-key (kbd "\C-x/") 'helm-complex-command-history)
 (global-set-key (kbd "\C-x,") 'command-history)
 (global-set-key (kbd "\C-x]") 'ace-window)
+
 

@@ -148,3 +148,8 @@
   (interactive "SValues:")
   (kill-new (symbol-value variable))
   )
+(defun goto-delimiter-forward (variable)
+  (interactive)
+  (forward-char 1)
+   (while (not (char-syntax (cha))))
+  )

@@ -64,19 +64,18 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
-
 ;;; packages.el ends here
 (defun zbasic-my/init-key-chord ()
   (use-package key-chord
     :ensure t
     :config
     (key-chord-mode 1)
-    (key-chord-define-global "gh" 'ace-jump-word-mode)
-    (key-chord-define-global "gl" 'ace-jump-line-mode)
-    (key-chord-define-global "gk" 'ace-jump-char-mode))
-  (key-chord-define-global "uu" 'undo-tree-visualize)
+    (key-chord-define evil-normal-state-map "gh" 'ace-jump-char-mode)
+    (key-chord-define evil-normal-state-map "gl" 'ace-jump-line-mode)
+    (key-chord-define evil-normal-state-map "gk" 'ace-jump-word-mode)
+  (key-chord-define-global "UU" 'undo-tree-visualize)
   (key-chord-define-global "yy" 'helm-show-kill-ring)
-  )
+  ))
 
 (defun zbasic-my/post-init-ggtags ()
 
@@ -125,8 +124,8 @@ Each entry is either:
     (define-key helm-swoop-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
     (evil-global-set-key 'normal (kbd "/") 'isearch-forward)
     (evil-global-set-key 'normal (kbd "?") 'isearch-backward)
-    (key-chord-define-global "//" 'rep-isearch-forward)
-    (key-chord-define-global "??" 'rep-isearch-backward)
+    (key-chord-define evil-normal-state-map "//" 'rep-isearch-forward)
+    (key-chord-define evil-normal-state-map "??" 'rep-isearch-backward)
     )
   )
 

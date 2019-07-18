@@ -143,3 +143,8 @@
   (interactive)
   (setq evil-regexp-search isearch-regexp)
   (evil-search-previous))
+
+(defun describe-variable-and-kill-value (variable)
+  (interactive "SValues:")
+  (kill-new (symbol-value variable))
+  )

@@ -17,6 +17,7 @@
 (spacemacs/set-leader-keys "hs" 'highlight-symbol-at-point)
 (spacemacs/set-leader-keys "rh" 'clean-hightlight-regexp-all)
 (spacemacs/set-leader-keys "ee" 'switch-to-eshell)
+(spacemacs/set-leader-keys "ys" 'describe-variable-and-kill-value)
 
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
 (global-set-key (kbd "\C-x/") 'helm-complex-command-history)

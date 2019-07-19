@@ -13,7 +13,11 @@
 (evil-global-set-key 'normal (kbd "<") 'goto-delimiter-backward)
 (evil-global-set-key 'visual (kbd "<") 'goto-delimiter-backward)
 (evil-global-set-key 'operator (kbd "<") 'goto-delimiter-backward)
-(global-set-key (kbd "\C-m") 'backward-delete-char)
+(evil-global-set-key 'visual (kbd "{") '(lambda nil (interactive)
+                                          (progn (call-interactively (quote evil-shift-left)) (execute-kbd-macro "gv"))))
+(evil-global-set-key 'visual (kbd "}") '(lambda nil (interactive)
+                                          (progn (call-interactively (quote evil-shift-right)) (execute-kbd-macro "gv"))))
+(global-set-key (kbd "M-h") 'backward-delete-char)
 (evil-define-key 'normal evil-matchit-mode-map
   "M" 'evilmi-jump-items)
 (evil-define-key 'visual evil-matchit-mode-map

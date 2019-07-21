@@ -30,7 +30,7 @@
 ;;; Code:
 
 (defconst zbasic-my-packages
-  '(key-chord ggtags ace-jump-mode ace-isearch helm-swoop)
+  '(key-chord ggtags ace-jump-mode helm ace-isearch helm-swoop)
 
   ;; My incsearched setup worked seamlessly good:
   ;; helm-swoop-20180215.1154
@@ -176,4 +176,10 @@ Each entry is either:
              ;; work-around for emacs 25.1
              (setq isearch--current-buffer (buffer-name (current-buffer))
                    isearch-string ""))))
+  )
+
+
+
+(defun zbasic-my/post-init-helm ()
+  (define-key helm-map (kbd "C-l") 'kill-backward-until-sep)
   )

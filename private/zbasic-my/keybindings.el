@@ -1,7 +1,4 @@
-
-(global-set-key (kbd "C-l") 'company-complete)
-(define-key helm-find-files-map (kbd "C-l") 'helm-find-files-up-one-level)
-(define-key helm-major-mode-map (kbd "C-l") 'helm-find-files-up-one-level)
+(global-set-key (kbd "C-M-]") 'company-complete)
 (evil-global-set-key 'normal (kbd "\C-cl") 'org-store-link)
 (evil-global-set-key 'normal (kbd "C-M-n") 'evil-jump-forward)
 (evil-global-set-key 'normal (kbd "n") 'evil-next-respect-isearch)

@@ -146,8 +146,11 @@
 
 (defun describe-variable-and-kill-value (variable)
   (interactive "SValues:")
-  (kill-new (symbol-value variable))
+  (let ((res (symbol-value variable) ))
+    (kill-new (if res res "NONE"))
+    )
   )
+
 (defun goto-delimiter-forward ()
   (interactive)
   (forward-char 1)
@@ -173,4 +176,22 @@
     )
   (if inter nil
     (forward-char 1))
+  )
+
+(defun keymap-symbol (keymap)
+  "Return the symbol to which KEYMAP is bound, or nil if no such symbol exists."
+  (catch 'gotit
+    (mapatoms (lambda (sym)
+                (and (boundp sym)
+                     (eq (symbol-value sym) keymap)
+                     (not (eq sym 'keymap))
+                     (throw 'gotit sym))))))
+
+(defun kill-backward-until-sep ()
+  (interactive)
+  (while (not (equal (point) (buffer-end 1)))
+    (delete-char 1))
+  (delete-char -1)
+  (while (not (equal ?/ (char-before)))
+    (delete-char -1))
   )

@@ -175,7 +175,7 @@ It should only modify the values of Spacemacs settings."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner nil
 
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
@@ -190,7 +190,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-startup-buffer-responsive t
 
    ;; Default major mode of the scratch buffer (default `text-mode')
-   dotspacemacs-scratch-mode 'text-mode
+   dotspacemacs-scratch-mode 'lisp-interaction-mode
 
    ;; Initial message in the scratch buffer, such as "Welcome to Spacemacs!"
    ;; (default nil)
@@ -199,9 +199,9 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai moe-dark tangotango  farmhouse-dark
+   dotspacemacs-themes '(alect-dark monokai moe-dark tangotango  farmhouse-dark
                                  spacemacs-dark dracula)
-   
+
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -360,7 +360,7 @@ It should only modify the values of Spacemacs settings."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers 'relative
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -470,7 +470,8 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (xclip-mode 1)
   (find-file "~/NOTES.org")
-  (display-buffer "*spacemacs*" '(display-buffer-same-window . nil))
+  (switch-to-prev-buffer)
+  ;; (display-buffer "*spacemacs*" '(display-buffer-same-window . nil))
   (add-to-list 'exec-path "/home/sysmanj/Documents/soft/KotlinLanguageServer/server/build/install/server/bin")
   ;; (global-set-key (kbd "TAB") 'my-insert-tab-char)
   (setq-default indent-tabs-mode nil)

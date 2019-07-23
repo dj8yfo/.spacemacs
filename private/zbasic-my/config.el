@@ -5,8 +5,8 @@
 (add-hook 'kotlin-mode-hook '(lambda ()
                                (modify-syntax-entry ?$ ".")))
 (add-hook 'kotlin-mode-hook '(lambda ()
-                               (modify-syntax-entry ?< "(")))
+                               (modify-syntax-entry ?< ".")))
 (add-hook 'kotlin-mode-hook '(lambda ()
-                               (modify-syntax-entry ?> ")")))
+                               (modify-syntax-entry ?> ".")))
 
 (setq evil-escape-key-sequence "z[")

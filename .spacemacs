@@ -175,7 +175,7 @@ It should only modify the values of Spacemacs settings."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner nil
+   dotspacemacs-startup-banner 'random
 
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
@@ -219,8 +219,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Terminess Powerline" :slant normal :weight normal :height 120 :width normal
-                               )
+   dotspacemacs-default-font '("-xos4-Terminess Powerline-normal-normal-normal-*-12-*-*-*-c-60-iso10646-1")
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -479,6 +478,7 @@ before packages are loaded."
   (spacemacs|do-after-display-system-init
    (spacemacs-modeline/init-spaceline))
   (global-evil-matchit-mode 1)
+  (set-default-font "-xos4-Terminess Powerline-normal-normal-normal-*-14-*-*-*-c-60-iso10646-1" nil nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

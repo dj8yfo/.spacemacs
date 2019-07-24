@@ -32,6 +32,7 @@
 (defconst zbasic-my-packages
   '(key-chord ggtags ace-jump-mode helm ace-isearch helm-swoop)
 
+
   ;; My incsearched setup worked seamlessly good:
   ;; helm-swoop-20180215.1154
   ;; helm-core-20190712.1716
@@ -81,7 +82,9 @@ Each entry is either:
 
   (add-hook 'ggtags-mode-hook '(lambda ()
                                  (evil-global-set-key 'normal (kbd "M-.") 'helm-gtags-dwim)
-                                 (evil-global-set-key 'insert (kbd "M-.") 'helm-gtags-dwim)))
+                                 (evil-global-set-key 'insert (kbd "M-.") 'helm-gtags-dwim)
+                                 (evil-global-set-key 'normal (kbd "M-]") 'helm-gtags-dwim-other-window)
+                                 (evil-global-set-key 'insert (kbd "M-]") 'helm-gtags-dwim-other-window)))
   (setq gtags-enable-by-default nil)
 
   (spacemacs/set-leader-keys "gd" 'helm-gtags-find-tag)
@@ -184,3 +187,5 @@ Each entry is either:
 (defun zbasic-my/post-init-helm ()
   (define-key helm-map (kbd "C-l") 'kill-backward-until-sep)
   )
+
+

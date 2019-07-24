@@ -34,7 +34,9 @@
 (spacemacs/set-leader-keys "ys" 'describe-variable-and-kill-value)
 (spacemacs/set-leader-keys "." 'ido-switch-buffer)
 
-(global-set-key (kbd "M-l") 'custom-layout1)
+(global-unset-key (kbd "M-l"))
+(global-set-key (kbd "M-l a") 'custom-layout1)
+(global-set-key (kbd "M-l b") 'custom-layout2)
 (global-set-key (kbd "\C-xb") 'ido-switch-buffer)
 (global-set-key (kbd "\C-x\C-f") 'ido-find-file)
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)

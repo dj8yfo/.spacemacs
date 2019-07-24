@@ -35,6 +35,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    '(python
      html
+     ;; spacemacs-navigation
      ;; ----------------------------------------------------------------
      ;; Example of usefulf layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -478,7 +479,6 @@ before packages are loaded."
   (spacemacs|do-after-display-system-init
    (spacemacs-modeline/init-spaceline))
   (global-evil-matchit-mode 1)
-  (set-default-font "-xos4-Terminess Powerline-normal-normal-normal-*-14-*-*-*-c-60-iso10646-1" nil nil)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

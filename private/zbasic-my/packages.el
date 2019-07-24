@@ -82,6 +82,7 @@ Each entry is either:
   (add-hook 'ggtags-mode-hook '(lambda ()
                                  (evil-global-set-key 'normal (kbd "M-.") 'helm-gtags-dwim)
                                  (evil-global-set-key 'insert (kbd "M-.") 'helm-gtags-dwim)))
+  (setq gtags-enable-by-default nil)
 
   (spacemacs/set-leader-keys "gd" 'helm-gtags-find-tag)
   (spacemacs/set-leader-keys "gR" 'helm-gtags-resume)

@@ -513,6 +513,7 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol nil)
  '(fci-rule-color "#3C3D37")
  '(global-visual-fill-column-mode t)
+ '(helm-show-completion-display-function (quote helm-show-completion-default-display-function))
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
    (quote

@@ -43,6 +43,7 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      colors
      zbasic-my
+     spacemacs-purpose
      helm
      (c-c++ :variables c-c++-backend 'rtags
             c-c++-enable-clang-support t)

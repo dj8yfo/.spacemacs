@@ -1,4 +1,3 @@
-
 (spacemacs|define-jump-handlers kotlin-mode)
 (add-hook 'kotlin-mode-hook '(lambda () (lsp nil)))
 (add-hook 'kotlin-mode-hook 'ggtags-mode)
@@ -11,11 +10,8 @@
                                (modify-syntax-entry ?> ".")))
 
 (setq evil-escape-key-sequence "z[")
-
-
+(setq purpose-layout-dirs '("/home/sysmanj/Documents/.spacemacs/private/zbasic-my/layouts/"))
+;; (custom-layout2)
 (advice-add 'server-create-window-system-frame :after '(lambda (&rest args)
                                                          (interactive)
 							(set-face-font 'default "-xos4-Terminess Powerline-normal-normal-normal-*-14-*-*-*-c-60-iso10646-1" )))
-;(advice-add 'server-create-tty-frame :after ''(lambda (&rest args)
-;                                                         (interactive)
-;                                                        (set-face-font 'default "-xos4-Terminess Powerline-normal-normal-normal-*-14-*-*-*-c-60-iso10646-1" )))

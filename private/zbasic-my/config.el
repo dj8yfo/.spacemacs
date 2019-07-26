@@ -14,7 +14,7 @@
 ;; (custom-layout2)
 (advice-add 'server-create-window-system-frame :after '(lambda (&rest args)
                                                          (interactive)
-							(set-face-font 'default "-xos4-Terminess Powerline-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1" )))
+							(set-face-font 'default "-xos4-Terminess Powerline-normal-normal-normal-*-14-*-*-*-c-80-iso10646-1" )))
 
 (with-eval-after-load 'window-purpose
           (custom-layout1))

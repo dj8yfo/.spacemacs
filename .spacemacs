@@ -78,9 +78,9 @@ This function should only modify configuration layer settings."
    ;; packages, then consider creating a layer. You can also put the;
    ;; configuration in `dotspacemacs/user-config'.
    ;; To use a local version of a package, use the `:location' property:
-   ;; '(your-package :location "~/path/to/your-package/")
+   ;; '(your-package :location "~/path/to/your-packige/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(xclip helm-rg zeal-at-point emmet-mode)
+   dotspacemacs-additional-packages '(xclip helm-rg zeal-at-point emmet-mode eglot)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()

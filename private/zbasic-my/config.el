@@ -1,5 +1,5 @@
 (spacemacs|define-jump-handlers kotlin-mode)
-;; (add-hook 'kotlin-mode-hook '(lambda () (lsp nil)))
+;; (add-hook 'kotlin-mode-hook 'eglot-ensure)
 (add-hook 'kotlin-mode-hook 'ggtags-mode)
 
                                         ;
@@ -31,3 +31,7 @@
                       (add-to-list 'purpose-user-mode-purposes '(flymake-diagnostics-buffer-mode .
                                                                                                  edit1))
                       (purpose-compile-user-configuration))
+
+(with-eval-after-load 'eglot (setq eglot-put-doc-in-help-buffer t)
+                      )
+

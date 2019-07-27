@@ -32,7 +32,11 @@
      (beginning-of-line)
      (forward-char 20)
      (flymake-goto-diagnostic (point))))
+(with-eval-after-load 'eglot
+  (spacemacs/set-leader-keys "," 'eglot-help-at-point))
 
+
+(global-set-key (kbd "M-\\") 'xref-find-definitions)
 (spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
 (spacemacs/set-leader-keys "o" 'helm-multi-swoop-org)
 (spacemacs/set-leader-keys "sgp" 'helm-projectile-rg)

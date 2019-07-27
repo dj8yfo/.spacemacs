@@ -32,11 +32,12 @@
      (beginning-of-line)
      (forward-char 20)
      (flymake-goto-diagnostic (point))))
-(with-eval-after-load 'eglot
-  (spacemacs/set-leader-keys "," 'eglot-help-at-point))
+(with-eval-after-load 'eglot (spacemacs/set-leader-keys "," 'eglot-help-at-point))
 
 
 (global-set-key (kbd "M-\\") 'xref-find-definitions)
+(global-set-key (kbd "M-[") 'xref-pop-marker-stack)
+(global-set-key (kbd "\C-c4") 'xref-find-definitions-other-window)
 (spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
 (spacemacs/set-leader-keys "o" 'helm-multi-swoop-org)
 (spacemacs/set-leader-keys "sgp" 'helm-projectile-rg)
@@ -47,25 +48,12 @@
 (spacemacs/set-leader-keys "ee" 'switch-to-eshell)
 (spacemacs/set-leader-keys "ys" 'describe-variable-and-kill-value)
 (spacemacs/set-leader-keys "." 'ido-switch-buffer)
-(spacemacs/set-leader-keys "ef" 'elisp-format-file)
-(spacemacs/set-leader-keys "df" '(lambda ()
+(spacemacs/set-leader-keys "ef" '(lambda ()
                                    (interactive)
-                                   (flymake-show-diagnostics-buffer)
-                                   (run-with-timer 0.1 nil '(lambda ()
-                                                              (let* ((flym-buffer
-                                                                      (flymake--diagnostics-buffer-name))
-                                                                     (cand-window (get-buffer-window
-                                                                                   flym-buffer)))
-                                                                (if (and cand-window
-                                                                         (not (window-parameter
-                                                                               cand-window
-                                                                               'purpose-dedicated)))
-                                                                    (progn (delete-window
-                                                                            cand-window)
-                                                                           (message "deleted temp
-wind"))))
-                                                              (switch-to-buffer
-                                                               (flymake--diagnostics-buffer-name))))))
+                                   (elisp-format-file buffer-file-name)
+                                   (delete-trailing-whitespace)))
+(spacemacs/set-leader-keys "df" 'flymake-goto-purposed-window)
+
 
 (global-unset-key (kbd "M-l"))
 (global-set-key (kbd "M-l a") 'custom-layout1)

@@ -32,6 +32,4 @@
                                                                                                  edit1))
                       (purpose-compile-user-configuration))
 
-(with-eval-after-load 'eglot (setq eglot-put-doc-in-help-buffer t)
-                      )
 

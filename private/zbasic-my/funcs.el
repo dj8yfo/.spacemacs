@@ -173,3 +173,14 @@
   (purpose-load-window-layout-file
    "/home/sysmanj/Documents/.spacemacs/private/zbasic-my/layouts/MyFavIDE2.window-layout")
   (winum-select-window-3))
+
+(defun flymake-goto-purposed-window()
+  (interactive)
+  (flymake-show-diagnostics-buffer)
+  (run-with-timer 0.1 nil '(lambda ()
+                             (let* ((flym-buffer (flymake--diagnostics-buffer-name))
+                                    (cand-window (get-buffer-window flym-buffer)))
+                               (if (and cand-window
+                                        (not (window-parameter cand-window 'purpose-dedicated)))
+                                   (progn (delete-window cand-window))))
+                             (switch-to-buffer (flymake--diagnostics-buffer-name)))))

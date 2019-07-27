@@ -12,17 +12,27 @@
 (evil-global-set-key 'normal (kbd "<") 'goto-delimiter-backward)
 (evil-global-set-key 'visual (kbd "<") 'goto-delimiter-backward)
 (evil-global-set-key 'operator (kbd "<") 'goto-delimiter-backward)
-(evil-global-set-key 'visual (kbd "{") '(lambda nil (interactive)
-                                          (progn (call-interactively (quote evil-shift-left)) (execute-kbd-macro "gv"))))
-(evil-global-set-key 'visual (kbd "}") '(lambda nil (interactive)
-                                          (progn (call-interactively (quote evil-shift-right)) (execute-kbd-macro "gv"))))
+(evil-global-set-key 'visual (kbd "{")
+                     '(lambda nil
+                        (interactive)
+                        (progn (call-interactively (quote evil-shift-left))
+                               (execute-kbd-macro "gv"))))
+(evil-global-set-key 'visual (kbd "}")
+                     '(lambda nil
+                        (interactive)
+                        (progn (call-interactively (quote evil-shift-right))
+                               (execute-kbd-macro "gv"))))
 (global-set-key (kbd "M-h") 'backward-delete-char)
-(evil-define-key 'normal evil-matchit-mode-map
-  "M" 'evilmi-jump-items)
-(evil-define-key 'visual evil-matchit-mode-map
-  "M" 'evilmi-jump-items)
-(evil-define-key 'operator evil-matchit-mode-map
-  "M" 'evilmi-jump-items)
+(evil-define-key 'normal evil-matchit-mode-map "M" 'evilmi-jump-items)
+(evil-define-key 'visual evil-matchit-mode-map "M" 'evilmi-jump-items)
+(evil-define-key 'operator evil-matchit-mode-map "M" 'evilmi-jump-items)
+(evil-define-key 'normal flymake-diagnostics-buffer-mode-map (kbd "RET")
+  '(lambda ()
+     (interactive)
+     (beginning-of-line)
+     (forward-char 20)
+     (flymake-goto-diagnostic (point))))
+
 (spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
 (spacemacs/set-leader-keys "o" 'helm-multi-swoop-org)
 (spacemacs/set-leader-keys "sgp" 'helm-projectile-rg)
@@ -33,6 +43,25 @@
 (spacemacs/set-leader-keys "ee" 'switch-to-eshell)
 (spacemacs/set-leader-keys "ys" 'describe-variable-and-kill-value)
 (spacemacs/set-leader-keys "." 'ido-switch-buffer)
+(spacemacs/set-leader-keys "ef" 'elisp-format-file)
+(spacemacs/set-leader-keys "df" '(lambda ()
+                                   (interactive)
+                                   (flymake-show-diagnostics-buffer)
+                                   (run-with-timer 0.1 nil '(lambda ()
+                                                              (let* ((flym-buffer
+                                                                      (flymake--diagnostics-buffer-name))
+                                                                     (cand-window (get-buffer-window
+                                                                                   flym-buffer)))
+                                                                (if (and cand-window
+                                                                         (not (window-parameter
+                                                                               cand-window
+                                                                               'purpose-dedicated)))
+                                                                    (progn (delete-window
+                                                                            cand-window)
+                                                                           (message "deleted temp
+wind"))))
+                                                              (switch-to-buffer
+                                                               (flymake--diagnostics-buffer-name))))))
 
 (global-unset-key (kbd "M-l"))
 (global-set-key (kbd "M-l a") 'custom-layout1)
@@ -44,5 +73,3 @@
 (global-set-key (kbd "\C-x/") 'helm-complex-command-history)
 (global-set-key (kbd "\C-x,") 'command-history)
 (global-set-key (kbd "\C-x]") 'ace-window)
-
-

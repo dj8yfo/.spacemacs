@@ -13,9 +13,21 @@
 (setq evil-escape-key-sequence "z[")
 (setq purpose-layout-dirs '("/home/sysmanj/Documents/.spacemacs/private/zbasic-my/layouts/"))
 ;; (custom-layout2)
-(advice-add 'server-create-window-system-frame :after '(lambda (&rest args)
-                                                         (interactive)
-							(set-face-font 'default "-xos4-Terminess Powerline-normal-normal-normal-*-14-*-*-*-c-80-iso10646-1" )))
+(advice-add 'server-create-window-system-frame
+            :after '(lambda
+                      (&rest
+                       args)
+                      (interactive)
+                      (set-face-font 'default
+                                     "-xos4-Terminess Powerline-normal-normal-normal-*-14-*-*-*-c-80-iso10646-1" )))
 
-(with-eval-after-load 'window-purpose
-          (custom-layout1))
+(with-eval-after-load 'window-purpose (add-to-list 'purpose-user-mode-purposes '(eshell-mode .
+                                                                                             terminal))
+                      (add-to-list 'purpose-user-mode-purposes '(compilation-mode . terminal))
+                      (add-to-list 'purpose-user-mode-purposes '(org-mode . org))
+                      (add-to-list 'purpose-user-mode-purposes '(help-mode . org))
+                      (add-to-list 'purpose-user-mode-purposes '(kotlin-mode . edit))
+                      (add-to-list 'purpose-user-mode-purposes '(dired-mode . edit1))
+                      (add-to-list 'purpose-user-mode-purposes '(flymake-diagnostics-buffer-mode .
+                                                                                                 edit1))
+                      (purpose-compile-user-configuration))

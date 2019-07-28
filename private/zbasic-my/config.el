@@ -30,9 +30,14 @@
                       (add-to-list 'purpose-user-mode-purposes '(dired-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(flymake-diagnostics-buffer-mode .
                                                                                                  edit1))
+                      (add-to-list 'purpose-user-mode-purposes '(magit-mode . terminal))
                       (purpose-compile-user-configuration))
+
 
 (if (display-graphic-p) nil
   (setq    dotspacemacs-mode-line-theme '(vim-powerline :separator slant
                                                         :separator-scale 1.1)))
-(setq ido-everywhere t)
+(with-eval-after-load 'magit
+		      (global-diff-hl-mode 1))
+
+

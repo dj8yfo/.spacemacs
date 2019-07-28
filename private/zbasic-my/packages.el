@@ -180,6 +180,5 @@ Each entry is either:
            (setq isearch--current-buffer (buffer-name (current-buffer)) isearch-string "")))))
 
 
-
 (defun zbasic-my/post-init-helm ()
   (define-key helm-map (kbd "C-l") 'kill-backward-until-sep))

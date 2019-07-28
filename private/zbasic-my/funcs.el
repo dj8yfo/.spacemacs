@@ -174,6 +174,18 @@
    "/home/sysmanj/Documents/.spacemacs/private/zbasic-my/layouts/MyFavIDE2.window-layout")
   (winum-select-window-3))
 
+(defun clone-kotlin-skeleton
+    (&optional
+     loc)
+  (interactive "DProject name:")
+  (message (format "mes: %s" loc))
+  (let ((command  "cp -rv /home/sysmanj/Documents/code/.template/* %s/")
+        (dir (if (equal loc "/") "." loc)))
+    (shell-command (format "mkdir %s" dir))
+    (shell-command (format command dir))
+    (shell-command (format "cd %s && touch .projectile" dir))
+    ))
+
 (defun flymake-goto-purposed-window()
   (interactive)
   (flymake-show-diagnostics-buffer)

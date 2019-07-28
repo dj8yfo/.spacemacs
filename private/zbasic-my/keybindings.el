@@ -67,3 +67,4 @@
 (global-set-key (kbd "\C-x/") 'helm-complex-command-history)
 (global-set-key (kbd "\C-x,") 'command-history)
 (global-set-key (kbd "\C-x]") 'ace-window)
+(global-set-key (kbd "\C-xg") 'magit-status)

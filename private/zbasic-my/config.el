@@ -35,3 +35,4 @@
 (if (display-graphic-p) nil
   (setq    dotspacemacs-mode-line-theme '(vim-powerline :separator slant
                                                         :separator-scale 1.1)))
+(setq ido-everywhere t)

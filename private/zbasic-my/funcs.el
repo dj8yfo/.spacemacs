@@ -184,6 +184,9 @@
     (shell-command (format "mkdir %s" dir))
     (shell-command (format command dir))
     (shell-command (format "cd %s && touch .projectile" dir))
+    (shell-command "git init")
+    (shell-command "git add -A")
+    (shell-command "git commit -m 'init")
     ))
 
 (defun flymake-goto-purposed-window()

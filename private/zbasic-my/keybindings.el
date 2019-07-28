@@ -54,6 +54,10 @@
                                    (delete-trailing-whitespace)))
 (spacemacs/set-leader-keys "df" 'flymake-goto-purposed-window)
 (spacemacs/set-leader-keys "k]" 'clone-kotlin-skeleton)
+(spacemacs/set-leader-keys "rg" '(lambda () (interactive)
+                                   (global-diff-hl-mode -1)
+                                   (global-diff-hl-mode 1)))
+(spacemacs/set-leader-keys "ei" 'ido-mode)
 
 
 

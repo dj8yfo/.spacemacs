@@ -153,6 +153,7 @@ Each entry is either:
                       (window-start))
                    (> (point)
                       (window-end)))
+
                (message
                 "Notice: Character '%s' could not be found in the \"selected visible window\"."
                 isearch-string))

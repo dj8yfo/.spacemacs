@@ -29,7 +29,8 @@
 
 ;;; Code:
 
-(defconst zbasic-my-packages '(key-chord ggtags ace-jump-mode helm ace-isearch helm-swoop)
+(defconst zbasic-my-packages '(key-chord ggtags ace-jump-mode helm ace-isearch
+                                         helm-swoop evil-goggles)
 
 
   ;; My incsearched setup worked seamlessly good:
@@ -182,3 +183,20 @@ Each entry is either:
 
 (defun zbasic-my/post-init-helm ()
   (define-key helm-map (kbd "C-l") 'kill-backward-until-sep))
+
+(defun zbasic-my/init-evil-goggles ()
+    (use-package evil-goggles
+      :ensure t
+      :config
+      (progn
+        (evil-goggles-mode)
+        ;; (evil-goggles-use-diff-faces)
+        (setq evil-goggles-duration 0.3)
+        (setq evil-goggles-async-duration 1.2))
+
+
+      ;; optionally use diff-mode's faces; as a result, deleted text
+      ;; will be highlighed with `diff-removed` face which is typically
+      ;; some red color (as defined by the color theme)
+      ;; other faces such as `diff-added` will be used for other actions
+      ))

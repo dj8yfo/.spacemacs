@@ -40,4 +40,12 @@
 (with-eval-after-load 'magit
 		      (global-diff-hl-mode 1))
 
+(with-eval-after-load 'volatile-highlights (volatile-highlights-mode -1))
+
+
+
+
+
+
+
 

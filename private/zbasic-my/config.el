@@ -1,5 +1,6 @@
 (spacemacs|define-jump-handlers kotlin-mode)
 ;; (add-hook 'kotlin-mode-hook 'eglot-ensure)
+;; (add-hook 'kotlin-mode-hook 'lsp)
 (add-hook 'kotlin-mode-hook 'ggtags-mode)
 
                                         ;
@@ -53,3 +54,5 @@
 (add-jump-push-action 'evil-backward-word-begin)
 (with-eval-after-load 'evil (dolist (sym jumping-commands-list)
                               (add-jump-push-action sym)))
+
+;; (setq eglot-workspace-configuration '((kotlin . ((compiler . ((jvm . ((target . "1.8")))))))))

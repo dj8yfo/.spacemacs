@@ -1,8 +1,10 @@
 #!/bin/sh
 set -e
-mkdir $1
+mkdir -p $1
 cp -rv /home/sysmanj/Documents/code/.template/* $1/
+cp -rv /home/sysmanj/Documents/code/.template/.[^.]* $1/
 cd $1
+rm -rf .git
 touch .projectile
 git init
 git add -A

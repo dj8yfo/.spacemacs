@@ -1,6 +1,5 @@
 (global-set-key (kbd "C-M-]") 'company-complete)
 (evil-global-set-key 'normal (kbd "\C-cl") 'org-store-link)
-(evil-global-set-key 'normal (kbd "C-M-n") 'evil-jump-forward)
 (evil-global-set-key 'normal (kbd "n") 'evil-next-respect-isearch)
 (evil-global-set-key 'normal (kbd "N") 'evil-previous-respect-isearch)
 (evil-global-set-key 'normal (kbd ">") 'goto-delimiter-forward)
@@ -72,3 +71,6 @@
 (global-set-key (kbd "\C-x,") 'command-history)
 (global-set-key (kbd "\C-x]") 'ace-window)
 (global-set-key (kbd "\C-xg") 'magit-status)
+
+(global-set-key (kbd "C-M-n") 'evil-jump-forward)
+(global-set-key (kbd "C-o") 'evil-jump-backward)

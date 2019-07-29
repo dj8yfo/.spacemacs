@@ -194,3 +194,11 @@
                                         (not (window-parameter cand-window 'purpose-dedicated)))
                                    (progn (delete-window cand-window))))
                              (switch-to-buffer (flymake--diagnostics-buffer-name)))))
+
+(defmacro add-jump-push-action (command-symbol)
+  `(advice-add ,command-symbol
+               :before '(lambda
+                          (&rest
+                           args)
+                          "unexpected jump push evil"
+                          (evil-set-jump))))

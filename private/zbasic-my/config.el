@@ -37,15 +37,19 @@
 (if (display-graphic-p) nil
   (setq    dotspacemacs-mode-line-theme '(vim-powerline :separator slant
                                                         :separator-scale 1.1)))
-(with-eval-after-load 'magit
-		      (global-diff-hl-mode 1))
+(with-eval-after-load 'magit (global-diff-hl-mode 1))
 
 (with-eval-after-load 'volatile-highlights (volatile-highlights-mode -1))
 
 
 
-
-
-
-
-
+(defvar jumping-commands-list
+  '(evil-backward-word-begin evil-forward-word-begin evil-ace-jump-char-mode evil-ace-jump-line-mode
+                             evil-ace-jump-word-mode find-file evil-snipe-repeat
+                             evil-next-respect-isearch evil-previous-respect-isearch evil-snipe-f
+                             evil-snipe-F evil-snipe-t evil-snipe-T evil-snipe-s evil-snipe-S
+                             evil-previous-line evil-next-line helm-gtags-dwim
+                             xref-find-definitions))
+(add-jump-push-action 'evil-backward-word-begin)
+(with-eval-after-load 'evil (dolist (sym jumping-commands-list)
+                              (add-jump-push-action sym)))

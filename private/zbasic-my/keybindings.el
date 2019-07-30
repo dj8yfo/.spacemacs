@@ -56,6 +56,9 @@
                                    (interactive)
                                    (elisp-format-file buffer-file-name)
                                    (delete-trailing-whitespace)))
+(spacemacs/set-leader-keys "[" '(lambda ()
+                                  (interactive)
+                                  (evil--jumps-jump 0 0)))
 
 
 (global-unset-key (kbd "M-l"))

@@ -164,13 +164,17 @@
     (delete-char -1)))
 (defun custom-layout1 ()
   (interactive)
-  (switch-to-buffer "*spacemacs*")
+  (if (gnus-buffer-exists-p "*spacemacs*")
+      (kill-buffer "*spacemacs*"))
+  ;; (switch-to-buffer "*spacemacs*")
   (purpose-load-window-layout-file
    "/home/sysmanj/Documents/.spacemacs/private/zbasic-my/layouts/MyFavIDE.window-layout")
   (winum-select-window-3))
 (defun custom-layout2 ()
   (interactive)
-  (switch-to-buffer "*spacemacs*")
+  (if (gnus-buffer-exists-p "*spacemacs*")
+      (kill-buffer "*spacemacs*"))
+  ;; (switch-to-buffer "*spacemacs*")
   (purpose-load-window-layout-file
    "/home/sysmanj/Documents/.spacemacs/private/zbasic-my/layouts/MyFavIDE2.window-layout")
   (winum-select-window-3))
@@ -182,8 +186,7 @@
   (message (format "mes: %s" loc))
   (let ((command  "/home/sysmanj/Documents/.spacemacs/private/zbasic-my/template.sh %s")
         (dir (if (equal loc "/") "." loc)))
-    (shell-command (format command dir))
-    ))
+    (shell-command (format command dir))))
 
 (defun flymake-goto-purposed-window()
   (interactive)
@@ -201,23 +204,27 @@
                :before '(lambda
                           (&rest
                            args)
-                          "unexpected jump push evil"
-                          (evil-set-jump))))
+                          "unexpected jump push evil" (evil-set-jump))))
 
+(defvar query-kotlin-stdlib-jump-back nil)
 (defun query-kotlin-stdlib
     (&optional
      arg)
   (interactive "P")
-
-  (let ((searched-term (if arg (read-string "input symbol name:")
-                         (format "%s" (if (symbol-at-point)
-                                          (symbol-at-point) "")))))
+  (let* ((symbol-po-name (format "%s" (if (symbol-at-point)
+                                          (symbol-at-point) "")))
+         (searched-term (if arg (read-string "input symbol name:" symbol-po-name) symbol-po-name)))
+    (if arg
+        (setq query-kotlin-stdlib-jump-back nil)
+      (setq query-kotlin-stdlib-jump-back t))
     (find-file "~/Documents/code/kotlin/kotlin-stdlib-sources/")
-      (helm-rg searched-term))
-    )
+    (helm-rg searched-term)))
 
-(advice-add 'query-kotlin-stdlib :after
-            '(lambda (&rest args) (evil--jumps-jump 0 0)))
+(advice-add 'query-kotlin-stdlib
+            :after '(lambda
+                      (&rest
+                       args)
+                      (if query-kotlin-stdlib-jump-back (evil--jumps-jump 0 0))))
 
 (defun kotlin-syntax-highlight ()
   (set (make-local-variable 'font-lock-defaults)

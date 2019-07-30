@@ -32,6 +32,7 @@
 (defun clean-hightlight-regexp-all ()
   (interactive)
   (unhighlight-regexp t))
+
 (defun switch-to-eshell ()
   (interactive)
   (switch-to-buffer "*eshell*"))
@@ -202,3 +203,22 @@
                            args)
                           "unexpected jump push evil"
                           (evil-set-jump))))
+
+(defun query-kotlin-stdlib
+    (&optional
+     arg)
+  (interactive "P")
+
+  (let ((searched-term (if arg (read-string "input symbol name:")
+                         (format "%s" (if (symbol-at-point)
+                                          (symbol-at-point) "")))))
+    (find-file "~/Documents/code/kotlin/kotlin-stdlib-sources/")
+      (helm-rg searched-term))
+    )
+
+(advice-add 'query-kotlin-stdlib :after
+            '(lambda (&rest args) (evil--jumps-jump 0 0)))
+
+(defun kotlin-syntax-highlight ()
+  (set (make-local-variable 'font-lock-defaults)
+       '(kotlin-mode--font-lock-keywords nil nil nil nil)))

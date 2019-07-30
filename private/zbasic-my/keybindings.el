@@ -1,4 +1,3 @@
-(global-set-key (kbd "C-M-]") 'company-complete)
 (evil-global-set-key 'normal (kbd "\C-cl") 'org-store-link)
 (evil-global-set-key 'normal (kbd "n") 'evil-next-respect-isearch)
 (evil-global-set-key 'normal (kbd "N") 'evil-previous-respect-isearch)
@@ -21,7 +20,6 @@
                         (interactive)
                         (progn (call-interactively (quote evil-shift-right))
                                (execute-kbd-macro "gv"))))
-(global-set-key (kbd "M-h") 'backward-delete-char)
 (evil-define-key 'normal evil-matchit-mode-map "M" 'evilmi-jump-items)
 (evil-define-key 'visual evil-matchit-mode-map "M" 'evilmi-jump-items)
 (evil-define-key 'operator evil-matchit-mode-map "M" 'evilmi-jump-items)
@@ -31,33 +29,33 @@
      (beginning-of-line)
      (forward-char 20)
      (flymake-goto-diagnostic (point))))
+(with-eval-after-load 'dired
+  (define-key dired-mode-map (kbd "\C-c k") 'clone-kotlin-skeleton))
+
+
 (with-eval-after-load 'eglot (spacemacs/set-leader-keys "," 'eglot-help-at-point))
+(spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output
+                           "o" 'helm-multi-swoop-org
+                           "sgp" 'helm-projectile-rg
+                           "r/" 'helm-rg
+                           "io" 'org-insert-heading
+                           ":" 'eval-expression
+                          "zp" 'zeal-at-point
+                           "ee" 'switch-to-eshell
+                           "ys" 'describe-variable-and-kill-value
+                           "." 'ido-switch-buffer
+                           "df" 'flymake-goto-purposed-window
+                           "y]" 'clone-kotlin-skeleton
+                           "ei" 'ido-mode
+                           "yf" 'query-kotlin-stdlib)
 
-
-(global-set-key (kbd "M-\\") 'xref-find-definitions)
-(global-set-key (kbd "M-[") 'xref-pop-marker-stack)
-(global-set-key (kbd "\C-c4") 'xref-find-definitions-other-window)
-(spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
-(spacemacs/set-leader-keys "o" 'helm-multi-swoop-org)
-(spacemacs/set-leader-keys "sgp" 'helm-projectile-rg)
-(spacemacs/set-leader-keys "r/" 'helm-rg)
-(spacemacs/set-leader-keys "zp" 'zeal-at-point)
-(spacemacs/set-leader-keys "io" 'org-insert-heading)
-(spacemacs/set-leader-keys ":" 'eval-expression)
-(spacemacs/set-leader-keys "ee" 'switch-to-eshell)
-(spacemacs/set-leader-keys "ys" 'describe-variable-and-kill-value)
-(spacemacs/set-leader-keys "." 'ido-switch-buffer)
+(spacemacs/set-leader-keys "rg" '(lambda () (interactive)
+                                   (global-diff-hl-mode -1)
+                                   (global-diff-hl-mode 1)))
 (spacemacs/set-leader-keys "ef" '(lambda ()
                                    (interactive)
                                    (elisp-format-file buffer-file-name)
                                    (delete-trailing-whitespace)))
-(spacemacs/set-leader-keys "df" 'flymake-goto-purposed-window)
-(spacemacs/set-leader-keys "k]" 'clone-kotlin-skeleton)
-(spacemacs/set-leader-keys "rg" '(lambda () (interactive)
-                                   (global-diff-hl-mode -1)
-                                   (global-diff-hl-mode 1)))
-(spacemacs/set-leader-keys "ei" 'ido-mode)
-
 
 
 (global-unset-key (kbd "M-l"))
@@ -74,3 +72,9 @@
 
 (global-set-key (kbd "C-M-n") 'evil-jump-forward)
 (global-set-key (kbd "C-o") 'evil-jump-backward)
+
+(global-set-key (kbd "M-h") 'backward-delete-char)
+(global-set-key (kbd "C-M-]") 'company-complete)
+(global-set-key (kbd "M-\\") 'xref-find-definitions)
+(global-set-key (kbd "M-[") 'xref-pop-marker-stack)
+(global-set-key (kbd "\C-c4") 'xref-find-definitions-other-window)

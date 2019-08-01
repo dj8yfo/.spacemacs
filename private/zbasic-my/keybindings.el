@@ -29,27 +29,22 @@
      (beginning-of-line)
      (forward-char 20)
      (flymake-goto-diagnostic (point))))
-(with-eval-after-load 'dired
-  (define-key dired-mode-map (kbd "\C-c k") 'clone-kotlin-skeleton))
+(with-eval-after-load 'dired (define-key dired-mode-map (kbd "\C-c k") 'clone-kotlin-skeleton))
 
 
-(with-eval-after-load 'eglot (spacemacs/set-leader-keys "," 'eglot-help-at-point))
-(spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output
-                           "o" 'helm-multi-swoop-org
-                           "sgp" 'helm-projectile-rg
-                           "r/" 'helm-rg
-                           "io" 'org-insert-heading
-                           ":" 'eval-expression
-                          "zp" 'zeal-at-point
-                           "ee" 'switch-to-eshell
-                           "ys" 'describe-variable-and-kill-value
-                           "." 'ido-switch-buffer
-                           "df" 'flymake-goto-purposed-window
-                           "y]" 'clone-kotlin-skeleton
-                           "ei" 'ido-mode
-                           "yf" 'query-kotlin-stdlib)
+(with-eval-after-load 'eglot (spacemacs/set-leader-keys "," '(lambda ()
+                                                               (interactive)
+                                                               (let ((buffer (current-buffer)))
+                                                                 (eglot-help-at-point)
+                                                                 (switch-to-buffer buffer)))))
+(spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output "o" 'helm-multi-swoop-org "sgp"
+  'helm-projectile-rg "r/" 'helm-rg "io" 'org-insert-heading ":" 'eval-expression "zp"
+  'zeal-at-point "ee" 'switch-to-eshell "ys" 'describe-variable-and-kill-value "."
+  'ido-switch-buffer "df" 'flymake-goto-purposed-window "y]" 'clone-kotlin-skeleton "ei" 'ido-mode
+  "yf" 'query-kotlin-stdlib)
 
-(spacemacs/set-leader-keys "rg" '(lambda () (interactive)
+(spacemacs/set-leader-keys "rg" '(lambda ()
+                                   (interactive)
                                    (global-diff-hl-mode -1)
                                    (global-diff-hl-mode 1)))
 (spacemacs/set-leader-keys "ef" '(lambda ()

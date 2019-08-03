@@ -54,7 +54,12 @@
 (spacemacs/set-leader-keys "[" '(lambda ()
                                   (interactive)
                                   (evil--jumps-jump 0 0)))
-
+(spacemacs/set-leader-keys "zk" '(lambda ()
+                                   (interactive)
+                                   (setq zeal-at-point-docset "kotlin")))
+(spacemacs/set-leader-keys "za" '(lambda ()
+                                   (interactive)
+                                   (setq zeal-at-point-docset "android")))
 
 (global-unset-key (kbd "M-l"))
 (global-set-key (kbd "M-l a") 'custom-layout1)
@@ -67,6 +72,7 @@
                                     (interactive)
                                     (ido-mode 1)
                                     (ido-find-file)))
+
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
 (global-set-key (kbd "\C-x/") 'helm-complex-command-history)

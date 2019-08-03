@@ -58,5 +58,5 @@
 ;; (setq eglot-workspace-configuration '((kotlin . ((compiler . ((jvm . ((target . "1.8")))))))))
 (with-eval-after-load 'zeal-at-point
   (add-to-list 'zeal-at-point-mode-alist '(kotlin-mode . "kotlin"))
-  (add-to-list 'zeal-at-point-mode-alist '(kotlin-mode . "android")))
+  )
 

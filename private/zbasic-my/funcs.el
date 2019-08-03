@@ -166,11 +166,19 @@
                      (not (eq sym 'keymap))
                      (throw 'gotit sym))))))
 
+(defun custom-layout1 ()
+  (interactive)
+  (if (gnus-buffer-exists-p "*spacemacs*")
+      (kill-buffer "*spacemacs*"))
+  ;; (switch-to-buffer "*spacemacs*")
+  (purpose-load-window-layout-file
+   "/home/sysmanj/Documents/.spacemacs/private/zbasic-my/layouts/MyFavIDE.window-layout")
+  (winum-select-window-3))
+
 (defun custom-layout2 ()
   (interactive)
-  ;; (if (gnus-buffer-exists-p "*spacemacs*")
-  ;;     (kill-buffer "*spacemacs*"))
-  (switch-to-buffer "*Messages*")
+  (if (gnus-buffer-exists-p "*spacemacs*")
+      (kill-buffer "*spacemacs*"))
   ;; (switch-to-buffer "*spacemacs*")
   (purpose-load-window-layout-file
    "/home/sysmanj/Documents/.spacemacs/private/zbasic-my/layouts/MyFavIDE2.window-layout")

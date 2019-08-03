@@ -29,9 +29,8 @@
 
 ;;; Code:
 
-(defconst zbasic-my-packages '(key-chord ggtags ace-jump-mode helm ace-isearch
-                                         helm-swoop evil-goggles
-                                         android-env)
+(defconst zbasic-my-packages
+  '(key-chord ggtags ace-jump-mode helm ace-isearch helm-swoop evil-goggles android-env helm-dash)
 
 
   ;; My incsearched setup worked seamlessly good:
@@ -108,10 +107,20 @@ Each entry is either:
   (use-package
     ace-isearch
     :ensure t
+    :init (defconst ace-isearch-normal-input-length 5)
+    (defconst ace-isearch-infinity-input-length 140)
+    (defun toggle-helm-swoop-autojum ()
+      (interactive)
+      (if (equal ace-isearch-input-length ace-isearch-normal-input-length)
+          (progn
+            (message "toggling helm-swoop isearch autojump to : OFF")
+            (setq ace-isearch-input-length ace-isearch-infinity-input-length))
+        (message "toggling helm-swoop isearch autojump to : ON")
+        (setq ace-isearch-input-length ace-isearch-normal-input-length)))
     :config (global-ace-isearch-mode +1)
     (custom-set-variables '(ace-isearch-function 'ace-jump-word-mode)
                           '(ace-isearch-use-jump nil)
-                          '(ace-isearch-input-length 5)
+                          '(ace-isearch-input-length ace-isearch-normal-input-length)
                           '(ace-isearch-jump-delay 1.5)
                           '(ace-isearch-function-from-isearch 'helm-swoop-from-isearch-override)
                           ;; '(search-nonincremental-instead nil)
@@ -122,6 +131,7 @@ Each entry is either:
     (define-key helm-swoop-map (kbd "C-j") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key helm-swoop-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key helm-swoop-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
+    (spacemacs/set-leader-keys "t]" 'toggle-helm-swoop-autojum)
     (evil-global-set-key 'normal (kbd "/") 'isearch-forward)
     (evil-global-set-key 'normal (kbd "?") 'isearch-backward)
     (key-chord-define evil-normal-state-map "//" 'rep-isearch-forward)
@@ -155,7 +165,6 @@ Each entry is either:
                       (window-start))
                    (> (point)
                       (window-end)))
-
                (message
                 "Notice: Character '%s' could not be found in the \"selected visible window\"."
                 isearch-string))
@@ -186,36 +195,38 @@ Each entry is either:
   (define-key helm-map (kbd "C-l") 'kill-backward-until-sep))
 
 (defun zbasic-my/init-evil-goggles ()
-    (use-package evil-goggles
-      :ensure t
-      :config
-      (progn
-        (evil-goggles-mode)
-        ;; (evil-goggles-use-diff-faces)
-        (setq evil-goggles-duration 0.3)
-        (setq evil-goggles-async-duration 1.2))
+  (use-package
+    evil-goggles
+    :ensure t
+    :config (progn (evil-goggles-mode)
+                   ;; (evil-goggles-use-diff-faces)
+                   (setq evil-goggles-duration 0.3)
+                   (setq evil-goggles-async-duration 1.2))
 
 
-      ;; optionally use diff-mode's faces; as a result, deleted text
-      ;; will be highlighed with `diff-removed` face which is typically
-      ;; some red color (as defined by the color theme)
-      ;; other faces such as `diff-added` will be used for other actions
-      ))
+    ;; optionally use diff-mode's faces; as a result, deleted text
+    ;; will be highlighed with `diff-removed` face which is typically
+    ;; some red color (as defined by the color theme)
+    ;; other faces such as `diff-added` will be used for other actions
+    ))
 
 (defun zbasic-my/init-android-env ()
-  (use-package android-env
+  (use-package
+    android-env
     :after hydra
     :bind (("C-c a" . hydra-android/body))
-    :config
-    (defvar hydra-android nil)
+    :config (defvar hydra-android nil)
     (setq android-env-executable "./gradlew")
     (setq android-env-test-command "connectedDevDebugAndroidTest")
     (setq android-env-unit-test-command "testDevDebug")
     (defun android-env-hydra-setup ()
-  "Hydra setup."
-  (when (require 'hydra nil 'noerror)
-    (defhydra hydra-android (:color pink :hint nil)
-      "
+      "Hydra setup."
+      (when
+          (require 'hydra nil 'noerror)
+        (defhydra hydra-android
+          (:color pink
+                  :hint nil)
+          "
 ^Compiling^              ^Devices^       ^Code^                   ^Logcat^           ^Adb^
 ^^^^^----------------------------------------------------------------------------------------------
 _w_: Compile             _e_: Avd        _r_: Refactor            _l_: Logcat        _U_: Uninstall
@@ -223,20 +234,26 @@ _s_: Instrumented Test   _d_: Auto DHU   _R_: Recursive refactor  _c_: Logcat cr
 _u_: Unit Test           ^ ^             ^ ^                      _C_: Logcat clear
 _t_: Single unit test
 _x_: Crashlytics
-"
-      ("w" android-env-compile)
-      ("s" android-env-test)
-      ("u" android-env-unit-test)
-      ("e" android-env-avd)
-      ("d" android-env-auto-dhu)
-      ("l" android-env-logcat)
-      ("c" android-env-logcat-crash)
-      ("C" android-env-logcat-clear)
-      ("t" android-env-unit-test-single)
-      ("x" android-env-crashlytics)
-      ("U" android-env-uninstall-app)
-      ("L" android-env-deeplink)
-      ("r" android-env-refactor)
-      ("R" android-env-recursive-refactor)
-      ("q" nil "quit"))))
+" ("w" android-env-compile)
+("s" android-env-test)
+("u" android-env-unit-test)
+("e" android-env-avd)
+("d" android-env-auto-dhu)
+("l" android-env-logcat)
+("c" android-env-logcat-crash)
+("C" android-env-logcat-clear)
+("t" android-env-unit-test-single)
+("x" android-env-crashlytics)
+("U" android-env-uninstall-app)
+("L" android-env-deeplink)
+("r" android-env-refactor)
+("R" android-env-recursive-refactor)
+("q" nil "quit"))))
     (android-env)))
+
+(defun zbasic-my/init-helm-dash ()
+  (use-package
+    helm-dash
+    :defer t
+    :config (progn (helm-dash-activate-docset "Java")
+                   (helm-dash-activate-docset "kotlin"))))

@@ -32,6 +32,7 @@
                       (add-to-list 'purpose-user-mode-purposes '(flymake-diagnostics-buffer-mode .
                                                                                                  edit1))
                       (add-to-list 'purpose-user-mode-purposes '(magit-mode . terminal))
+                      (add-to-list 'purpose-user-mode-purposes '(ivy-occur-grep-mode . org))
                       (purpose-compile-user-configuration))
 
 

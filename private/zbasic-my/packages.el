@@ -112,9 +112,8 @@ Each entry is either:
     (defun toggle-helm-swoop-autojum ()
       (interactive)
       (if (equal ace-isearch-input-length ace-isearch-normal-input-length)
-          (progn
-            (message "toggling helm-swoop isearch autojump to : OFF")
-            (setq ace-isearch-input-length ace-isearch-infinity-input-length))
+          (progn (message "toggling helm-swoop isearch autojump to : OFF")
+                 (setq ace-isearch-input-length ace-isearch-infinity-input-length))
         (message "toggling helm-swoop isearch autojump to : ON")
         (setq ace-isearch-input-length ace-isearch-normal-input-length)))
     :config (global-ace-isearch-mode +1)
@@ -254,6 +253,19 @@ _x_: Crashlytics
 (defun zbasic-my/init-helm-dash ()
   (use-package
     helm-dash
+    :commands (helm-dash helm-dash-at-point toggle-helm-dash-search-function)
     :defer t
+    :init (progn
+            (defun toggle-helm-dash-search-function ()
+              (interactive)
+              (if (equal helm-dash-browser-func 'eww)
+                  (progn (message "setting helm-dash browser to BROWSER")
+                         (setq helm-dash-browser-func 'browse-url))
+                (message "setting helm-dash browser to EWW")
+                (setq helm-dash-browser-func 'eww)))
+            (spacemacs/set-leader-keys "dh" 'helm-dash)
+            (spacemacs/set-leader-keys "dp" 'helm-dash-at-point)
+            (spacemacs/set-leader-keys "dt" 'toggle-helm-dash-search-function))
     :config (progn (helm-dash-activate-docset "Java")
-                   (helm-dash-activate-docset "kotlin"))))
+                   (helm-dash-activate-docset "kotlin")
+                   (helm-dash-activate-docset "Android"))))

@@ -508,7 +508,6 @@ This function is called at the very end of Spacemacs initialization."
  '(ace-isearch-use-jump nil)
  '(android-env-emulator-command "/home/sysmanj/Android/Sdk/emulator/emulator")
  '(android-env-hydra t)
- '(helm-dash-browser-func 'eww)
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(ansi-color-names-vector

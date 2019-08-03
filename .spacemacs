@@ -505,6 +505,8 @@ This function is called at the very end of Spacemacs initialization."
  '(ace-isearch-function-from-isearch (quote helm-swoop-from-isearch-override))
  '(ace-isearch-input-length 5)
  '(ace-isearch-jump-delay 1.5)
+ '(android-env-hydra t)
+ '(android-env-emulator-command "/home/sysmanj/Android/Sdk/emulator/emulator")
  '(ace-isearch-use-jump nil)
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])

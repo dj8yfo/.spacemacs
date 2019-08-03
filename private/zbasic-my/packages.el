@@ -30,7 +30,8 @@
 ;;; Code:
 
 (defconst zbasic-my-packages '(key-chord ggtags ace-jump-mode helm ace-isearch
-                                         helm-swoop evil-goggles)
+                                         helm-swoop evil-goggles
+                                         android-env)
 
 
   ;; My incsearched setup worked seamlessly good:
@@ -200,3 +201,42 @@ Each entry is either:
       ;; some red color (as defined by the color theme)
       ;; other faces such as `diff-added` will be used for other actions
       ))
+
+(defun zbasic-my/init-android-env ()
+  (use-package android-env
+    :after hydra
+    :bind (("C-c a" . hydra-android/body))
+    :config
+    (defvar hydra-android nil)
+    (setq android-env-executable "./gradlew")
+    (setq android-env-test-command "connectedDevDebugAndroidTest")
+    (setq android-env-unit-test-command "testDevDebug")
+    (defun android-env-hydra-setup ()
+  "Hydra setup."
+  (when (require 'hydra nil 'noerror)
+    (defhydra hydra-android (:color pink :hint nil)
+      "
+^Compiling^              ^Devices^       ^Code^                   ^Logcat^           ^Adb^
+^^^^^----------------------------------------------------------------------------------------------
+_w_: Compile             _e_: Avd        _r_: Refactor            _l_: Logcat        _U_: Uninstall
+_s_: Instrumented Test   _d_: Auto DHU   _R_: Recursive refactor  _c_: Logcat crash  _L_: Deep link
+_u_: Unit Test           ^ ^             ^ ^                      _C_: Logcat clear
+_t_: Single unit test
+_x_: Crashlytics
+"
+      ("w" android-env-compile)
+      ("s" android-env-test)
+      ("u" android-env-unit-test)
+      ("e" android-env-avd)
+      ("d" android-env-auto-dhu)
+      ("l" android-env-logcat)
+      ("c" android-env-logcat-crash)
+      ("C" android-env-logcat-clear)
+      ("t" android-env-unit-test-single)
+      ("x" android-env-crashlytics)
+      ("U" android-env-uninstall-app)
+      ("L" android-env-deeplink)
+      ("r" android-env-refactor)
+      ("R" android-env-recursive-refactor)
+      ("q" nil "quit"))))
+    (android-env)))

@@ -119,6 +119,18 @@
   (setq evil-regexp-search isearch-regexp)
   (evil-search-previous))
 
+(advice-add 'evil-visualstar/begin-search-forward
+            :before
+            '(lambda (beg end)
+               (push (buffer-substring-no-properties beg end) search-ring)
+               ))
+
+(advice-add 'evil-visualstar/begin-search-backward
+            :before
+            '(lambda (beg end)
+               (push (buffer-substring-no-properties beg end) search-ring)
+               ))
+
 (defun describe-variable-and-kill-value (variable)
   (interactive "SValues:")
   (let ((res (symbol-value variable) ))
@@ -154,30 +166,11 @@
                      (not (eq sym 'keymap))
                      (throw 'gotit sym))))))
 
-(defun kill-backward-until-sep ()
-  (interactive)
-  (while (not (equal (point)
-                     (buffer-end 1)))
-    (delete-char 1))
-  (delete-char -1)
-  (while (not (equal ?/ (char-before)))
-    (delete-char -1)))
-
-(defun custom-layout1 ()
-  (interactive)
-  (if (gnus-buffer-exists-p "*spacemacs*")
-      (kill-buffer "*spacemacs*"))
-  ;; (switch-to-buffer "*spacemacs*")
-  (switch-to-buffer nil)
-  (purpose-load-window-layout-file
-   "/home/sysmanj/Documents/.spacemacs/private/zbasic-my/layouts/MyFavIDE.window-layout")
-  (winum-select-window-3))
-
 (defun custom-layout2 ()
   (interactive)
-  (if (gnus-buffer-exists-p "*spacemacs*")
-      (kill-buffer "*spacemacs*"))
-  (switch-to-buffer nil)
+  ;; (if (gnus-buffer-exists-p "*spacemacs*")
+  ;;     (kill-buffer "*spacemacs*"))
+  (switch-to-buffer "*Messages*")
   ;; (switch-to-buffer "*spacemacs*")
   (purpose-load-window-layout-file
    "/home/sysmanj/Documents/.spacemacs/private/zbasic-my/layouts/MyFavIDE2.window-layout")

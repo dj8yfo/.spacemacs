@@ -268,4 +268,5 @@ _x_: Crashlytics
             (spacemacs/set-leader-keys "dt" 'toggle-helm-dash-search-function))
     :config (progn (helm-dash-activate-docset "Java")
                    (helm-dash-activate-docset "kotlin")
-                   (helm-dash-activate-docset "Android"))))
+                   (helm-dash-activate-docset "Android")
+                   (helm-dash-activate-docset "Python 3"))))

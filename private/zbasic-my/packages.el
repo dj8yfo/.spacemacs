@@ -266,7 +266,10 @@ _x_: Crashlytics
             (spacemacs/set-leader-keys "dh" 'helm-dash)
             (spacemacs/set-leader-keys "dp" 'helm-dash-at-point)
             (spacemacs/set-leader-keys "dt" 'toggle-helm-dash-search-function))
-    :config (progn (helm-dash-activate-docset "Java")
-                   (helm-dash-activate-docset "kotlin")
-                   (helm-dash-activate-docset "Android")
-                   (helm-dash-activate-docset "Python 3"))))
+    :config (progn
+              (setq dash-docs-common-docsets '("Gradle DSL" "Gradle Java API" "Gradle Groovy API"
+                                               "Gradle User Guide" "Android Gradle Plugin"
+                                               "Python 3" "Android" "kotlin" "Java"))
+              (defun dash-docs-read-json-from-url (url)
+                (shell-command (concat "curl -s " url) "*helm-dash-download*")
+                (with-current-buffer "*helm-dash-download*" (json-read))))))

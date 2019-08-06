@@ -69,6 +69,7 @@
 (spacemacs/set-leader-keys "za" '(lambda ()
                                    (interactive)
                                    (setq zeal-at-point-docset "android")))
+(spacemacs/set-leader-keys "=" 'spacemacs/scale-transparency-transient-state/body)
 
 (global-unset-key (kbd "M-l"))
 (global-set-key (kbd "M-l a") 'custom-layout1)

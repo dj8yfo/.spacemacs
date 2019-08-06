@@ -19,7 +19,7 @@
                       (&rest
                        args)
                       (interactive)
-                      (set-face-font 'default "-xos4-Terminess Powerline-normal-normal-normal-*-18-*-*-*-c-100-iso10646-1")
+                      (set-default-font "-xos4-Terminess Powerline-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1" nil nil)
                       ))
 
 (with-eval-after-load 'window-purpose (add-to-list 'purpose-user-mode-purposes '(eshell-mode .

@@ -60,4 +60,6 @@
 (with-eval-after-load 'zeal-at-point
   (add-to-list 'zeal-at-point-mode-alist '(kotlin-mode . "kotlin"))
   )
+(with-eval-after-load 'company
+  (setq company-dabbrev-ignore-case t))
 

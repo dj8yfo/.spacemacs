@@ -30,7 +30,8 @@
 ;;; Code:
 
 (defconst zbasic-my-packages
-  '(key-chord ggtags ace-jump-mode helm ace-isearch helm-swoop evil-goggles android-env helm-dash)
+  '(key-chord ggtags ace-jump-mode helm ace-isearch helm-swoop evil-goggles android-env helm-dash
+              kotlin-mode)
 
 
   ;; My incsearched setup worked seamlessly good:
@@ -274,3 +275,62 @@ _x_: Crashlytics
               (defun dash-docs-read-json-from-url (url)
                 (shell-command (concat "curl -s " url) "*helm-dash-download*")
                 (with-current-buffer "*helm-dash-download*" (json-read))))))
+
+(defun zbasic-my/post-init-kotlin-mode ()
+  (defvar query-kotlin-stdlib-jump-back nil)
+  (defun query-kotlin-stdlib
+      (&optional
+       arg)
+    (interactive "P")
+    (let* ((symbol-po-name (format "%s" (if (symbol-at-point)
+                                            (symbol-at-point) "")))
+           (searched-term (if arg (read-string "input symbol name:" symbol-po-name)
+                            symbol-po-name)))
+      (find-file "~/Documents/code/kotlin/kotlin-stdlib-sources/")
+      (helm-rg searched-term)))
+  (advice-add 'query-kotlin-stdlib
+              :after '(lambda
+                        (&rest
+                         args)
+                        (if query-kotlin-stdlib-jump-back (evil--jumps-jump 0 0))))
+  (defconst android-src-root "/home/sysmanj/Documents/code/ANDROID_SRC/")
+  (defvar android-sources-subdir nil)
+  (defun goto-android-sources (regexp subdirarg)
+    (interactive "sRegexp:\nDDirectory:")
+    (let ((subdirarg (if android-sources-subdir android-sources-subdir
+                       subdirarg)))
+      (find-file subdirarg)
+      (ggtags-find-tag-regexp regexp subdirarg))
+    (setq android-sources-subdir nil)
+    )
+
+  (defun switch-android-sources (arg)
+    (interactive "P")
+    (let* ((symbol-po-name (format "%s" (if (symbol-at-point)
+                                            (symbol-at-point) "")))
+           (regexp (if arg (read-string "input symbol name:" symbol-po-name)
+                            symbol-po-name)))
+      (goto-android-sources regexp nil)))
+
+  (defhydra hydra-android-sources
+    (:color pink
+            :hint nil)
+    "
+^^^^^----------------------------------------------------------------------------------------------
+_f_: kotlin-stdlib-peek              _F_: kotlin-stdlib-goto        _a_: frameworks   _q_: quit
+"
+    ("f" (lambda ()
+           (interactive)
+           (setq query-kotlin-stdlib-jump-back t)
+           (call-interactively 'query-kotlin-stdlib)) :exit t)
+    ("F" (lambda ()
+           (interactive)
+           (setq query-kotlin-stdlib-jump-back nil)
+           (call-interactively 'query-kotlin-stdlib)) :exit t)
+    ("a" (lambda ()
+           (interactive)
+           (setq android-sources-subdir (concat android-src-root "frameworks"))
+           (call-interactively 'switch-android-sources)) :exit t)
+    ("q" nil "quit"))
+  (global-set-key (kbd "C-c y") 'hydra-android-sources/body)
+  (spacemacs/set-leader-keys "yf" 'query-kotlin-stdlib))

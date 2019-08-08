@@ -215,26 +215,6 @@
                            args)
                           "unexpected jump push evil" (evil-set-jump))))
 
-(defvar query-kotlin-stdlib-jump-back nil)
-(defun query-kotlin-stdlib
-    (&optional
-     arg)
-  (interactive "P")
-  (let* ((symbol-po-name (format "%s" (if (symbol-at-point)
-                                          (symbol-at-point) "")))
-         (searched-term (if arg (read-string "input symbol name:" symbol-po-name) symbol-po-name)))
-    (if arg
-        (setq query-kotlin-stdlib-jump-back nil)
-      (setq query-kotlin-stdlib-jump-back t))
-    (find-file "~/Documents/code/kotlin/kotlin-stdlib-sources/")
-    (helm-rg searched-term)))
-
-(advice-add 'query-kotlin-stdlib
-            :after '(lambda
-                      (&rest
-                       args)
-                      (if query-kotlin-stdlib-jump-back (evil--jumps-jump 0 0))))
-
 (defun kotlin-syntax-highlight ()
   (set (make-local-variable 'font-lock-defaults)
        '(kotlin-mode--font-lock-keywords nil nil nil nil)))

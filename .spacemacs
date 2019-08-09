@@ -73,7 +73,7 @@ This function should only modify configuration layer settings."
      gtags
      lsp
      dap
-     (java :variables java-backend 'lsp)
+     (java :variables java-backend 'meghanada)
      kotlin
      ;; version-control
      )

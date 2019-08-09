@@ -52,7 +52,7 @@
                              evil-next-respect-isearch evil-previous-respect-isearch evil-snipe-f
                              evil-snipe-F evil-snipe-t evil-snipe-T evil-snipe-s evil-snipe-S
                              evil-previous-line evil-next-line helm-gtags-dwim
-                             xref-find-definitions query-kotlin-stdlib switch-android-sources))
+                             xref-find-definitions goto-sources-regex-dir))
 (add-jump-push-action 'evil-backward-word-begin)
 (with-eval-after-load 'evil (dolist (sym jumping-commands-list)
                               (add-jump-push-action sym)))

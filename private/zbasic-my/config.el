@@ -29,6 +29,7 @@
                       (add-to-list 'purpose-user-mode-purposes '(help-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(kotlin-mode . edit))
                       (add-to-list 'purpose-user-mode-purposes '(dired-mode . edit1))
+                      (add-to-list 'purpose-user-mode-purposes '(doc-view-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(flymake-diagnostics-buffer-mode .
                                                                                                  edit1))
                       (add-to-list 'purpose-user-mode-purposes '(magit-mode . terminal))

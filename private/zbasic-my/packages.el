@@ -268,7 +268,7 @@ _x_: Crashlytics
             (spacemacs/set-leader-keys "dp" 'helm-dash-at-point)
             (spacemacs/set-leader-keys "dt" 'toggle-helm-dash-search-function))
     :config (progn
-              (setq dash-docs-common-docsets '("C" "Gradle DSL" "Gradle Java API"
+              (setq dash-docs-common-docsets '("LaTeX" "C" "Gradle DSL" "Gradle Java API"
                                                "Gradle Groovy API" "Gradle User Guide"
                                                "Android Gradle Plugin" "Python 3" "Android" "kotlin"
                                                "Java"))

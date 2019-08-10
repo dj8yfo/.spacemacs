@@ -488,6 +488,8 @@ before packages are loaded."
   (spacemacs|do-after-display-system-init
    (spacemacs-modeline/init-spaceline))
   (global-evil-matchit-mode 1)
+
+  (add-to-list 'auto-mode-alist '("\\.latex\\'" . latex-mode))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

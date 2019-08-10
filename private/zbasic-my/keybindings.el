@@ -70,7 +70,9 @@
                                    (interactive)
                                    (setq zeal-at-point-docset "android")))
 (spacemacs/set-leader-keys "=" 'spacemacs/scale-transparency-transient-state/body)
-
+(spacemacs/set-leader-keys "dl" '(lambda ()
+                                   (interactive)
+                                   (delete-window (get-buffer-window "*tex-shell*"))))
 (global-unset-key (kbd "M-l"))
 (global-set-key (kbd "M-l a") 'custom-layout1)
 (global-set-key (kbd "M-l b") 'custom-layout2)

@@ -15,10 +15,22 @@
 
 (defun export-notes-to-html ()
   (interactive)
-  (find-file "~/NOTES.org")
-  (org-html-export-as-html)
-  (write-file "~/NOTES.html")
-  (write-file "/home/sysmanj/Documents/code/tasking/NOTES.html"))
+  (setq org-publish-project-alist
+        '(
+
+          ;; ... add all the components here (see below)...
+
+          ("org-notes"
+           :base-directory "/home/sysmanj/Documents/code/tasking/notes-org"
+           :base-extension "org"
+           :publishing-directory "/home/sysmanj/Documents/code/tasking/notes-html"
+           :recursive t
+           :publishing-function org-html-publish-to-html
+           :headline-levels 4             ; Just the default for this project.
+           :auto-preamble t
+           ))
+        )
+  (org-publish "org-notes" t))
 
 (defun periodic-refresh-lsp-kotlin ()
   (run-with-timer 20 60 '(lambda ()

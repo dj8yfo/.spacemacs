@@ -47,7 +47,7 @@
 (spacemacs/set-leader-keys "ee" 'switch-to-eshell)
 (spacemacs/set-leader-keys "ys" 'describe-variable-and-kill-value)
 (spacemacs/set-leader-keys "." 'ido-switch-buffer)
-(spacemacs/set-leader-keys "df" 'flymake-goto-purposed-window)
+(spacemacs/set-leader-keys "dd" 'flymake-goto-purposed-window)
 (spacemacs/set-leader-keys "y]" 'clone-kotlin-skeleton)
 (spacemacs/set-leader-keys "ei" 'ido-mode)
 (spacemacs/set-leader-keys "yf" 'query-kotlin-stdlib)

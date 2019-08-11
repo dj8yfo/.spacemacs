@@ -65,3 +65,4 @@
 (with-eval-after-load 'company
   (setq company-dabbrev-ignore-case t))
 
+(setq org-agenda-files (list (concat notes-org-dir "notes.org")))

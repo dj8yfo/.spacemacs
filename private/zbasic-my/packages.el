@@ -31,7 +31,7 @@
 
 (defconst zbasic-my-packages
   '(key-chord ggtags ace-jump-mode helm ace-isearch helm-swoop evil-goggles android-env helm-dash
-              kotlin-mode)
+              kotlin-mode org-alert)
 
 
   ;; My incsearched setup worked seamlessly good:
@@ -331,3 +331,10 @@ _A_: frameworks goto
  :exit t)
 ("q" nil "quit"))
   (global-set-key (kbd "C-c y") 'hydra-android-sources/body))
+
+(defun zbasic-my/init-org-alert ()
+  (use-package
+    org-alert
+    :ensure t
+    :config (progn (org-alert-enable)
+                   (setq alert-default-style 'libnotify))))

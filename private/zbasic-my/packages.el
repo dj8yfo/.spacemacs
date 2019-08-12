@@ -338,15 +338,32 @@ _A_: frameworks goto
     :ensure t
     :config (progn (org-alert-enable)
                    (setq alert-default-style 'libnotify))))
-
 (defun zbasic-my/init-wordnut ()
   (use-package
     wordnut
     :defer t
-    :init
-    (progn (if (equal 0 (call-process "which" nil '("*Shell Command Output*" t) nil "wordnet"))
-               nil
-             (shell-command "sudo apt install wordnet" nil nil)))
-    :config (progn (message "configured wordnut")
-                   )))
-
+    :commands (wordnut-search wordnut-lookup-current-word)
+    :init (progn (if (equal 0 (call-process "which" nil '("*Shell Command Output*" t) nil
+                                            "wordnet")) nil (progn (message "installing wordnet...")
+                                                                   (if (equal 0 (call-process "sudo"
+                                                                                              nil
+                                                                                              '("*Shell
+ Command Output*" t) nil "apt-get" "-y" "install" "wordnet"))
+                                                                       (progn (message
+                                                                               "wordnet installed successfully!")
+                                                                              (shell-command
+                                                                               "rm /tmp/impossible-flag-name"))
+                                                                     (progn
+                                                                       (error
+                                                                        "wordnet installation : `%s'"
+                                                                        "ERROR")
+                                                                       (shell-command
+                                                                        "touch /tmp/impossible-flag-name"))))))
+    :config (if (equal 0 (call-process "ls" nil '("*Shell
+ Command Output*" t) nil "/tmp/impossible-flag-name"))
+                (defun wordnut-search ()
+                  (interactive)
+                  (error
+                   "please install `%s' package or run emacs with sudo"
+                   "wordnet"))
+              (message "configured wordnut"))))

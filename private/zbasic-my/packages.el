@@ -31,7 +31,7 @@
 
 (defconst zbasic-my-packages
   '(key-chord ggtags ace-jump-mode helm ace-isearch helm-swoop evil-goggles android-env helm-dash
-              kotlin-mode org-alert)
+              kotlin-mode org-alert wordnut)
 
 
   ;; My incsearched setup worked seamlessly good:
@@ -338,3 +338,15 @@ _A_: frameworks goto
     :ensure t
     :config (progn (org-alert-enable)
                    (setq alert-default-style 'libnotify))))
+
+(defun zbasic-my/init-wordnut ()
+  (use-package
+    wordnut
+    :defer t
+    :init
+    (progn (if (equal 0 (call-process "which" nil '("*Shell Command Output*" t) nil "wordnet"))
+               nil
+             (shell-command "sudo apt install wordnet" nil nil)))
+    :config (progn (message "configured wordnut")
+                   )))
+

@@ -31,7 +31,7 @@
 
 (defconst zbasic-my-packages
   '(key-chord ggtags ace-jump-mode helm ace-isearch helm-swoop evil-goggles android-env helm-dash
-              kotlin-mode org-alert wordnut)
+              kotlin-mode org-alert wordnut dictionary)
 
 
   ;; My incsearched setup worked seamlessly good:
@@ -367,3 +367,9 @@ _A_: frameworks goto
                    "please install `%s' package or run emacs with sudo"
                    "wordnet"))
               (message "configured wordnut"))))
+
+(defun zbasic-my/init-dictionary ()
+  (use-package
+    dictionary
+    :defer t
+    :commands (dictionary-search)))

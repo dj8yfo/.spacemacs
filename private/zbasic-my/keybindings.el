@@ -45,6 +45,7 @@
 (spacemacs/set-leader-keys "io" 'org-insert-heading)
 (spacemacs/set-leader-keys ":" 'eval-expression)
 (spacemacs/set-leader-keys "ds" 'wordnut-search)
+(spacemacs/set-leader-keys "dw" 'dictionary-search)
 (spacemacs/set-leader-keys "ee" 'switch-to-eshell)
 (spacemacs/set-leader-keys "ys" 'describe-variable-and-kill-value)
 (spacemacs/set-leader-keys "yc" '(lambda () (interactive) (kill-new (pwd))))

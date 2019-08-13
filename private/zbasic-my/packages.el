@@ -108,7 +108,7 @@ Each entry is either:
   (use-package
     ace-isearch
     :ensure t
-    :init (defconst ace-isearch-normal-input-length 5)
+    :init (defconst ace-isearch-normal-input-length 3)
     (defconst ace-isearch-infinity-input-length 140)
     (defun toggle-helm-swoop-autojum ()
       (interactive)
@@ -134,6 +134,16 @@ Each entry is either:
     (spacemacs/set-leader-keys "t]" 'toggle-helm-swoop-autojum)
     (evil-global-set-key 'normal (kbd "/") 'isearch-forward)
     (evil-global-set-key 'normal (kbd "?") 'isearch-backward)
+    (with-eval-after-load 'evil-evilified-state (define-key evil-evilified-state-map-original "/"
+                                                  'isearch-forward)
+                          (define-key evil-evilified-state-map-original "?" 'isearch-backward)
+                          (key-chord-define evil-evilified-state-map-original "//" 'rep-isearch-forward)
+                          (key-chord-define evil-evilified-state-map-original "??" 'rep-isearch-backward))
+    (with-eval-after-load 'evil-states (define-key evil-motion-state-map "/"
+                                                  'isearch-forward)
+                          (define-key evil-motion-state-map "?" 'isearch-backward)
+                          (key-chord-define evil-motion-state-map "//" 'rep-isearch-forward)
+                          (key-chord-define evil-motion-state-map "??" 'rep-isearch-backward))
     (key-chord-define evil-normal-state-map "//" 'rep-isearch-forward)
     (key-chord-define evil-normal-state-map "??" 'rep-isearch-backward)))
 

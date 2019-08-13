@@ -66,3 +66,4 @@
   (setq company-dabbrev-ignore-case t))
 
 (setq org-agenda-files (list (concat notes-org-dir "notes.org")))
+(setq list-command-history-max 10000)

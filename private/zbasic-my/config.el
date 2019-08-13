@@ -19,9 +19,11 @@
                       (&rest
                        args)
                       (interactive)
-                      (set-default-font "-xos4-Terminess Powerline-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1" nil nil)
-                      ))
-(with-eval-after-load 'dictionary (set-face-font 'dictionary-word-definition-face "-xos4-Terminess Powerline-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1"))
+                      (set-default-font
+                       "-xos4-Terminess Powerline-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1"
+                       nil nil)))
+(with-eval-after-load 'dictionary (set-face-font 'dictionary-word-definition-face
+                                                 "-xos4-Terminess Powerline-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1"))
 (with-eval-after-load 'window-purpose (add-to-list 'purpose-user-mode-purposes '(eshell-mode .
                                                                                              terminal))
                       (add-to-list 'purpose-user-mode-purposes '(compilation-mode . terminal))
@@ -52,18 +54,75 @@
                              evil-ace-jump-word-mode find-file evil-snipe-repeat
                              evil-next-respect-isearch evil-previous-respect-isearch evil-snipe-f
                              evil-snipe-F evil-snipe-t evil-snipe-T evil-snipe-s evil-snipe-S
-                             evil-previous-line evil-next-line helm-gtags-dwim
-                             xref-find-definitions goto-sources-regex-dir))
+                             evil-previous-line evil-next-line helm-gtags-dwim xref-find-definitions
+                             goto-sources-regex-dir))
 (add-jump-push-action 'evil-backward-word-begin)
 (with-eval-after-load 'evil (dolist (sym jumping-commands-list)
                               (add-jump-push-action sym)))
 
 ;; (setq eglot-workspace-configuration '((kotlin . ((compiler . ((jvm . ((target . "1.8")))))))))
-(with-eval-after-load 'zeal-at-point
-  (add-to-list 'zeal-at-point-mode-alist '(kotlin-mode . "kotlin"))
-  )
+(with-eval-after-load 'zeal-at-point (add-to-list 'zeal-at-point-mode-alist '(kotlin-mode .
+                                                                                          "kotlin")))
 (with-eval-after-load 'company
   (setq company-dabbrev-ignore-case t))
 
 (setq org-agenda-files (list (concat notes-org-dir "notes.org")))
 (setq list-command-history-max 10000)
+(with-eval-after-load 'mu4e
+  (setq mail-user-agent 'mu4e-user-agent)
+
+  ;; default
+  ;; (setq mu4e-maildir "~/Maildir")
+
+  (setq mu4e-drafts-folder "/[Gmail].Drafts")
+  (setq mu4e-sent-folder   "/[Gmail].Sent Mail")
+  (setq mu4e-trash-folder  "/[Gmail].Trash")
+
+  ;; don't save message to Sent Messages, Gmail/IMAP takes care of this
+  (setq mu4e-sent-messages-behavior 'delete)
+
+  ;; (See the documentation for `mu4e-sent-messages-behavior' if you have
+  ;; additional non-Gmail addresses and want assign them different
+  ;; behavior.)
+
+  ;; setup some handy shortcuts
+  ;; you can quickly switch to your Inbox -- press ``ji''
+  ;; then, when you want archive some messages, move them to
+  ;; the 'All Mail' folder by pressing ``ma''.
+
+  (setq mu4e-maildir-shortcuts '( ("/INBOX"               . ?i)
+                                  ("/[Gmail].Sent Mail"   . ?s)
+                                  ("/[Gmail].Trash"       . ?t)
+                                  ("/[Gmail].All Mail"    . ?a)))
+
+  ;; allow for updating mail using 'U' in the main view:
+  (setq mu4e-get-mail-command "offlineimap")
+
+  ;; something about ourselves
+  (setq user-mail-address "gisochrewhb@gmail.com" user-full-name  "Gis Ochre" mu4e-compose-signature
+        (concat "Gis Ochre"))
+
+  ;; sending mail -- replace USERNAME with your gmail username
+  ;; also, make sure the gnutls command line utils are installed
+  ;; package 'gnutls-bin' in Debian/Ubuntu
+
+  ;; (require 'smtpmail)
+  ;; (setq message-send-mail-function 'smtpmail-send-it
+  ;;    starttls-use-gnutls t
+  ;;    smtpmail-starttls-credentials '(("smtp.gmail.com" 587 nil nil))
+  ;;    smtpmail-auth-credentials
+  ;;      '(("smtp.gmail.com" 587 "USERNAME@gmail.com" nil))
+  ;;    smtpmail-default-smtp-server "smtp.gmail.com"
+  ;;    smtpmail-smtp-server "smtp.gmail.com"
+  ;;    smtpmail-smtp-service 587)
+
+  ;; alternatively, for emacs-24 you can use:
+  (setq message-send-mail-function 'smtpmail-send-it smtpmail-stream-type 'starttls
+        smtpmail-auth-credentials
+        '(("smtp.gmail.com" 587 "gisochrewhb@gmail.com" nil))
+        smtpmail-smtp-user "gisochrewhb@gmail.com"
+        smtpmail-default-smtp-server "smtp.gmail.com" smtpmail-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-service 587)
+
+  ;; don't keep message buffers around
+  (setq message-kill-buffer-on-exit t))

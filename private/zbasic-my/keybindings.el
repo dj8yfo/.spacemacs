@@ -114,7 +114,11 @@
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
 (global-set-key (kbd "\C-x/") 'helm-complex-command-history)
-(global-set-key (kbd "\C-x,") 'command-history)
+(global-set-key (kbd "\C-x,") '(lambda ()
+                                 (interactive)
+                                 (command-history)
+                                 (lisp-interaction-mode)
+                                 (read-only-mode)))
 (global-set-key (kbd "\C-x]") 'ace-window)
 (global-set-key (kbd "\C-xg") 'magit-status)
 

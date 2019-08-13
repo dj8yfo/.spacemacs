@@ -73,7 +73,6 @@
 
   ;; default
   ;; (setq mu4e-maildir "~/Maildir")
-
   (setq mu4e-drafts-folder "/[Gmail].Drafts")
   (setq mu4e-sent-folder   "/[Gmail].Sent Mail")
   (setq mu4e-trash-folder  "/[Gmail].Trash")
@@ -89,7 +88,6 @@
   ;; you can quickly switch to your Inbox -- press ``ji''
   ;; then, when you want archive some messages, move them to
   ;; the 'All Mail' folder by pressing ``ma''.
-
   (setq mu4e-maildir-shortcuts '( ("/INBOX"               . ?i)
                                   ("/[Gmail].Sent Mail"   . ?s)
                                   ("/[Gmail].Trash"       . ?t)
@@ -118,11 +116,53 @@
 
   ;; alternatively, for emacs-24 you can use:
   (setq message-send-mail-function 'smtpmail-send-it smtpmail-stream-type 'starttls
-        smtpmail-auth-credentials
-        '(("smtp.gmail.com" 587 "gisochrewhb@gmail.com" nil))
-        smtpmail-smtp-user "gisochrewhb@gmail.com"
-        smtpmail-default-smtp-server "smtp.gmail.com" smtpmail-smtp-server "smtp.gmail.com"
-        smtpmail-smtp-service 587)
+        smtpmail-auth-credentials '(("smtp.gmail.com" 587 "gisochrewhb@gmail.com" nil))
+        smtpmail-smtp-user "gisochrewhb@gmail.com" smtpmail-default-smtp-server "smtp.gmail.com"
+        smtpmail-smtp-server "smtp.gmail.com" smtpmail-smtp-service 587)
 
   ;; don't keep message buffers around
   (setq message-kill-buffer-on-exit t))
+
+(with-eval-after-load 'helm-elisp
+  (setq helm-source-complex-command-history (helm-build-sync-source "Complex Command History"
+                                              :candidates (lambda ()
+                                                            ;; Use cdr to avoid adding
+                                                            ;; `helm-complex-command-history' here.
+                                                            (cl-loop for i in command-history unless
+                                                                     (equal i
+                                                                            '(helm-complex-command-history))
+                                                                     collect (prin1-to-string i)))
+                                              :action (helm-make-actions "Eval" (lambda (candidate)
+                                                                                  (and (boundp
+                                                                                        'helm-sexp--last-sexp)
+                                                                                       (setq
+                                                                                        helm-sexp--last-sexp
+                                                                                        candidate))
+                                                                                  (let ((command
+                                                                                         (read
+                                                                                          candidate)))
+                                                                                    (unless (equal
+                                                                                             command
+                                                                                             (car
+                                                                                              command-history))
+                                                                                      (setq
+                                                                                       command-history
+                                                                                       (cons command
+                                                                                             command-history))))
+                                                                                  (run-with-timer
+                                                                                   0.1 nil
+                                                                                   #'helm-sexp-eval
+                                                                                   candidate))
+                                                                         "Edit and eval" (lambda
+                                                                                           (candidate)
+                                                                                           (edit-and-eval-command
+                                                                                            "Eval: "
+                                                                                            (read
+                                                                                             candidate)))
+                                                                         "insert" (lambda
+                                                                                    (candidate)
+                                                                                    (insert
+                                                                                     candidate)))
+                                              :persistent-action #'helm-sexp-eval
+                                              :multiline t)))
+

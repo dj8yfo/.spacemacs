@@ -168,3 +168,7 @@
 
 (with-eval-after-load 'evil-states
   (setq evil-emacs-state-modes (delete 'ibuffer-mode evil-emacs-state-modes )))
+
+(custom-set-variables '(helm-ag-base-command "rg --no-heading  --hidden")
+                      '(helm-ag-always-set-extra-option t))
+

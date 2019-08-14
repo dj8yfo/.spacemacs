@@ -92,7 +92,7 @@ This function should only modify configuration layer settings."
    ;; To use a local version of a package, use the `:location' property:
    ;; '(your-package :location "~/path/to/your-packige/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(xclip helm-rg zeal-at-point emmet-mode eglot
+   dotspacemacs-additional-packages '(xclip emmet-mode eglot
                                             elisp-format exec-path-from-shell)
 
    ;; A list of packages that cannot be updated.
@@ -498,8 +498,10 @@ before packages are loaded."
   (exec-path-from-shell-initialize)
   (add-to-list 'exec-path "/home/sysmanj/Documents/soft/KotlinLanguageServer/server/build/install/server/bin")
   (with-eval-after-load 'mu4e-alert
-    ;; Enable Desktop notifications
+    ;; Enable Desktop notificatio
     (mu4e-alert-set-default-style 'libnotify))
+  (setq search-engine-config-list '((emacs-stack-exchange :name "emacs stack exchange"
+                                                          :url "https://emacs.stackexchange.com/search?q=%s")))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

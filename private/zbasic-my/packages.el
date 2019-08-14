@@ -31,7 +31,7 @@
 
 (defconst zbasic-my-packages
   '(key-chord ggtags ace-jump-mode helm ace-isearch helm-swoop evil-goggles android-env helm-dash
-              kotlin-mode org-alert wordnut dictionary)
+              kotlin-mode org-alert wordnut dictionary helm-rg)
 
 
   ;; My incsearched setup worked seamlessly good:
@@ -383,3 +383,8 @@ _A_: frameworks goto
     dictionary
     :defer t
     :commands (dictionary-search)))
+(defun zbasic-my/init-helm-rg ()
+  (use-package
+    dictionary
+    :defer t
+    :commands (helm-rg)))

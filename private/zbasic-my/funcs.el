@@ -31,7 +31,6 @@
                                      :publishing-function org-html-publish-to-html
                                      :headline-levels 4 ; Just the default for this project.
                                      :auto-preamble t)))
-
   (org-notes-sync-dependencies)
   (org-publish "org-notes" t))
 
@@ -46,20 +45,21 @@
                            notes-org-dir "cppReadm.org") nil nil)
     (shell-command (format cp-template "/home/sysmanj/Documents/soft/rtags-2.33/README.org"
                            notes-org-dir "rtagsREADME.org") nil nil)
-
-    (shell-command (format cp-template "/home/sysmanj/.emacs.d/layers/+source-control/git/README.org"
+    (shell-command (format cp-template
+                           "/home/sysmanj/.emacs.d/layers/+source-control/git/README.org"
                            notes-org-dir "../nopub/gitREADME.org") nil nil)
-    (shell-command (format cp-template "/home/sysmanj/.emacs.d/layers/+source-control/version-control/README.org"
+    (shell-command (format cp-template
+                           "/home/sysmanj/.emacs.d/layers/+source-control/version-control/README.org"
                            notes-org-dir "verconREADME.org") nil nil)
-    (shell-command (format cp-template "/home/sysmanj/.emacs.d/layers/+spacemacs/spacemacs-purpose/README.org"
+    (shell-command (format cp-template
+                           "/home/sysmanj/.emacs.d/layers/+spacemacs/spacemacs-purpose/README.org"
                            notes-org-dir "purposemodeREADME.org") nil nil)
     (shell-command (format cp-template "/home/sysmanj/.emacs.d/layers/+tools/lsp/README.org"
                            notes-org-dir "lspREADME.org") nil nil)
     (shell-command (format cp-template "/home/sysmanj/.emacs.d/layers/+tags/gtags/README.org"
                            notes-org-dir "gtagsREADME.org") nil nil)
     (shell-command (format cp-template "/home/sysmanj/.emacs.d/layers/+email/mu4e/README.org"
-                           notes-org-dir "mu4eREADME.org") nil nil)
-    ))
+                           notes-org-dir "mu4eREADME.org") nil nil)))
 
 (defun periodic-refresh-lsp-kotlin ()
   (run-with-timer 20 60 '(lambda ()
@@ -259,3 +259,24 @@
 (defun kotlin-syntax-highlight ()
   (set (make-local-variable 'font-lock-defaults)
        '(kotlin-mode--font-lock-keywords nil nil nil nil)))
+
+(defun toggle-browse-eww-system-browser ()
+  (interactive)
+  (if (equal browse-url-browser-function 'eww-browse-url)
+      (progn
+        (message "setting helm-dash browser to BROWSER")
+        (setq helm-dash-browser-func 'browse-url)
+        (message "setting engine/browser-function to BROWSER")
+        (setq engine/browser-function 'browse-url-default-browser)
+        (message "setting browse-url-browser-function to BROWSER")
+        (setq browse-url-browser-function 'browse-url-default-browser)
+        )
+    (progn
+      (message "setting helm-dash browser to EWW")
+      (setq helm-dash-browser-func 'eww)
+      (message "setting engine/browser-function to EWW")
+      (setq engine/browser-function 'eww-browse-url)
+      (message "setting browse-url-browser-function to EWW")
+      (setq browse-url-browser-function 'eww-browse-url)
+      )
+    ))

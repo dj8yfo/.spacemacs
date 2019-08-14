@@ -166,3 +166,5 @@
                                               :persistent-action #'helm-sexp-eval
                                               :multiline t)))
 
+(with-eval-after-load 'evil-states
+  (setq evil-emacs-state-modes (delete 'ibuffer-mode evil-emacs-state-modes )))

@@ -50,6 +50,7 @@ This function should only modify configuration layer settings."
      zbasic-my
      spacemacs-purpose
      helm
+     search-engine
      (c-c++ :variables c-c++-backend 'rtags
             c-c++-enable-clang-support t)
      auto-completion

@@ -29,7 +29,7 @@
 
 ;;; Code:
 
-(defconst my-android+kotlin-packages '(android-env kotlin-mode java-mode)
+(defconst my-android+kotlin-packages '(android-env)
   "The list of Lisp packages required by the my-android+kotlin layer.
 
 Each entry is either:

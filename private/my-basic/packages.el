@@ -30,15 +30,10 @@
 ;;; Code:
 
 (defconst my-basic-packages
-  '(key-chord ggtags ace-jump-mode helm helm-elisp evil-goggles helm-dash org-alert
-              wordnut dictionary helm-rg engine-mode)
+  '(key-chord ggtags ace-jump-mode helm helm-elisp evil-goggles org-alert
+              helm-rg)
 
 
-  ;; My incsearched setup worked seamlessly good:
-  ;; helm-swoop-20180215.1154
-  ;; helm-core-20190712.1716
-  ;; ace-isearch-20190630.1552
-  ;; ace-jump-mode-20140616.815
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:
@@ -80,12 +75,8 @@ Each entry is either:
 
 (defun my-basic/post-init-ggtags ()
   (add-hook 'ggtags-mode-hook '(lambda ()
-                                 (evil-global-set-key 'normal (kbd "M-.") 'helm-gtags-dwim)
-                                 (evil-global-set-key 'insert (kbd "M-.") 'helm-gtags-dwim)
-                                 (evil-global-set-key 'normal (kbd "M-]")
-                                                      'helm-gtags-dwim-other-window)
-                                 (evil-global-set-key 'insert (kbd "M-]")
-                                                      'helm-gtags-dwim-other-window)))
+                                (define-key ggtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+                                (define-key ggtags-mode-map (kbd "M-]") 'helm-gtags-dwim-other-window)))
   (setq gtags-enable-by-default nil))
 
 
@@ -100,46 +91,11 @@ Each entry is either:
 (defun my-basic/post-init-helm ()
   (define-key helm-map (kbd "C-l") 'kill-backward-until-sep))
 
-(defun my-basic/init-evil-goggles ()
-  (use-package
-    evil-goggles
-    :ensure t
-    :config (progn (evil-goggles-mode)
-                   ;; (evil-goggles-use-diff-faces)
-                   (setq evil-goggles-duration 0.3)
-                   (setq evil-goggles-async-duration 1.2))
-
-
-    ;; optionally use diff-mode's faces; as a result, deleted text
-    ;; will be highlighed with `diff-removed` face which is typically
-    ;; some red color (as defined by the color theme)
-    ;; other faces such as `diff-added` will be used for other actions
-    ))
-
-(defun my-basic/init-helm-dash ()
-  (use-package
-    helm-dash
-    :commands (helm-dash helm-dash-at-point)
-    :defer t
-    :init (progn
-            (defun toggle-helm-dash-search-function ()
-              (interactive)
-              (if (equal helm-dash-browser-func 'eww)
-                  (progn (message "setting helm-dash browser to BROWSER")
-                         (setq helm-dash-browser-func 'browse-url))
-                (message "setting helm-dash browser to EWW")
-                (setq helm-dash-browser-func 'eww)))
-            (spacemacs/set-leader-keys "dh" 'helm-dash)
-            (spacemacs/set-leader-keys "dp" 'helm-dash-at-point)
-            (spacemacs/set-leader-keys "dt" 'toggle-helm-dash-search-function))
-    :config (progn
-              (setq dash-docs-common-docsets '("LaTeX" "C" "Gradle DSL" "Gradle Java API"
-                                               "Gradle Groovy API" "Gradle User Guide"
-                                               "Android Gradle Plugin" "Python 3" "Android" "kotlin"
-                                               "Java"))
-              (defun dash-docs-read-json-from-url (url)
-                (shell-command (concat "curl -s " url) "*helm-dash-download*")
-                (with-current-buffer "*helm-dash-download*" (json-read))))))
+(defun my-basic/post-init-evil-goggles ()
+  (evil-goggles-mode 1)
+  (setq evil-goggles-duration 0.1)
+  (setq evil-goggles-async-duration 3)
+  )
 
 (defun my-basic/init-org-alert ()
   (use-package
@@ -147,53 +103,15 @@ Each entry is either:
     :ensure t
     :config (progn (org-alert-enable)
                    (setq alert-default-style 'libnotify))))
-(defun my-basic/init-wordnut ()
-  (use-package
-    wordnut
-    :defer t
-    :commands (wordnut-search wordnut-lookup-current-word)
-    :init (progn (if (equal 0 (call-process "which" nil '("*Shell Command Output*" t) nil
-                                            "wordnet")) nil (progn (message "installing wordnet...")
-                                                                   (if (equal 0 (call-process "sudo"
-                                                                                              nil
-                                                                                              '("*Shell
- Command Output*" t) nil "apt-get" "-y" "install" "wordnet"))
-                                                                       (progn (message
-                                                                               "wordnet installed successfully!")
-                                                                              (shell-command
-                                                                               "rm /tmp/impossible-flag-name"))
-                                                                     (progn
-                                                                       (error
-                                                                        "wordnet installation : `%s'"
-                                                                        "ERROR")
-                                                                       (shell-command
-                                                                        "touch /tmp/impossible-flag-name"))))))
-    :config (if (equal 0 (call-process "ls" nil '("*Shell
- Command Output*" t) nil "/tmp/impossible-flag-name"))
-                (defun wordnut-search ()
-                  (interactive)
-                  (error
-                   "please install `%s' package or run emacs with sudo"
-                   "wordnet"))
-              (message "configured wordnut"))))
 
-(defun my-basic/init-dictionary ()
-  (use-package
-    dictionary
-    :defer t
-    :commands (dictionary-search)))
+
 (defun my-basic/init-helm-rg ()
   (use-package
-    dictionary
+    helm-rg
     :defer t
     :commands (helm-rg)))
-(defun my-basic/pre-init-engine-mode ()
-  (spacemacs|use-package-add-hook engine-mode
-    :pre-init
-    ;; Code
-    (setq search-engine-config-list '((emacs-stack-exchange :name "emacs stack exchange"
-                                                            :url
-                                                            "https://emacs.stackexchange.com/search?q=%s")))))
+
+
 (defun my-basic/post-init-helm-elisp ()
   (setq helm-source-complex-command-history (helm-build-sync-source "Complex Command History"
                                               :candidates (lambda ()

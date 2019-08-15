@@ -81,11 +81,12 @@ This function should only modify configuration layer settings."
            mu4e-spacemacs-layout-binding "m"
            mu4e-spacemacs-kill-layout-on-exit t)
      ;; ----------------------------------------------------------------
-     ;; my overlays
-     my-basic
-     my-android+kotlin
-     my-muche
-     my-ace-isearch
+     ;; personal layers
+     my-basic ; depends on -> helm , gtags
+     my-android+kotlin ; depends on -> java , kotlin
+     my-muche ; depends on -> mu4e
+     my-sengines-dicts; depends on -> search-engine
+     my-ace-isearch ; depends on -> my-basic
      ;; ----------------------------------------------------------------
      )
 
@@ -490,7 +491,8 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (xclip-mode 1)
   (find-file "/home/sysmanj/Documents/code/tasking/notes-org/notes.org")
-  (switch-to-prev-buffer)
+  (find-file "/home/sysmanj/.emacs.d/doc/DOCUMENTATION.org")
+  (switch-to-buffer "*spacemacs*")
   ;; (display-buffer "*spacemacs*" '(display-buffer-same-window . nil))
   ;; (global-set-key (kbd "TAB") 'my-insert-tab-char)
   (setq-default indent-tabs-mode nil)
@@ -519,6 +521,8 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(vim-style-visual-feedback t)
+ '(hybrid-style-visual-feedback t)
  '(ace-isearch-function (quote ace-jump-word-mode))
  '(ace-isearch-function-from-isearch (quote helm-swoop-from-isearch-override))
  '(ace-isearch-input-length ace-isearch-normal-input-length)

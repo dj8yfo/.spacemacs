@@ -78,12 +78,20 @@
   (let ((res (symbol-value variable) ))
     (kill-new (if res res "NONE"))))
 
+(defun kill-backward-until-sep ()
+  (interactive)
+  (while (not (equal (point)
+                     (buffer-end 1)))
+    (delete-char 1))
+  (delete-char -1)
+  (while (not (equal ?/ (char-before)))
+    (delete-char -1)))
+
 (defun goto-delimiter-forward ()
   (interactive)
   (forward-char 1)
   (while (not (equal (char-syntax (char-after)) ?\)))
     (forward-char 1)))
-
 
 (defun goto-delimiter-backward-stop ()
   (interactive)

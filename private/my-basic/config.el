@@ -12,7 +12,7 @@
                                (modify-syntax-entry ?> ".")))
 
 (setq evil-escape-key-sequence "z[")
-(setq purpose-layout-dirs '("/home/sysmanj/Documents/.spacemacs/private/zbasic-my/layouts/"))
+(setq purpose-layout-dirs '("/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/"))
 ;; (custom-layout2)
 (advice-add 'server-create-window-system-frame
             :after '(lambda
@@ -169,6 +169,6 @@
   (setq evil-emacs-state-modes (delete 'ibuffer-mode evil-emacs-state-modes )))
 
 
-(custom-set-variables '(helm-ag-base-command "rg --no-heading  --hidden")
+(custom-set-variables '(helm-ag-base-command "rg --no-heading -L --no-ignore")
                       '(helm-ag-always-set-extra-option t))
 

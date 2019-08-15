@@ -1,4 +1,4 @@
-;;; packages.el --- zbasic-my layer packages file for Spacemacs.
+;;; packages.el --- my-basic layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2018 Sylvain Benner & Contributors
 ;;
@@ -29,7 +29,7 @@
 
 ;;; Code:
 
-(defconst zbasic-my-packages
+(defconst my-basic-packages
   '(key-chord ggtags ace-jump-mode helm evil-goggles android-env helm-dash
               kotlin-mode org-alert wordnut dictionary helm-rg engine-mode)
 
@@ -67,7 +67,7 @@ Each entry is either:
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
 ;;; packages.el ends here
-(defun zbasic-my/init-key-chord ()
+(defun my-basic/init-key-chord ()
   (use-package
     key-chord
     :ensure t
@@ -78,7 +78,7 @@ Each entry is either:
     (key-chord-define-global "UU" 'undo-tree-visualize)
     (key-chord-define-global "yy" 'helm-show-kill-ring)))
 
-(defun zbasic-my/post-init-ggtags ()
+(defun my-basic/post-init-ggtags ()
   (add-hook 'ggtags-mode-hook '(lambda ()
                                  (evil-global-set-key 'normal (kbd "M-.") 'helm-gtags-dwim)
                                  (evil-global-set-key 'insert (kbd "M-.") 'helm-gtags-dwim)
@@ -91,17 +91,17 @@ Each entry is either:
 
 
 
-(defun zbasic-my/init-ace-jump-mode ()
+(defun my-basic/init-ace-jump-mode ()
   (use-package
     ace-jump-mode
     :defer t
     :ensure t))
 
 
-(defun zbasic-my/post-init-helm ()
+(defun my-basic/post-init-helm ()
   (define-key helm-map (kbd "C-l") 'kill-backward-until-sep))
 
-(defun zbasic-my/init-evil-goggles ()
+(defun my-basic/init-evil-goggles ()
   (use-package
     evil-goggles
     :ensure t
@@ -117,7 +117,7 @@ Each entry is either:
     ;; other faces such as `diff-added` will be used for other actions
     ))
 
-(defun zbasic-my/init-android-env ()
+(defun my-basic/init-android-env ()
   (use-package
     android-env
     :after hydra
@@ -158,7 +158,7 @@ _x_: Crashlytics
 ("q" nil "quit"))))
     (android-env)))
 
-(defun zbasic-my/init-helm-dash ()
+(defun my-basic/init-helm-dash ()
   (use-package
     helm-dash
     :commands (helm-dash helm-dash-at-point toggle-helm-dash-search-function)
@@ -183,7 +183,7 @@ _x_: Crashlytics
                 (shell-command (concat "curl -s " url) "*helm-dash-download*")
                 (with-current-buffer "*helm-dash-download*" (json-read))))))
 
-(defun zbasic-my/post-init-kotlin-mode ()
+(defun my-basic/post-init-kotlin-mode ()
   (defvar sources-browse-jump-back nil)
   (defconst kotlin-stdlib-root "/home/sysmanj/Documents/code/kotlin/kotlin-stdlib-sources/")
   (defconst android-src-root "/home/sysmanj/Documents/code/ANDROID_SRC/")
@@ -239,13 +239,13 @@ _A_: frameworks goto
 ("q" nil "quit"))
   (global-set-key (kbd "C-c y") 'hydra-android-sources/body))
 
-(defun zbasic-my/init-org-alert ()
+(defun my-basic/init-org-alert ()
   (use-package
     org-alert
     :ensure t
     :config (progn (org-alert-enable)
                    (setq alert-default-style 'libnotify))))
-(defun zbasic-my/init-wordnut ()
+(defun my-basic/init-wordnut ()
   (use-package
     wordnut
     :defer t
@@ -275,17 +275,17 @@ _A_: frameworks goto
                    "wordnet"))
               (message "configured wordnut"))))
 
-(defun zbasic-my/init-dictionary ()
+(defun my-basic/init-dictionary ()
   (use-package
     dictionary
     :defer t
     :commands (dictionary-search)))
-(defun zbasic-my/init-helm-rg ()
+(defun my-basic/init-helm-rg ()
   (use-package
     dictionary
     :defer t
     :commands (helm-rg)))
-(defun zbasic-my/pre-init-engine-mode ()
+(defun my-basic/pre-init-engine-mode ()
 (spacemacs|use-package-add-hook engine-mode
     :pre-init
     ;; Code

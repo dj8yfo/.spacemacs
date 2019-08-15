@@ -117,7 +117,7 @@
   ;;     (kill-buffer "*spacemacs*"))
   (switch-to-buffer "*spacemacs*")
   (purpose-load-window-layout-file
-   "/home/sysmanj/Documents/.spacemacs/private/zbasic-my/layouts/MyFavIDE.window-layout")
+   "/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/MyFavIDE.window-layout")
   (winum-select-window-3))
 
 (defun custom-layout2 ()
@@ -126,7 +126,7 @@
   ;;     (kill-buffer "*spacemacs*"))
   (switch-to-buffer "*spacemacs*")
   (purpose-load-window-layout-file
-   "/home/sysmanj/Documents/.spacemacs/private/zbasic-my/layouts/MyFavIDE2.window-layout")
+   "/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/MyFavIDE2.window-layout")
   (winum-select-window-3))
 
 (defun clone-kotlin-skeleton
@@ -134,7 +134,7 @@
      loc)
   (interactive "DProject name:")
   (message (format "mes: %s" loc))
-  (let ((command  "/home/sysmanj/Documents/.spacemacs/private/zbasic-my/template.sh %s")
+  (let ((command  "/home/sysmanj/Documents/.spacemacs/private/my-basic/template.sh %s")
         (dir (if (equal loc "/") "." loc)))
     (shell-command (format command dir))))
 

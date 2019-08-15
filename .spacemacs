@@ -47,8 +47,6 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      colors
      themes-megapack
-     zbasic-my
-     my-ace-isearch
      spacemacs-purpose
      helm
      search-engine
@@ -83,6 +81,8 @@ This function should only modify configuration layer settings."
      dap
      (java :variables java-backend 'meghanada)
      kotlin
+     my-basic
+     my-ace-isearch
      ;; version-control
      )
 

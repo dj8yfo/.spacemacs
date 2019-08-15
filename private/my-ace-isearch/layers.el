@@ -1,1 +1,1 @@
-(configuration-layer/declare-layer 'zbasic-my)
+(configuration-layer/declare-layer 'my-basic)

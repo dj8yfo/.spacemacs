@@ -33,57 +33,59 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(systemd
-     javascript
-     windows-scripts
-     clojure
-     python
-     html
+   '(
+     ;; basic ide features
+     (spacemacs-completion :variables ido-enable-flex-matching t ido-use-faces t)
+     auto-completion
+     syntax-checking
+     spacemacs-purpose
+     ;; ----------------------------------------------------------------
      ;; spacemacs-navigation
+     (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t evil-snipe-auto-disable-substitute nil)
+     gtags
+     helm
+     treemacs
      ;; ----------------------------------------------------------------
-     ;; Example of usefulf layers you may want to use right away.
-     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
-     ;; `M-m f e R' (Emacs style) to install them.
+     ;;ide-enhanced
+     ;; dap
+     ;; lsp
      ;; ----------------------------------------------------------------
+     ;;apperance
      colors
      themes-megapack
-     spacemacs-purpose
-     helm
+     ;; ----------------------------------------------------------------
+     ;;searches external
      search-engine
-     (c-c++ :variables c-c++-backend 'rtags
-            c-c++-enable-clang-support t)
-     auto-completion
-     (spacemacs-completion :variables ido-enable-flex-matching t
-                                ido-use-faces t)
-     ;; better-defaults
-     emacs-lisp
+     ;; ----------------------------------------------------------------
+     ;;syntaxes
+     (c-c++ :variables c-c++-backend 'rtags c-c++-enable-clang-support t)
+     (java :variables java-backend 'meghanada)
      (latex :variables latex-build-command "LaTeX")
+     clojure
+     emacs-lisp
+     html
+     javascript
+     kotlin
+     markdown
+     python
+     systemd
+     ;; ----------------------------------------------------------------
+     ;; version-control
+     git
+     version-control
+     ;; ----------------------------------------------------------------
+     ;; mail
      (mu4e :variables
            mu4e-installation-path "/usr/local/share/emacs/site-lisp"
            mu4e-enable-mode-line t
            mu4e-spacemacs-layout-binding "m"
            mu4e-spacemacs-kill-layout-on-exit t)
-     git
-     version-control
-     markdown
-     multiple-cursors
-     treemacs
-     (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t
-                 evil-snipe-auto-disable-substitute nil)
-     ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     syntax-checking
-     gtags
-     lsp
-     dap
-     (java :variables java-backend 'meghanada)
-     kotlin
+     my-muche
+     ;; ----------------------------------------------------------------
+     ;; my overlays
      my-basic
      my-ace-isearch
-     ;; version-control
+     ;; ----------------------------------------------------------------
      )
 
    ;; List of additional packages that will be installed without being

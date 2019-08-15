@@ -48,6 +48,7 @@ This function should only modify configuration layer settings."
      colors
      themes-megapack
      zbasic-my
+     my-ace-isearch
      spacemacs-purpose
      helm
      search-engine
@@ -500,8 +501,7 @@ before packages are loaded."
   (with-eval-after-load 'mu4e-alert
     ;; Enable Desktop notificatio
     (mu4e-alert-set-default-style 'libnotify))
-  (setq search-engine-config-list '((emacs-stack-exchange :name "emacs stack exchange"
-                                                          :url "https://emacs.stackexchange.com/search?q=%s")))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

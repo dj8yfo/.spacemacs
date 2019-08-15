@@ -61,8 +61,7 @@
                               (add-jump-push-action sym)))
 
 ;; (setq eglot-workspace-configuration '((kotlin . ((compiler . ((jvm . ((target . "1.8")))))))))
-(with-eval-after-load 'zeal-at-point (add-to-list 'zeal-at-point-mode-alist '(kotlin-mode .
-                                                                                          "kotlin")))
+
 (with-eval-after-load 'company
   (setq company-dabbrev-ignore-case t))
 
@@ -168,6 +167,7 @@
 
 (with-eval-after-load 'evil-states
   (setq evil-emacs-state-modes (delete 'ibuffer-mode evil-emacs-state-modes )))
+
 
 (custom-set-variables '(helm-ag-base-command "rg --no-heading  --hidden")
                       '(helm-ag-always-set-extra-option t))

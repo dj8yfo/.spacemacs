@@ -30,8 +30,8 @@
 ;;; Code:
 
 (defconst zbasic-my-packages
-  '(key-chord ggtags ace-jump-mode helm ace-isearch helm-swoop evil-goggles android-env helm-dash
-              kotlin-mode org-alert wordnut dictionary helm-rg)
+  '(key-chord ggtags ace-jump-mode helm evil-goggles android-env helm-dash
+              kotlin-mode org-alert wordnut dictionary helm-rg engine-mode)
 
 
   ;; My incsearched setup worked seamlessly good:
@@ -87,14 +87,7 @@ Each entry is either:
                                  (evil-global-set-key 'insert (kbd "M-]")
                                                       'helm-gtags-dwim-other-window)))
   (setq gtags-enable-by-default nil)
-  (spacemacs/set-leader-keys "gd" 'helm-gtags-find-tag)
-  (spacemacs/set-leader-keys "gR" 'helm-gtags-resume)
-  (spacemacs/set-leader-keys "gs" 'helm-gtags-select)
-  (spacemacs/set-leader-keys "gp" 'helm-gtags-previous-history)
-  (spacemacs/set-leader-keys "gn" 'helm-gtags-next-history)
-  (spacemacs/set-leader-keys "gD" 'helm-gtags-find-tag-other-window)
-  (spacemacs/set-leader-keys "gy" 'helm-gtags-find-symbol)
-  (spacemacs/set-leader-keys "gu" 'helm-gtags-update-tags))
+  )
 
 
 
@@ -103,102 +96,6 @@ Each entry is either:
     ace-jump-mode
     :defer t
     :ensure t))
-
-(defun zbasic-my/init-ace-isearch ()
-  (use-package
-    ace-isearch
-    :ensure t
-    :init (defconst ace-isearch-normal-input-length 3)
-    (defconst ace-isearch-infinity-input-length 140)
-    (defun toggle-helm-swoop-autojum ()
-      (interactive)
-      (if (equal ace-isearch-input-length ace-isearch-normal-input-length)
-          (progn (message "toggling helm-swoop isearch autojump to : OFF")
-                 (setq ace-isearch-input-length ace-isearch-infinity-input-length))
-        (message "toggling helm-swoop isearch autojump to : ON")
-        (setq ace-isearch-input-length ace-isearch-normal-input-length)))
-    :config (global-ace-isearch-mode +1)
-    (custom-set-variables '(ace-isearch-function 'ace-jump-word-mode)
-                          '(ace-isearch-use-jump nil)
-                          '(ace-isearch-input-length ace-isearch-normal-input-length)
-                          '(ace-isearch-jump-delay 1.5)
-                          '(ace-isearch-function-from-isearch 'helm-swoop-from-isearch-override)
-                          ;; '(search-nonincremental-instead nil)
-                          )
-    (define-key isearch-mode-map (kbd "C-j") 'ace-isearch-jump-during-isearch-helm-swoop)
-    (define-key isearch-mode-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
-    (define-key isearch-mode-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
-    (define-key helm-swoop-map (kbd "C-j") 'ace-isearch-jump-during-isearch-helm-swoop)
-    (define-key helm-swoop-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
-    (define-key helm-swoop-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
-    (spacemacs/set-leader-keys "t]" 'toggle-helm-swoop-autojum)
-    (evil-global-set-key 'normal (kbd "/") 'isearch-forward)
-    (evil-global-set-key 'normal (kbd "?") 'isearch-backward)
-    (with-eval-after-load 'evil-evilified-state (define-key evil-evilified-state-map-original "/"
-                                                  'isearch-forward)
-                          (define-key evil-evilified-state-map-original "?" 'isearch-backward)
-                          (key-chord-define evil-evilified-state-map-original "//" 'rep-isearch-forward)
-                          (key-chord-define evil-evilified-state-map-original "??" 'rep-isearch-backward))
-    (with-eval-after-load 'evil-states (define-key evil-motion-state-map "/"
-                                                  'isearch-forward)
-                          (define-key evil-motion-state-map "?" 'isearch-backward)
-                          (key-chord-define evil-motion-state-map "//" 'rep-isearch-forward)
-                          (key-chord-define evil-motion-state-map "??" 'rep-isearch-backward))
-    (key-chord-define evil-normal-state-map "//" 'rep-isearch-forward)
-    (key-chord-define evil-normal-state-map "??" 'rep-isearch-backward)))
-
-(defun zbasic-my/post-init-helm-swoop ()
-  (defvar helm-swoop-pattern "")        ; Keep helm-pattern value
-  (add-hook 'helm-exit-minibuffer-hook '(lambda ()
-                                          (if isearch-regexp
-                                              (setq regexp-search-ring (cons helm-swoop-pattern
-                                                                             regexp-search-ring))
-                                            (setq search-ring (cons helm-swoop-pattern
-                                                                    search-ring))))))
-
-(defun zbasic-my/post-init-ace-isearch ()
-  (defun ace-isearch--jumper-function ()
-    (cond ((and
-            (= (length isearch-string) 1)
-            (not (or isearch-regexp
-                     (ace-isearch--isearch-regexp-function)))
-            (ace-isearch--fboundp ace-isearch-function (or (eq ace-isearch-use-jump t)
-                                                           (and (eq ace-isearch-use-jump
-                                                                    'printing-char)
-                                                                (eq this-command
-                                                                    'isearch-printing-char))))
-            (sit-for ace-isearch-jump-delay))
-           (isearch-exit)
-           ;; go back to the point where isearch started
-           (goto-char isearch-opoint)
-           (if (or (< (point)
-                      (window-start))
-                   (> (point)
-                      (window-end)))
-               (message
-                "Notice: Character '%s' could not be found in the \"selected visible window\"."
-                isearch-string))
-           (funcall ace-isearch-function (string-to-char isearch-string))
-           ;; work-around for emacs 25.1
-           (setq isearch--current-buffer (buffer-name (current-buffer)) isearch-string ""))
-          ((and
-            (> (length isearch-string) 1)
-            (< (length isearch-string) ace-isearch-input-length)
-            (not isearch-success)
-            (sit-for ace-isearch-jump-delay))
-           (if (ace-isearch--fboundp ace-isearch-fallback-function
-                 ace-isearch-use-fallback-function)
-               (funcall ace-isearch-fallback-function)))
-          ((and
-            (>= (length isearch-string) ace-isearch-input-length)
-            ;; (not isearch-regexp)
-            (ace-isearch--fboundp ace-isearch-function-from-isearch
-              ace-isearch-use-function-from-isearch)
-            (sit-for ace-isearch-func-delay))
-           (isearch-exit)
-           (funcall ace-isearch-function-from-isearch)
-           ;; work-around for emacs 25.1
-           (setq isearch--current-buffer (buffer-name (current-buffer)) isearch-string "")))))
 
 
 (defun zbasic-my/post-init-helm ()
@@ -388,3 +285,10 @@ _A_: frameworks goto
     dictionary
     :defer t
     :commands (helm-rg)))
+(defun zbasic-my/pre-init-engine-mode ()
+(spacemacs|use-package-add-hook engine-mode
+    :pre-init
+    ;; Code
+    (setq search-engine-config-list '((emacs-stack-exchange :name "emacs stack exchange"
+                                                          :url "https://emacs.stackexchange.com/search?q=%s")))
+    ))

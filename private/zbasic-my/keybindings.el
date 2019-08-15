@@ -1,6 +1,4 @@
 (evil-global-set-key 'normal (kbd "\C-cl") 'org-store-link)
-(evil-global-set-key 'normal (kbd "n") 'evil-next-respect-isearch)
-(evil-global-set-key 'normal (kbd "N") 'evil-previous-respect-isearch)
 (evil-global-set-key 'normal (kbd ">") 'goto-delimiter-forward)
 (evil-global-set-key 'visual (kbd ">") 'goto-delimiter-forward)
 (evil-global-set-key 'operator (kbd ">") 'goto-delimiter-forward)
@@ -109,7 +107,7 @@
 
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
-(global-set-key (kbd "\C-x/") 'helm-complex-command-history)
+(global-set-key (kbd "\C-x?") 'helm-complex-command-history)
 (global-set-key (kbd "\C-x,")
                 '(lambda ()
                    (interactive)
@@ -134,3 +132,6 @@
   '(lambda ()
      (interactive)
      (async-start-process "xdg-open" "xdg-open" nil (dired-get-file-for-visit))))
+
+
+

@@ -8,7 +8,7 @@
     (let ((buffer (get-buffer-create "*last_eshell_command*")))
       (message "here")
       (with-current-buffer buffer (erase-buffer)
-                           (goto-char (point-min))
+                          (goto-char (point-min))
                            (yank)
                            (compilation-mode))
       (switch-to-buffer buffer))))
@@ -61,10 +61,7 @@
     (shell-command (format cp-template "/home/sysmanj/.emacs.d/layers/+email/mu4e/README.org"
                            notes-org-dir "mu4eREADME.org") nil nil)))
 
-(defun periodic-refresh-lsp-kotlin ()
-  (run-with-timer 20 60 '(lambda ()
-                           (when (equal major-mode 'kotlin-mode)
-                             (lsp-restart-workspace)))))
+
 
 (defun my-insert-tab-char ()
   (interactive)
@@ -128,15 +125,6 @@
   (purpose-load-window-layout-file
    "/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/MyFavIDE2.window-layout")
   (winum-select-window-3))
-
-(defun clone-kotlin-skeleton
-    (&optional
-     loc)
-  (interactive "DProject name:")
-  (message (format "mes: %s" loc))
-  (let ((command  "/home/sysmanj/Documents/.spacemacs/private/my-basic/template.sh %s")
-        (dir (if (equal loc "/") "." loc)))
-    (shell-command (format command dir))))
 
 (defun flymake-goto-purposed-window()
   (interactive)

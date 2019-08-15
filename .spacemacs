@@ -80,10 +80,11 @@ This function should only modify configuration layer settings."
            mu4e-enable-mode-line t
            mu4e-spacemacs-layout-binding "m"
            mu4e-spacemacs-kill-layout-on-exit t)
-     my-muche
      ;; ----------------------------------------------------------------
      ;; my overlays
      my-basic
+     my-android+kotlin
+     my-muche
      my-ace-isearch
      ;; ----------------------------------------------------------------
      )

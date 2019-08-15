@@ -30,8 +30,8 @@
 ;;; Code:
 
 (defconst my-basic-packages
-  '(key-chord ggtags ace-jump-mode helm evil-goggles android-env helm-dash
-              kotlin-mode org-alert wordnut dictionary helm-rg engine-mode)
+  '(key-chord ggtags ace-jump-mode helm helm-elisp evil-goggles helm-dash org-alert
+              wordnut dictionary helm-rg engine-mode)
 
 
   ;; My incsearched setup worked seamlessly good:
@@ -86,8 +86,7 @@ Each entry is either:
                                                       'helm-gtags-dwim-other-window)
                                  (evil-global-set-key 'insert (kbd "M-]")
                                                       'helm-gtags-dwim-other-window)))
-  (setq gtags-enable-by-default nil)
-  )
+  (setq gtags-enable-by-default nil))
 
 
 
@@ -117,51 +116,10 @@ Each entry is either:
     ;; other faces such as `diff-added` will be used for other actions
     ))
 
-(defun my-basic/init-android-env ()
-  (use-package
-    android-env
-    :after hydra
-    :bind (("C-c a" . hydra-android/body))
-    :config (defvar hydra-android nil)
-    (setq android-env-executable "./gradlew")
-    (setq android-env-test-command "connectedDevDebugAndroidTest")
-    (setq android-env-unit-test-command "testDevDebug")
-    (defun android-env-hydra-setup ()
-      "Hydra setup."
-      (when
-          (require 'hydra nil 'noerror)
-        (defhydra hydra-android
-          (:color pink
-                  :hint nil)
-          "
-^Compiling^              ^Devices^       ^Code^                   ^Logcat^           ^Adb^
-^^^^^----------------------------------------------------------------------------------------------
-_w_: Compile             _e_: Avd        _r_: Refactor            _l_: Logcat        _U_: Uninstall
-_s_: Instrumented Test   _d_: Auto DHU   _R_: Recursive refactor  _c_: Logcat crash  _L_: Deep link
-_u_: Unit Test           ^ ^             ^ ^                      _C_: Logcat clear
-_t_: Single unit test
-_x_: Crashlytics
-" ("w" android-env-compile)
-("s" android-env-test)
-("u" android-env-unit-test)
-("e" android-env-avd)
-("d" android-env-auto-dhu)
-("l" android-env-logcat)
-("c" android-env-logcat-crash)
-("C" android-env-logcat-clear)
-("t" android-env-unit-test-single)
-("x" android-env-crashlytics)
-("U" android-env-uninstall-app)
-("L" android-env-deeplink)
-("r" android-env-refactor)
-("R" android-env-recursive-refactor)
-("q" nil "quit"))))
-    (android-env)))
-
 (defun my-basic/init-helm-dash ()
   (use-package
     helm-dash
-    :commands (helm-dash helm-dash-at-point toggle-helm-dash-search-function)
+    :commands (helm-dash helm-dash-at-point)
     :defer t
     :init (progn
             (defun toggle-helm-dash-search-function ()
@@ -182,62 +140,6 @@ _x_: Crashlytics
               (defun dash-docs-read-json-from-url (url)
                 (shell-command (concat "curl -s " url) "*helm-dash-download*")
                 (with-current-buffer "*helm-dash-download*" (json-read))))))
-
-(defun my-basic/post-init-kotlin-mode ()
-  (defvar sources-browse-jump-back nil)
-  (defconst kotlin-stdlib-root "/home/sysmanj/Documents/code/kotlin/kotlin-stdlib-sources/")
-  (defconst android-src-root "/home/sysmanj/Documents/code/ANDROID_SRC/")
-  (defvar indexed-sources-subdir nil)
-  (defun goto-sources-regex-dir (regexp subdirarg)
-    (interactive "sRegexp:\nDDirectory:")
-    (let ((subdirarg (if indexed-sources-subdir indexed-sources-subdir subdirarg)))
-      (find-file subdirarg)
-      (ggtags-find-tag-regexp regexp subdirarg))
-    (setq indexed-sources-subdir nil))
-  (advice-add 'goto-sources-query-with-prefix
-              :after '(lambda
-                        (&rest
-                         args)
-                        (if sources-browse-jump-back (evil--jumps-jump 0 0))))
-  (defun goto-sources-query-with-prefix (arg)
-    (interactive "P")
-    (let* ((symbol-po-name (format "%s" (if (symbol-at-point)
-                                            (symbol-at-point) "")))
-           (regexp (if arg (read-string "input symbol name:" symbol-po-name) symbol-po-name)))
-      (goto-sources-regex-dir regexp nil)))
-  (defhydra hydra-android-sources
-    (:color pink
-            :hint nil)
-    "
-^^^^^----------------------------------------------------------------------------------------------
-_s_: kotlin-stdlib-peek     _S_: kotlin-stdlib-goto        _a_: frameworks peek   _q_: quit
-_A_: frameworks goto
-" ("s" (lambda ()
-         (interactive)
-         (setq sources-browse-jump-back t)
-         (setq indexed-sources-subdir kotlin-stdlib-root)
-         (call-interactively 'goto-sources-query-with-prefix))
-   :exit t)
-("S" (lambda ()
-       (interactive)
-       (setq sources-browse-jump-back nil)
-       (setq indexed-sources-subdir kotlin-stdlib-root)
-       (call-interactively 'goto-sources-query-with-prefix))
- :exit t)
-("a" (lambda ()
-       (interactive)
-       (setq sources-browse-jump-back t)
-       (setq indexed-sources-subdir (concat android-src-root "frameworks"))
-       (call-interactively 'goto-sources-query-with-prefix))
- :exit t)
-("A" (lambda ()
-       (interactive)
-       (setq sources-browse-jump-back nil)
-       (setq indexed-sources-subdir (concat android-src-root "frameworks"))
-       (call-interactively 'goto-sources-query-with-prefix))
- :exit t)
-("q" nil "quit"))
-  (global-set-key (kbd "C-c y") 'hydra-android-sources/body))
 
 (defun my-basic/init-org-alert ()
   (use-package
@@ -286,9 +188,51 @@ _A_: frameworks goto
     :defer t
     :commands (helm-rg)))
 (defun my-basic/pre-init-engine-mode ()
-(spacemacs|use-package-add-hook engine-mode
+  (spacemacs|use-package-add-hook engine-mode
     :pre-init
     ;; Code
     (setq search-engine-config-list '((emacs-stack-exchange :name "emacs stack exchange"
-                                                          :url "https://emacs.stackexchange.com/search?q=%s")))
-    ))
+                                                            :url
+                                                            "https://emacs.stackexchange.com/search?q=%s")))))
+(defun my-basic/post-init-helm-elisp ()
+  (setq helm-source-complex-command-history (helm-build-sync-source "Complex Command History"
+                                              :candidates (lambda ()
+                                                            ;; Use cdr to avoid adding
+                                                            ;; `helm-complex-command-history' here.
+                                                            (cl-loop for i in command-history unless
+                                                                     (equal i
+                                                                            '(helm-complex-command-history))
+                                                                     collect (prin1-to-string i)))
+                                              :action (helm-make-actions "Eval" (lambda (candidate)
+                                                                                  (and (boundp
+                                                                                        'helm-sexp--last-sexp)
+                                                                                       (setq
+                                                                                        helm-sexp--last-sexp
+                                                                                        candidate))
+                                                                                  (let ((command
+                                                                                         (read
+                                                                                          candidate)))
+                                                                                    (unless (equal
+                                                                                             command
+                                                                                             (car
+                                                                                              command-history))
+                                                                                      (setq
+                                                                                       command-history
+                                                                                       (cons command
+                                                                                             command-history))))
+                                                                                  (run-with-timer
+                                                                                   0.1 nil
+                                                                                   #'helm-sexp-eval
+                                                                                   candidate))
+                                                                         "Edit and eval" (lambda
+                                                                                           (candidate)
+                                                                                           (edit-and-eval-command
+                                                                                            "Eval: "
+                                                                                            (read
+                                                                                             candidate)))
+                                                                         "insert" (lambda
+                                                                                    (candidate)
+                                                                                    (insert
+                                                                                     candidate)))
+                                              :persistent-action #'helm-sexp-eval
+                                              :multiline t)))

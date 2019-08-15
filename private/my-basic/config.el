@@ -1,15 +1,3 @@
-(spacemacs|define-jump-handlers kotlin-mode)
-;; (add-hook 'kotlin-mode-hook 'eglot-ensure)
-;; (add-hook 'kotlin-mode-hook 'lsp)
-(add-hook 'kotlin-mode-hook 'ggtags-mode)
-
-                                        ;
-(add-hook 'kotlin-mode-hook '(lambda ()
-                               (modify-syntax-entry ?$ ".")))
-(add-hook 'kotlin-mode-hook '(lambda ()
-                               (modify-syntax-entry ?< ".")))
-(add-hook 'kotlin-mode-hook '(lambda ()
-                               (modify-syntax-entry ?> ".")))
 
 (setq evil-escape-key-sequence "z[")
 (setq purpose-layout-dirs '("/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/"))
@@ -60,8 +48,6 @@
 (with-eval-after-load 'evil (dolist (sym jumping-commands-list)
                               (add-jump-push-action sym)))
 
-;; (setq eglot-workspace-configuration '((kotlin . ((compiler . ((jvm . ((target . "1.8")))))))))
-
 (with-eval-after-load 'company
   (setq company-dabbrev-ignore-case t))
 
@@ -70,47 +56,7 @@
 
 
 (with-eval-after-load 'helm-elisp
-  (setq helm-source-complex-command-history (helm-build-sync-source "Complex Command History"
-                                              :candidates (lambda ()
-                                                            ;; Use cdr to avoid adding
-                                                            ;; `helm-complex-command-history' here.
-                                                            (cl-loop for i in command-history unless
-                                                                     (equal i
-                                                                            '(helm-complex-command-history))
-                                                                     collect (prin1-to-string i)))
-                                              :action (helm-make-actions "Eval" (lambda (candidate)
-                                                                                  (and (boundp
-                                                                                        'helm-sexp--last-sexp)
-                                                                                       (setq
-                                                                                        helm-sexp--last-sexp
-                                                                                        candidate))
-                                                                                  (let ((command
-                                                                                         (read
-                                                                                          candidate)))
-                                                                                    (unless (equal
-                                                                                             command
-                                                                                             (car
-                                                                                              command-history))
-                                                                                      (setq
-                                                                                       command-history
-                                                                                       (cons command
-                                                                                             command-history))))
-                                                                                  (run-with-timer
-                                                                                   0.1 nil
-                                                                                   #'helm-sexp-eval
-                                                                                   candidate))
-                                                                         "Edit and eval" (lambda
-                                                                                           (candidate)
-                                                                                           (edit-and-eval-command
-                                                                                            "Eval: "
-                                                                                            (read
-                                                                                             candidate)))
-                                                                         "insert" (lambda
-                                                                                    (candidate)
-                                                                                    (insert
-                                                                                     candidate)))
-                                              :persistent-action #'helm-sexp-eval
-                                              :multiline t)))
+  )
 
 (with-eval-after-load 'evil-states
   (setq evil-emacs-state-modes (delete 'ibuffer-mode evil-emacs-state-modes )))

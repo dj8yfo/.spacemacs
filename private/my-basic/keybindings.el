@@ -27,7 +27,6 @@
      (beginning-of-line)
      (forward-char 20)
      (flymake-goto-diagnostic (point))))
-(with-eval-after-load 'dired (define-key dired-mode-map (kbd "\C-c k") 'clone-kotlin-skeleton))
 
 
 (with-eval-after-load 'eglot (spacemacs/set-leader-keys "," '(lambda ()
@@ -62,8 +61,6 @@
                    (ido-mode 1)
                    (ido-find-file)))
 (spacemacs/set-leader-keys "dd" 'flymake-goto-purposed-window)
-(spacemacs/set-leader-keys "y]" 'clone-kotlin-skeleton)
-(spacemacs/set-leader-keys "yf" 'query-kotlin-stdlib)
 (spacemacs/set-leader-keys "ss" 'helm-swoop)
 (spacemacs/set-leader-keys "pn" 'export-notes-to-html)
 (spacemacs/set-leader-keys "rg" '(lambda ()
@@ -77,12 +74,7 @@
 (spacemacs/set-leader-keys "[" '(lambda ()
                                   (interactive)
                                   (evil--jumps-jump 0 0)))
-(spacemacs/set-leader-keys "zk" '(lambda ()
-                                   (interactive)
-                                   (setq zeal-at-point-docset "kotlin")))
-(spacemacs/set-leader-keys "za" '(lambda ()
-                                   (interactive)
-                                   (setq zeal-at-point-docset "android")))
+
 (spacemacs/set-leader-keys "=" 'spacemacs/scale-transparency-transient-state/body)
 (spacemacs/set-leader-keys "dl" '(lambda ()
                                    (interactive)

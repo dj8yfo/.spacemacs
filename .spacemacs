@@ -490,6 +490,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (xclip-mode 1)
+  ;; (setq desktop-files-not-to-save ".*")
   (find-file "/home/sysmanj/Documents/code/tasking/notes-org/notes.org")
   (find-file "/home/sysmanj/.emacs.d/doc/DOCUMENTATION.org")
   (switch-to-buffer "*spacemacs*")
@@ -521,8 +522,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(vim-style-visual-feedback t)
- '(hybrid-style-visual-feedback t)
  '(ace-isearch-function (quote ace-jump-word-mode))
  '(ace-isearch-function-from-isearch (quote helm-swoop-from-isearch-override))
  '(ace-isearch-input-length ace-isearch-normal-input-length)
@@ -544,6 +543,8 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol nil)
  '(fci-rule-color "#3C3D37")
  '(global-visual-fill-column-mode t)
+ '(helm-ag-always-set-extra-option t)
+ '(helm-ag-base-command "rg --no-heading -L --no-ignore")
  '(helm-show-completion-display-function (quote helm-show-completion-default-display-function))
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
@@ -573,11 +574,12 @@ This function is called at the very end of Spacemacs initialization."
      ("FIXME" . "#dc752f")
      ("XXX" . "#dc752f")
      ("XXXX" . "#dc752f"))))
+ '(hybrid-style-visual-feedback t t)
  '(linum-format " %7i ")
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (mu4e-maildirs-extension mu4e-alert helm-mu xclip ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text mmm-mode markdown-toc markdown-mode macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-rg helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gh-md fuzzy flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f s disaster diminish define-word company-statistics company-c-headers company column-enforce-mode color-identifiers-mode dash cmake-mode clean-aindent-mode clang-format bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup farmhouse-theme)))
+    (helm-eww xclip ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text mmm-mode markdown-toc markdown-mode macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-rg helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gh-md fuzzy flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f s disaster diminish define-word company-statistics company-c-headers company column-enforce-mode color-identifiers-mode dash cmake-mode clean-aindent-mode clang-format bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup farmhouse-theme)))
  '(paradox-github-token t)
  '(pdf-view-midnight-colors (quote ("#5f5f87" . "#ffffff")))
  '(pos-tip-background-color "#FFFACE")
@@ -612,6 +614,7 @@ This function is called at the very end of Spacemacs initialization."
      (340 . "#2790C3")
      (360 . "#66D9EF"))))
  '(vc-annotate-very-old-color nil)
+ '(vim-style-visual-feedback t t)
  '(weechat-color-list
    (quote
     (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0")))

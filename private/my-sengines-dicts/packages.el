@@ -29,8 +29,7 @@
 
 ;;; Code:
 
-(defconst my-sengines-dicts-packages
-  '(helm-dash wordnut dictionary engine-mode)
+(defconst my-sengines-dicts-packages '(helm-dash wordnut dictionary engine-mode helm-eww eww)
   "The list of Lisp packages required by the my-sengines-dicts layer.
 
 Each entry is either:
@@ -120,10 +119,16 @@ Each entry is either:
     dictionary
     :defer t
     :commands (dictionary-search)
-    :config
-    (set-face-font 'dictionary-word-definition-face
-                   "-xos4-Terminess Powerline-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1"))
-  )
+    :config (set-face-font 'dictionary-word-definition-face
+                           "-xos4-Terminess Powerline-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1")))
+(defun my-sengines-dicts/init-helm-eww ()
+  (use-package
+    helm-eww
+    :defer t
+    :commands (helm-eww helm-eww-history)
+    :bind (("C-c e /" . helm-eww)
+           ("C-c e \\" . helm-eww-history))
+    ))
 
 (defun my-sengines-dicts/pre-init-engine-mode ()
   (spacemacs|use-package-add-hook engine-mode
@@ -132,3 +137,44 @@ Each entry is either:
     (setq search-engine-config-list '((emacs-stack-exchange :name "emacs stack exchange"
                                                             :url
                                                             "https://emacs.stackexchange.com/search?q=%s")))))
+(with-eval-after-load 'eww
+  (defun eww-write-history ()
+    (let ((obj (eww-desktop-misc-data ".")))
+      (with-temp-file (expand-file-name "eww-history" eww-bookmarks-directory)
+        (insert ";; Auto-generated file; don't edit\n")
+        (pp obj (current-buffer)))))
+  (defvar misc-data-eww-loadable nil)
+  (defun eww-read-history ()
+    (let ((file (expand-file-name "eww-history" eww-bookmarks-directory)))
+      (setq misc-data-eww-loadable (unless (zerop (or (nth 7 (file-attributes file))
+                                                      0))
+                                     (with-temp-buffer (insert-file-contents file)
+                                                       (read (current-buffer)))))))
+  (add-hook 'eww-mode-hook '(lambda ()
+                              (eww-read-history)
+                              ;; (eww-restore-desktop "~/.emacs.d/eww-history" (current-buffer) misc-data-eww-loadable)
+                              (setq eww-history       (cdr (plist-get misc-data-eww-loadable
+                                                                      :history)) eww-data      (or
+                                                                                                (car
+                                                                                                 (plist-get
+                                                                                                  misc-data-eww-loadable
+                                                                                                  :history))
+			                                                                                    ;; backwards compatibility
+			                                                                                    (list
+                                                                                                 :url
+                                                                                                 (plist-get
+                                                                                                  misc-data-eww-loadable
+                                                                                                  :uri))))
+                              (when (plist-get eww-data
+                                               :url)
+                                (cl-case eww-restore-desktop ((t auto)
+                                                              (eww (plist-get eww-data
+                                                                              :url)))
+                                         ((zerop (buffer-size))
+                                          (let ((inhibit-read-only t))
+                                            (insert (substitute-command-keys
+                                                     eww-restore-reload-prompt))))))
+                              (add-hook 'kill-buffer-hook 'eww-write-history nil t)))
+  )
+
+(add-hook 'kill-emacs-hook 'kill-eww-buffers)

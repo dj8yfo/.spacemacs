@@ -1,3 +1,4 @@
+(toggle-browse-eww-system-browser 2)
 (advice-add 'server-create-window-system-frame
             :after '(lambda
                       (&rest

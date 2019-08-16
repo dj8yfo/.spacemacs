@@ -87,6 +87,7 @@
                                    (interactive)
                                    (call-interactively 'browse-url)))
 (spacemacs/set-leader-keys "dt" 'toggle-browse-eww-system-browser)
+(spacemacs/set-leader-keys "ek" 'kill-eww-buffers)
 
 (spacemacs/set-leader-keys "b/" 'ibuffer)
 (global-set-key (kbd "\C-x\C-b") 'ibuffer)

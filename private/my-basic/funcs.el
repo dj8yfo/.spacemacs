@@ -151,18 +151,14 @@
                           (&rest
                            args)
                           "unexpected jump push evil" (evil-set-jump))))
-
-(defun toggle-browse-eww-system-browser ()
+(defun kill-eww-buffers ()
   (interactive)
-  (if (equal browse-url-browser-function 'eww-browse-url)
-      (progn
-        (message "setting helm-dash browser to BROWSER")
-        (setq helm-dash-browser-func 'browse-url)
-        (message "setting engine/browser-function to BROWSER")
-        (setq engine/browser-function 'browse-url-default-browser)
-        (message "setting browse-url-browser-function to BROWSER")
-        (setq browse-url-browser-function 'browse-url-default-browser)
-        )
+  (kill-matching-buffers ".*eww.*" t t))
+
+(defun toggle-browse-eww-system-browser (&optional arg)
+  (interactive "P")
+  (if (or (and arg (> arg 0))
+          (equal browse-url-browser-function 'browse-url-default-browser))
     (progn
       (message "setting helm-dash browser to EWW")
       (setq helm-dash-browser-func 'eww)
@@ -170,6 +166,14 @@
       (setq engine/browser-function 'eww-browse-url)
       (message "setting browse-url-browser-function to EWW")
       (setq browse-url-browser-function 'eww-browse-url)
+      )
+    (progn
+      (message "setting helm-dash browser to BROWSER")
+      (setq helm-dash-browser-func 'browse-url)
+      (message "setting engine/browser-function to BROWSER")
+      (setq engine/browser-function 'browse-url-default-browser)
+      (message "setting browse-url-browser-function to BROWSER")
+      (setq browse-url-browser-function 'browse-url-default-browser)
       )
     ))
 

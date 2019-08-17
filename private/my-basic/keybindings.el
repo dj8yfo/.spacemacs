@@ -108,6 +108,7 @@
 (spacemacs/set-leader-keys "b/" 'ibuffer)
 (global-set-key (kbd "\C-x\C-b") 'ibuffer)
 (spacemacs/set-leader-keys "f/" 'helm-find)
+(spacemacs/set-leader-keys "sv" 'split-visual-region)
 (global-unset-key (kbd "M-l"))
 (global-set-key (kbd "M-l a") 'custom-layout1)
 (global-set-key (kbd "M-l b") 'custom-layout2)

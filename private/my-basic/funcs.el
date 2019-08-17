@@ -147,6 +147,7 @@
 
 (defun split-visual-region (&optional separator)
   (interactive "sSeparator")
+  (if (equal separator "") (setq separator nil))
   (let ((result (split-string (buffer-substring-no-properties (region-beginning)
                                                               (region-end) ) separator)))
     (delete-region (region-beginning) (region-end))

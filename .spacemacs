@@ -51,8 +51,9 @@ This function should only modify configuration layer settings."
      ;; lsp
      ;; ----------------------------------------------------------------
      ;;apperance
-     colors
+     (colors :variables colors-enable-nyan-cat-progress-bar t)
      themes-megapack
+
      ;; ----------------------------------------------------------------
      ;;searches external
      search-engine
@@ -515,6 +516,8 @@ before packages are loaded."
     (mu4e-alert-set-default-style 'libnotify))
   (spacemacs/toggle-fringe-off)
   (spacemacs/toggle-helm-ag-extra-args-off)
+  (spaceline-toggle-minor-modes-off)
+  (spaceline-toggle-version-control-off)
   (global-evil-search-highlight-persist t)
   )
 

@@ -31,7 +31,7 @@
 
 (defconst my-basic-packages
   '(key-chord ggtags ace-jump-mode helm helm-elisp evil-goggles org-alert
-              helm-rg)
+              helm-rg (my-autocolor-html-pre-code-tags :location local))
 
 
   "The list of Lisp packages required by the basic-my layer.
@@ -111,6 +111,13 @@ Each entry is either:
     helm-rg
     :defer t
     :commands (helm-rg)))
+
+(defun my-basic/init-my-autocolor-html-pre-code-tags ()
+  (use-package
+    my-autocolor-html-pre-code-tags
+    :after shr
+    :load-path "private/my-basic/local/my-autocolor-html-pre-code-tags"
+    ))
 
 
 (defun my-basic/post-init-helm-elisp ()

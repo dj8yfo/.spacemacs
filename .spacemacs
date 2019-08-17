@@ -99,7 +99,8 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(xclip emmet-mode eglot
                                             evil-search-highlight-persist
-                                            elisp-format exec-path-from-shell)
+                                            elisp-format exec-path-from-shell
+                                            markdown-preview-mode language-detection)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -226,7 +227,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(grandshell spolsky darkokai monokai moe-dark tangotango  farmhouse-dark
+   dotspacemacs-themes '(doom-molokai badwolf grandshell spolsky darkokai monokai moe-dark tangotango  farmhouse-dark
                                  spacemacs-dark dracula)
 
 
@@ -585,7 +586,7 @@ This function is called at the very end of Spacemacs initialization."
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
    (quote
-    (helm-eww xclip ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text mmm-mode markdown-toc markdown-mode macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-rg helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gh-md fuzzy flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f s disaster diminish define-word company-statistics company-c-headers company column-enforce-mode color-identifiers-mode dash cmake-mode clean-aindent-mode clang-format bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup farmhouse-theme)))
+    (poet-theme my-autocolor-html-pre-code-tags language-detection xclip ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-mode rainbow-identifiers rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text mmm-mode markdown-toc markdown-mode macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-rg helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gh-md fuzzy flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f s disaster diminish define-word company-statistics company-c-headers company column-enforce-mode color-identifiers-mode dash cmake-mode clean-aindent-mode clang-format bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup farmhouse-theme)))
  '(paradox-github-token t)
  '(pdf-view-midnight-colors (quote ("#5f5f87" . "#ffffff")))
  '(pos-tip-background-color "#FFFACE")
@@ -645,12 +646,9 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-goggles-undo-redo-change-face ((t (:inherit diff-changed))))
  '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-removed))))
  '(evil-goggles-yank-face ((t (:inherit diff-changed))))
- '(highlight ((t (:background "dark slate gray" :inverse-video nil))))
- '(lazy-highlight ((t (:background "violet" :foreground "black" :inverse-video t))))
  '(evil-search-highlight-persist-highlight-face ((t (:background "white" :foreground "gray40" :inverse-video t))))
- ;; '(ace-jump-face-foreground ((t (:foreground "black"))))
- ;; '(ace-jump-face-background ((t (:background "white"))))
- )
+ '(highlight ((t (:background "dark slate gray" :inverse-video nil))))
+ '(lazy-highlight ((t (:background "violet" :foreground "black" :inverse-video t)))))
 )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

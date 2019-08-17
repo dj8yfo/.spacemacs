@@ -23,15 +23,21 @@ buff                             evil-ace-jump-word-mode find-file evil-snipe-re
 (setq list-command-history-max 10000)
 (setq org-agenda-files (list (concat notes-org-dir "notes.org")))
 (setq purpose-layout-dirs '("/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/"))
+
 (with-eval-after-load 'company
   (setq company-dabbrev-ignore-case t))
+
 (with-eval-after-load 'evil (dolist (sym jumping-commands-list)
                               (add-jump-push-action sym)))
 (add-jump-push-action 'evil-backward-word-begin)
 (with-eval-after-load 'evil-states
   (setq evil-emacs-state-modes (delete 'ibuffer-mode evil-emacs-state-modes )))
 (with-eval-after-load 'helm-elisp)
+(with-eval-after-load 'imenu
+  (setq-default imenu-create-index-function #'ggtags-build-imenu-index))
 (with-eval-after-load 'magit (global-diff-hl-mode 1))
+(with-eval-after-load 'shr
+  (setq shr-use-fonts nil))
 (with-eval-after-load 'volatile-highlights (volatile-highlights-mode -1))
 (with-eval-after-load 'window-purpose (add-to-list 'purpose-user-mode-purposes '(eshell-mode .
                                                                                              terminal))

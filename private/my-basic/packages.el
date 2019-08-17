@@ -119,18 +119,18 @@ Each entry is either:
 
 (defun my-basic/post-init-helm-elisp ()
   (setq helm-source-complex-command-history
-        (helm-build-sync-source "Complex Command History" 
+        (helm-build-sync-source "Complex Command History"
           :candidates (lambda ()
                         ;; Use cdr to avoid adding
                         ;; `helm-complex-command-history' here.
                         (cl-loop for i in command-history unless (equal i
                                                                         '(helm-complex-command-history))
                                  collect (prin1-to-string i)))
-          :action (helm-make-actions "Eval" (lambda (candidate) 
-                                              (and (boundp 'helm-sexp--last-sexp) 
-                                                   (setq helm-sexp--last-sexp candidate)) 
-                                              (let ((command (read candidate))) 
-                                                (unless (equal command (car command-history)) 
+          :action (helm-make-actions "Eval" (lambda (candidate)
+                                              (and (boundp 'helm-sexp--last-sexp)
+                                                   (setq helm-sexp--last-sexp candidate))
+                                              (let ((command (read candidate)))
+                                                (unless (equal command (car command-history))
                                                   (setq command-history (cons command
                                                                               command-history))))
                                               (run-with-timer 0.1 nil #'helm-sexp-eval candidate))
@@ -138,6 +138,6 @@ Each entry is either:
                                                        (edit-and-eval-command "Eval: " (read
                                                                                         candidate)))
                                      "insert" (lambda (candidate)
-                                                (insert candidate))) 
-          :persistent-action #'helm-sexp-eval 
+                                                (insert candidate)))
+          :persistent-action #'helm-sexp-eval
           :multiline t)))

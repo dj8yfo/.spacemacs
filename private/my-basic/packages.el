@@ -30,10 +30,8 @@
 ;;; Code:
 
 (defconst my-basic-packages
-  '(key-chord ggtags ace-jump-mode helm helm-elisp evil-goggles org-alert
-              helm-rg (my-autocolor-html-pre-code-tags :location local))
-
-
+  '(key-chord ggtags ace-jump-mode helm helm-elisp evil-goggles org-alert helm-rg
+              (my-autocolor-html-pre-code-tags :location local))
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:
@@ -75,8 +73,9 @@ Each entry is either:
 
 (defun my-basic/post-init-ggtags ()
   (add-hook 'ggtags-mode-hook '(lambda ()
-                                (define-key ggtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
-                                (define-key ggtags-mode-map (kbd "M-]") 'helm-gtags-dwim-other-window)))
+                                 (define-key ggtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+                                 (define-key ggtags-mode-map (kbd "M-]")
+                                   'helm-gtags-dwim-other-window)))
   (setq gtags-enable-by-default nil))
 
 
@@ -95,8 +94,7 @@ Each entry is either:
   (evil-goggles-mode 1)
   (setq evil-goggles-duration 0.3)
   (setq evil-goggles-async-duration 3)
-  (evil-goggles-use-diff-faces)
-  )
+  (evil-goggles-use-diff-faces))
 
 (defun my-basic/init-org-alert ()
   (use-package
@@ -116,49 +114,30 @@ Each entry is either:
   (use-package
     my-autocolor-html-pre-code-tags
     :after shr
-    :load-path "private/my-basic/local/my-autocolor-html-pre-code-tags"
-    ))
+    :load-path "private/my-basic/local/my-autocolor-html-pre-code-tags"))
 
 
 (defun my-basic/post-init-helm-elisp ()
-  (setq helm-source-complex-command-history (helm-build-sync-source "Complex Command History"
-                                              :candidates (lambda ()
-                                                            ;; Use cdr to avoid adding
-                                                            ;; `helm-complex-command-history' here.
-                                                            (cl-loop for i in command-history unless
-                                                                     (equal i
-                                                                            '(helm-complex-command-history))
-                                                                     collect (prin1-to-string i)))
-                                              :action (helm-make-actions "Eval" (lambda (candidate)
-                                                                                  (and (boundp
-                                                                                        'helm-sexp--last-sexp)
-                                                                                       (setq
-                                                                                        helm-sexp--last-sexp
-                                                                                        candidate))
-                                                                                  (let ((command
-                                                                                         (read
-                                                                                          candidate)))
-                                                                                    (unless (equal
-                                                                                             command
-                                                                                             (car
-                                                                                              command-history))
-                                                                                      (setq
-                                                                                       command-history
-                                                                                       (cons command
-                                                                                             command-history))))
-                                                                                  (run-with-timer
-                                                                                   0.1 nil
-                                                                                   #'helm-sexp-eval
-                                                                                   candidate))
-                                                                         "Edit and eval" (lambda
-                                                                                           (candidate)
-                                                                                           (edit-and-eval-command
-                                                                                            "Eval: "
-                                                                                            (read
-                                                                                             candidate)))
-                                                                         "insert" (lambda
-                                                                                    (candidate)
-                                                                                    (insert
-                                                                                     candidate)))
-                                              :persistent-action #'helm-sexp-eval
-                                              :multiline t)))
+  (setq helm-source-complex-command-history
+        (helm-build-sync-source "Complex Command History" 
+          :candidates (lambda ()
+                        ;; Use cdr to avoid adding
+                        ;; `helm-complex-command-history' here.
+                        (cl-loop for i in command-history unless (equal i
+                                                                        '(helm-complex-command-history))
+                                 collect (prin1-to-string i)))
+          :action (helm-make-actions "Eval" (lambda (candidate) 
+                                              (and (boundp 'helm-sexp--last-sexp) 
+                                                   (setq helm-sexp--last-sexp candidate)) 
+                                              (let ((command (read candidate))) 
+                                                (unless (equal command (car command-history)) 
+                                                  (setq command-history (cons command
+                                                                              command-history))))
+                                              (run-with-timer 0.1 nil #'helm-sexp-eval candidate))
+                                     "Edit and eval" (lambda (candidate)
+                                                       (edit-and-eval-command "Eval: " (read
+                                                                                        candidate)))
+                                     "insert" (lambda (candidate)
+                                                (insert candidate))) 
+          :persistent-action #'helm-sexp-eval 
+          :multiline t)))

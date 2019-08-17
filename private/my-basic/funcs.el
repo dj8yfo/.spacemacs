@@ -145,6 +145,17 @@
                                    (progn (delete-window cand-window))))
                              (switch-to-buffer (flymake--diagnostics-buffer-name)))))
 
+(defun split-visual-region (&optional separator)
+  (interactive "sSeparator")
+  (let ((result (split-string (buffer-substring-no-properties (region-beginning)
+                                                              (region-end) ) separator)))
+    (delete-region (region-beginning) (region-end))
+    (dolist (elem result nil)
+      (insert elem)
+      (insert "\n"))
+    )
+  )
+
 (defmacro add-jump-push-action (command-symbol)
   `(advice-add ,command-symbol
                :before '(lambda

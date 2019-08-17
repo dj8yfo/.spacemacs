@@ -99,7 +99,7 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(xclip emmet-mode eglot
                                             evil-search-highlight-persist
-                                            elisp-format exec-path-from-shell
+                                            elisp-format
                                             markdown-preview-mode language-detection)
 
    ;; A list of packages that cannot be updated.
@@ -509,7 +509,6 @@ before packages are loaded."
    (spacemacs-modeline/init-spaceline))
   (global-evil-matchit-mode 1)
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-  (exec-path-from-shell-initialize)
   (add-to-list 'exec-path "/home/sysmanj/Documents/soft/KotlinLanguageServer/server/build/install/server/bin")
   (with-eval-after-load 'mu4e-alert
     ;; Enable Desktop notificatio

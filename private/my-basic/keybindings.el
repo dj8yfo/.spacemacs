@@ -27,6 +27,8 @@
      (beginning-of-line)
      (forward-char 20)
      (flymake-goto-diagnostic (point))))
+(evil-define-key 'normal 'global "L" "y$")
+(with-eval-after-load 'eww (define-key eww-mode-map "z" 'evil-scroll-line-to-center))
 
 
 (with-eval-after-load 'eglot (spacemacs/set-leader-keys "," '(lambda ()
@@ -48,18 +50,17 @@
                                    (interactive)
                                    (kill-new (pwd))))
 (spacemacs/set-leader-keys "." 'lazy-helm/helm-mini)
-(spacemacs/set-leader-keys "bb"
-                '(lambda ()
-                   (interactive)
-                   (ido-mode 1)
-                   (ido-switch-buffer)))
-(spacemacs/set-leader-keys "ff"
-                '(lambda ()
-                   (interactive)
-                   (ido-mode 1)
-                   (ido-find-file)))
+(spacemacs/set-leader-keys "bb" '(lambda ()
+                                   (interactive)
+                                   (ido-mode 1)
+                                   (ido-switch-buffer)))
+(spacemacs/set-leader-keys "ff" '(lambda ()
+                                   (interactive)
+                                   (ido-mode 1)
+                                   (ido-find-file)))
 (spacemacs/set-leader-keys "dd" 'flymake-goto-purposed-window)
 (spacemacs/set-leader-keys "ss" 'helm-swoop)
+(spacemacs/set-leader-keys "s\\" 'helm-occur)
 (spacemacs/set-leader-keys "pn" 'export-notes-to-html)
 (spacemacs/set-leader-keys "rg" '(lambda ()
                                    (interactive)
@@ -87,7 +88,21 @@
                                    (interactive)
                                    (call-interactively 'browse-url)))
 (spacemacs/set-leader-keys "dt" 'toggle-browse-eww-system-browser)
+
+(defcustom helm-ag-always-set-extra-option nil
+  "Always set `ag' options of `helm-do-ag'."
+  :type 'boolean)
+(with-eval-after-load 'helm-ag (spacemacs/set-leader-keys "t/" '(lambda ()
+                                                                  (interactive)
+                                                                  (setq
+                                                                   helm-ag-always-set-extra-option
+                                                                   (not
+                                                                    helm-ag-always-set-extra-option)))))
+
 (spacemacs/set-leader-keys "ek" 'kill-eww-buffers)
+(spacemacs/set-leader-keys "bk" '(lambda ()
+                                   (interactive)
+                                   (spacemacs/kill-matching-buffers-rudely ".*[^o][^r][^g]$")))
 
 (spacemacs/set-leader-keys "b/" 'ibuffer)
 (global-set-key (kbd "\C-x\C-b") 'ibuffer)
@@ -123,6 +138,3 @@
   '(lambda ()
      (interactive)
      (async-start-process "xdg-open" "xdg-open" nil (dired-get-file-for-visit))))
-
-
-

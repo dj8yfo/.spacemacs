@@ -29,7 +29,7 @@
 
 ;;; Code:
 
-(defconst my-sengines-dicts-packages '(helm-dash wordnut dictionary engine-mode helm-eww eww)
+(defconst my-sengines-dicts-packages '(helm-dash wordnut dictionary engine-mode helm-eww)
   "The list of Lisp packages required by the my-sengines-dicts layer.
 
 Each entry is either:

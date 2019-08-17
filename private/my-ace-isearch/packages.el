@@ -89,7 +89,7 @@ Each entry is either:
     (define-key isearch-mode-map (kbd "C-j") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key isearch-mode-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key isearch-mode-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
-    (define-key helm-swoop-map (kbd "C-j") 'ace-isearch-jump-during-isearch-helm-swoop)
+    (define-key helm-swoop-map (kbd "C-j") '(lambda nil (interactive) (helm-select-nth-action 0)))
     (define-key helm-swoop-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key helm-swoop-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
     (spacemacs/set-leader-keys "t]" 'toggle-helm-swoop-autojum)
@@ -97,7 +97,7 @@ Each entry is either:
     (evil-global-set-key 'normal (kbd "?") 'isearch-backward)
     (with-eval-after-load 'evil-evilified-state (define-key evil-evilified-state-map-original "/"
                                                   'isearch-forward)
-                          (define-key evil-evilified-state-map-original "?" 'isearch-backward)
+                         (define-key evil-evilified-state-map-original "?" 'isearch-backward)
                           (key-chord-define evil-evilified-state-map-original "//" 'rep-isearch-forward)
                           (key-chord-define evil-evilified-state-map-original "??" 'rep-isearch-backward))
     (with-eval-after-load 'evil-states (define-key evil-motion-state-map "/"

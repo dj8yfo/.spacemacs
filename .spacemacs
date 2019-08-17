@@ -186,7 +186,11 @@ It should only modify the values of Spacemacs settings."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'hybrid
+   dotspacemacs-editing-style '(hybrid :variables
+                                       hybrid-style-visual-feedback t
+                                       hybrid-style-enable-evilified-state t
+                                       hybrid-style-enable-hjkl-bindings t
+                                       )
 
    ;; If non-nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
@@ -381,7 +385,7 @@ It should only modify the values of Spacemacs settings."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers 'relative
+   dotspacemacs-line-numbers nil
 
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
@@ -490,6 +494,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (xclip-mode 1)
+  (setq xclip-method 'emacs)
   ;; (setq desktop-files-not-to-save ".*")
   (find-file "/home/sysmanj/Documents/code/tasking/notes-org/notes.org")
   (find-file "/home/sysmanj/.emacs.d/doc/DOCUMENTATION.org")
@@ -507,6 +512,7 @@ before packages are loaded."
   (with-eval-after-load 'mu4e-alert
     ;; Enable Desktop notificatio
     (mu4e-alert-set-default-style 'libnotify))
+  (spacemacs/toggle-fringe-off)
 
   )
 
@@ -543,8 +549,6 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol nil)
  '(fci-rule-color "#3C3D37")
  '(global-visual-fill-column-mode t)
- '(helm-ag-always-set-extra-option t)
- '(helm-ag-base-command "rg --no-heading -L --no-ignore")
  '(helm-show-completion-display-function (quote helm-show-completion-default-display-function))
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
@@ -574,7 +578,6 @@ This function is called at the very end of Spacemacs initialization."
      ("FIXME" . "#dc752f")
      ("XXX" . "#dc752f")
      ("XXXX" . "#dc752f"))))
- '(hybrid-style-visual-feedback t t)
  '(linum-format " %7i ")
  '(magit-diff-use-overlays nil)
  '(package-selected-packages
@@ -631,9 +634,15 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background nil))))
- '(highlight ((t (:background "light sea green"))))
- '(lazy-highlight ((t (:inherit highlight :background "violet" :foreground "black")))))
+ '(evil-goggles-change-face ((t (:inherit diff-removed))))
+ '(evil-goggles-delete-face ((t (:inherit diff-removed))))
+ '(evil-goggles-paste-face ((t (:inherit diff-added))))
+ '(evil-goggles-undo-redo-add-face ((t (:inherit diff-added))))
+ '(evil-goggles-undo-redo-change-face ((t (:inherit diff-changed))))
+ '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-removed))))
+ '(evil-goggles-yank-face ((t (:inherit diff-changed))))
+ '(highlight ((t (:background "dark slate gray" :inverse-video nil))))
+ '(lazy-highlight ((t (:background "violet" :foreground "black" :inverse-video t)))))
 )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

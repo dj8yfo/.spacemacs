@@ -93,8 +93,9 @@ Each entry is either:
 
 (defun my-basic/post-init-evil-goggles ()
   (evil-goggles-mode 1)
-  (setq evil-goggles-duration 0.1)
+  (setq evil-goggles-duration 0.3)
   (setq evil-goggles-async-duration 3)
+  (evil-goggles-use-diff-faces)
   )
 
 (defun my-basic/init-org-alert ()

@@ -7,11 +7,11 @@
                       (set-default-font
                        "-xos4-Terminess Powerline-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1"
                        nil nil)))
-(custom-set-variables '(helm-ag-base-command "rg --no-heading -L --no-ignore")
-                      '(helm-ag-always-set-extra-option t))
+(custom-set-variables '(helm-ag-base-command "rg --no-heading -L --no-ignore --hidden")
+                      )
 (defvar jumping-commands-list
   '(evil-backward-word-begin evil-forward-word-begin evil-ace-jump-char-mode evil-ace-jump-line-mode
-                             evil-ace-jump-word-mode find-file evil-snipe-repeat
+buff                             evil-ace-jump-word-mode find-file evil-snipe-repeat
                              evil-next-respect-isearch evil-previous-respect-isearch evil-snipe-f
                              evil-snipe-F evil-snipe-t evil-snipe-T evil-snipe-s evil-snipe-S
                              evil-previous-line evil-next-line helm-gtags-dwim xref-find-definitions

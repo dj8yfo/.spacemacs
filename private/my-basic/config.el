@@ -21,6 +21,7 @@ buff                             evil-ace-jump-word-mode find-file evil-snipe-re
                                                         :separator-scale 1.1)))
 (setq evil-escape-key-sequence "z[")
 (setq list-command-history-max 10000)
+(load-file "private/my-basic/notes.el")
 (setq org-agenda-files (list (concat notes-org-dir "notes.org")))
 (setq purpose-layout-dirs '("/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/"))
 

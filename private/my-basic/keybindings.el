@@ -87,6 +87,13 @@
 (spacemacs/set-leader-keys "s/" '(lambda ()
                                    (interactive)
                                    (call-interactively 'browse-url)))
+(spacemacs/set-leader-keys "s]" '(lambda ()
+                                   (interactive)
+                                   (persp-save-state-to-file "~/.emacs.d/.cache/layouts/persp-my-layout")))
+(spacemacs/set-leader-keys "s[" '(lambda ()
+                                   (interactive)
+                                   (persp-load-state-from-file "~/.emacs.d/.cache/layouts/persp-my-layout")))
+
 
 (defcustom helm-ag-always-set-extra-option nil
   "Always set `ag' options of `helm-do-ag'."
@@ -145,4 +152,5 @@
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "C-c o") #'yas-expand)
 (define-key yas-minor-mode-map (kbd "M-'") #'yas-next-field)
+
 

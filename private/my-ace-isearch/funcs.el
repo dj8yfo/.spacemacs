@@ -55,11 +55,13 @@
              ;; (message "wTFFFF? init")
              ;; (message (format "swoop: %s" helm-swoop-pattern))
              (run-with-timer 0.05 nil 'ace-jump-last-search)
+             (setq isearch-string helm-swoop-pattern)
              (helm-exit-minibuffer))))
     ((eq ace-isearch--ace-jump-or-avy 'avy)
      (progn
        ;; (message (format "swoop: %s" helm-swoop-pattern))
        (run-with-timer 0.05 nil 'avy-jump-last-search)
+       (setq isearch-string helm-swoop-pattern)
        (helm-exit-minibuffer)))))
 
 (defun helm-swoop-from-isearch-override ()

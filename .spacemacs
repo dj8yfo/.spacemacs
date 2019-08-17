@@ -98,6 +98,7 @@ This function should only modify configuration layer settings."
    ;; '(your-package :location "~/path/to/your-packige/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(xclip emmet-mode eglot
+                                            evil-search-highlight-persist
                                             elisp-format exec-path-from-shell)
 
    ;; A list of packages that cannot be updated.
@@ -225,7 +226,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spolsky darkokai monokai moe-dark tangotango  farmhouse-dark
+   dotspacemacs-themes '(grandshell spolsky darkokai monokai moe-dark tangotango  farmhouse-dark
                                  spacemacs-dark dracula)
 
 
@@ -513,7 +514,8 @@ before packages are loaded."
     ;; Enable Desktop notificatio
     (mu4e-alert-set-default-style 'libnotify))
   (spacemacs/toggle-fringe-off)
-
+  (spacemacs/toggle-helm-ag-extra-args-off)
+  (global-evil-search-highlight-persist t)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -549,6 +551,7 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol nil)
  '(fci-rule-color "#3C3D37")
  '(global-visual-fill-column-mode t)
+ '(helm-ag-base-command "rg --no-heading -L --no-ignore --hidden")
  '(helm-show-completion-display-function (quote helm-show-completion-default-display-function))
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
@@ -634,6 +637,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:background nil))))
  '(evil-goggles-change-face ((t (:inherit diff-removed))))
  '(evil-goggles-delete-face ((t (:inherit diff-removed))))
  '(evil-goggles-paste-face ((t (:inherit diff-added))))
@@ -642,7 +646,11 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-goggles-undo-redo-remove-face ((t (:inherit diff-removed))))
  '(evil-goggles-yank-face ((t (:inherit diff-changed))))
  '(highlight ((t (:background "dark slate gray" :inverse-video nil))))
- '(lazy-highlight ((t (:background "violet" :foreground "black" :inverse-video t)))))
+ '(lazy-highlight ((t (:background "violet" :foreground "black" :inverse-video t))))
+ '(evil-search-highlight-persist-highlight-face ((t (:background "white" :foreground "gray40" :inverse-video t))))
+ ;; '(ace-jump-face-foreground ((t (:foreground "black"))))
+ ;; '(ace-jump-face-background ((t (:background "white"))))
+ )
 )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

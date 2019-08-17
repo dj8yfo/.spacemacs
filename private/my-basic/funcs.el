@@ -8,7 +8,7 @@
     (let ((buffer (get-buffer-create "*last_eshell_command*")))
       (message "here")
       (with-current-buffer buffer (erase-buffer)
-                          (goto-char (point-min))
+                           (goto-char (point-min))
                            (yank)
                            (compilation-mode))
       (switch-to-buffer buffer))))
@@ -155,25 +155,31 @@
   (interactive)
   (kill-matching-buffers ".*eww.*" t t))
 
-(defun toggle-browse-eww-system-browser (&optional arg)
+(defun toggle-browse-eww-system-browser
+    (&optional
+     arg)
   (interactive "P")
-  (if (or (and arg (> arg 0))
+  (if (or (and arg
+               (> arg 0))
           (equal browse-url-browser-function 'browse-url-default-browser))
-    (progn
-      (message "setting helm-dash browser to EWW")
-      (setq helm-dash-browser-func 'eww)
-      (message "setting engine/browser-function to EWW")
-      (setq engine/browser-function 'eww-browse-url)
-      (message "setting browse-url-browser-function to EWW")
-      (setq browse-url-browser-function 'eww-browse-url)
-      )
-    (progn
-      (message "setting helm-dash browser to BROWSER")
-      (setq helm-dash-browser-func 'browse-url)
-      (message "setting engine/browser-function to BROWSER")
-      (setq engine/browser-function 'browse-url-default-browser)
-      (message "setting browse-url-browser-function to BROWSER")
-      (setq browse-url-browser-function 'browse-url-default-browser)
-      )
-    ))
+      (progn (message "setting helm-dash browser to EWW")
+             (setq helm-dash-browser-func 'eww)
+             (message "setting engine/browser-function to EWW")
+             (setq engine/browser-function 'eww-browse-url)
+             (message "setting browse-url-browser-function to EWW")
+             (setq browse-url-browser-function 'eww-browse-url))
+    (progn (message "setting helm-dash browser to BROWSER")
+           (setq helm-dash-browser-func 'browse-url)
+           (message "setting engine/browser-function to BROWSER")
+           (setq engine/browser-function 'browse-url-default-browser)
+           (message "setting browse-url-browser-function to BROWSER")
+           (setq browse-url-browser-function 'browse-url-default-browser))))
 
+(spacemacs|add-toggle eww-or-external-browser
+  :status (equal browse-url-browser-function 'eww-browse-url)
+  :on (toggle-browse-eww-system-browser 1)
+  :off (toggle-browse-eww-system-browser -1)
+  :documentation "toggled EWW or external for browser related tasks"
+  :on-message "toggled EWW for browser related tasks"
+  :off-message "toggled FIREFOXISH for browser related tasks"
+  :evil-leader "t?")

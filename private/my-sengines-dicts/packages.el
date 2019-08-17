@@ -65,16 +65,9 @@ Each entry is either:
     :commands (helm-dash helm-dash-at-point)
     :defer t
     :init (progn
-            (defun toggle-helm-dash-search-function ()
-              (interactive)
-              (if (equal helm-dash-browser-func 'eww)
-                  (progn (message "setting helm-dash browser to BROWSER")
-                         (setq helm-dash-browser-func 'browse-url))
-                (message "setting helm-dash browser to EWW")
-                (setq helm-dash-browser-func 'eww)))
             (spacemacs/set-leader-keys "dh" 'helm-dash)
             (spacemacs/set-leader-keys "dp" 'helm-dash-at-point)
-            (spacemacs/set-leader-keys "dt" 'toggle-helm-dash-search-function))
+            )
     :config (progn
               (setq dash-docs-common-docsets '("LaTeX" "C" "Gradle DSL" "Gradle Java API"
                                                "Gradle Groovy API" "Gradle User Guide"

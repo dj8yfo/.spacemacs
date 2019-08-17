@@ -71,12 +71,9 @@ Each entry is either:
     :ensure t
     :init (defconst ace-isearch-normal-input-length 3)
     (defconst ace-isearch-infinity-input-length 140)
-    (defun toggle-helm-swoop-autojum ()
-      (interactive)
-      (if (equal ace-isearch-input-length ace-isearch-normal-input-length)
-          (progn (message "toggling helm-swoop isearch autojump to : OFF")
-                 (setq ace-isearch-input-length ace-isearch-infinity-input-length))
-        (message "toggling helm-swoop isearch autojump to : ON")
+    (defun toggle-helm-swoop-autojump (arg)
+      (if (< arg 0)
+          (setq ace-isearch-input-length ace-isearch-infinity-input-length)
         (setq ace-isearch-input-length ace-isearch-normal-input-length)))
     :config (global-ace-isearch-mode +1)
     (custom-set-variables '(ace-isearch-function 'ace-jump-word-mode)
@@ -92,7 +89,14 @@ Each entry is either:
     (define-key helm-swoop-map (kbd "C-j") '(lambda nil (interactive) (helm-select-nth-action 0)))
     (define-key helm-swoop-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key helm-swoop-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
-    (spacemacs/set-leader-keys "t]" 'toggle-helm-swoop-autojum)
+    (spacemacs|add-toggle helm-swoop-autojump
+      :status (equal ace-isearch-input-length ace-isearch-normal-input-length)
+            :on (toggle-helm-swoop-autojump 1)
+            :off (toggle-helm-swoop-autojump -1)
+            :documentation "toggle auto jump to helm-swoop from isearch"
+            :on-message "auto jump to helm-swoop enabled"
+            :off-message "auto jump to helm-swoop disabled"
+            :evil-leader "t]")
     (evil-global-set-key 'normal (kbd "/") 'isearch-forward)
     (evil-global-set-key 'normal (kbd "?") 'isearch-backward)
     (with-eval-after-load 'evil-evilified-state (define-key evil-evilified-state-map-original "/"

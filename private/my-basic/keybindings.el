@@ -87,18 +87,19 @@
 (spacemacs/set-leader-keys "s/" '(lambda ()
                                    (interactive)
                                    (call-interactively 'browse-url)))
-(spacemacs/set-leader-keys "dt" 'toggle-browse-eww-system-browser)
 
 (defcustom helm-ag-always-set-extra-option nil
   "Always set `ag' options of `helm-do-ag'."
   :type 'boolean)
-(with-eval-after-load 'helm-ag (spacemacs/set-leader-keys "t/" '(lambda ()
-                                                                  (interactive)
-                                                                  (setq
-                                                                   helm-ag-always-set-extra-option
-                                                                   (not
-                                                                    helm-ag-always-set-extra-option)))))
 
+(spacemacs|add-toggle helm-ag-extra-args
+      :status helm-ag-always-set-extra-option
+            :on (setq helm-ag-always-set-extra-option t)
+            :off (setq helm-ag-always-set-extra-option nil)
+            :documentation "toggle extra options for helm-ag (rg or the like)"
+            :on-message "extra options for helm-ag: ON"
+            :off-message "extra options for helm-ag: OFF"
+            :evil-leader "t/")
 (spacemacs/set-leader-keys "ek" 'kill-eww-buffers)
 (spacemacs/set-leader-keys "bk" '(lambda ()
                                    (interactive)

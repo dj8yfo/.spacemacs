@@ -64,6 +64,7 @@ Each entry is either:
   (use-package
     key-chord
     :ensure t
+
     :config (key-chord-mode 1)
     (key-chord-define evil-normal-state-map "gh" 'ace-jump-char-mode)
     (key-chord-define evil-normal-state-map "gl" 'ace-jump-line-mode)

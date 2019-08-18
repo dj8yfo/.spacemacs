@@ -28,7 +28,13 @@
      (forward-char 20)
      (flymake-goto-diagnostic (point))))
 (evil-define-key 'normal 'global "L" "y$")
-(with-eval-after-load 'eww (define-key eww-mode-map "z" 'evil-scroll-line-to-center))
+(evil-define-key 'normal 'global ":" 'eval-expression)
+
+;; (with-eval-after-loaefine-key eww-mode-map "z" 'evil-scroll-line-to-center)
+;;                       )
+(with-eval-after-load 'evil-evilified-state
+  (define-key evil-evilified-state-map ":" 'eval-expression)
+  (define-key evil-evilified-state-map "zz" 'evil-scroll-line-to-center))
 
 
 (with-eval-after-load 'eglot (spacemacs/set-leader-keys "," '(lambda ()
@@ -43,7 +49,7 @@
 (spacemacs/set-leader-keys "r/" 'spacemacs/helm-dir-do-ag)
 (spacemacs/set-leader-keys "r?" 'helm-do-ag)
 (spacemacs/set-leader-keys "io" 'org-insert-heading)
-(spacemacs/set-leader-keys ":" 'eval-expression)
+(spacemacs/set-leader-keys ":" 'evil-ex)
 (spacemacs/set-leader-keys "ee" 'switch-to-eshell)
 (spacemacs/set-leader-keys "ys" 'describe-variable-and-kill-value)
 (spacemacs/set-leader-keys "yc" '(lambda ()
@@ -119,13 +125,11 @@
 (spacemacs/set-leader-keys "f/" 'helm-find)
 (spacemacs/set-leader-keys "sv" 'split-visual-region)
 (global-unset-key (kbd "M-l"))
-(with-eval-after-load 'markdown-mode
-  (unbind-key "M-l" markdown-mode-map)
-  (define-key markdown-mode-map (kbd "M-l a") 'custom-layout1)
-  (define-key markdown-mode-map (kbd "M-l b") 'custom-layout2)
-  )
-(global-set-key (kbd "M-l a") 'custom-layout1)
-(global-set-key (kbd "M-l b") 'custom-layout2)
+(global-unset-key (kbd "M-;"))
+
+(global-set-key (kbd "M-; a") 'custom-layout1)
+(global-set-key (kbd "M-; b") 'custom-layout2)
+(global-set-key (kbd "C-r") 'backward-delete-char)
 
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
@@ -142,11 +146,15 @@
 (global-set-key (kbd "C-M-n") 'evil-jump-forward)
 (global-set-key (kbd "C-o") 'evil-jump-backward)
 
-(global-set-key (kbd "M-h") 'backward-delete-char)
 (global-set-key (kbd "C-M-]") 'company-complete)
 (global-set-key (kbd "M-\\") 'xref-find-definitions)
 (global-set-key (kbd "M-[") 'xref-pop-marker-stack)
 (global-set-key (kbd "\C-c4") 'xref-find-definitions-other-window)
+(global-set-key (kbd "M-j") 'evil-window-down)
+(global-set-key (kbd "M-k") 'evil-window-up)
+(global-set-key (kbd "M-h") 'evil-window-left)
+(global-set-key (kbd "M-l") 'evil-window-right)
+
 (global-set-key (kbd "M-DEL") 'shell-command)
 (define-key dired-mode-map (kbd "M-DEL") 'shell-command)
 

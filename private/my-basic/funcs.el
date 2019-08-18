@@ -132,6 +132,26 @@
            (message "setting browse-url-browser-function to BROWSER")
            (setq browse-url-browser-function 'browse-url-default-browser))))
 
+(defun toggle-window-dedicated ()
+  "Control whether or not Emacs is allowed to display another
+buffer in current window."
+  (interactive)
+  (message
+   (if (let (window (get-buffer-window (current-buffer)))
+         (set-window-dedicated-p window (not (window-dedicated-p window))))
+       "%s: Can't touch this!"
+     "%s is up for grabs.")
+   (current-buffer)))
+
+(spacemacs|add-toggle toggle-window-dedicatedness
+  :status (window-dedicated-p (get-buffer-window (current-buffer)))
+  :on (toggle-window-dedicated)
+  :off (toggle-window-dedicated)
+  :documentation "toggle current window being dedicated to a buffer"
+  :on-message "toggled window dedicatedness to buffer ON"
+  :off-message "toggled window dedicatedness to buffer OFF"
+  :evil-leader "t%")
+
 (spacemacs|add-toggle eww-or-external-browser
   :status (equal browse-url-browser-function 'eww-browse-url)
   :on (toggle-browse-eww-system-browser 1)

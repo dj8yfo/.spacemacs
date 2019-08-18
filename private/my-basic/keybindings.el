@@ -64,8 +64,8 @@
 (spacemacs/set-leader-keys "pn" 'export-notes-to-html)
 (spacemacs/set-leader-keys "rg" '(lambda ()
                                    (interactive)
-                                   (global-diff-hl-mode -1)
-                                   (global-diff-hl-mode 1)))
+                                   (git-gutter-mode -1)
+                                   (git-gutter-mode 1)))
 (spacemacs/set-leader-keys "ef" '(lambda ()
                                    (interactive)
                                    (elisp-format-file buffer-file-name)
@@ -119,6 +119,11 @@
 (spacemacs/set-leader-keys "f/" 'helm-find)
 (spacemacs/set-leader-keys "sv" 'split-visual-region)
 (global-unset-key (kbd "M-l"))
+(with-eval-after-load 'markdown-mode
+  (unbind-key "M-l" markdown-mode-map)
+  (define-key markdown-mode-map (kbd "M-l a") 'custom-layout1)
+  (define-key markdown-mode-map (kbd "M-l b") 'custom-layout2)
+  )
 (global-set-key (kbd "M-l a") 'custom-layout1)
 (global-set-key (kbd "M-l b") 'custom-layout2)
 

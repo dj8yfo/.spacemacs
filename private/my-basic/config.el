@@ -44,6 +44,7 @@ buff                             evil-ace-jump-word-mode find-file evil-snipe-re
                                                                                              terminal))
                       (add-to-list 'purpose-user-mode-purposes '(compilation-mode . terminal))
                       (add-to-list 'purpose-user-mode-purposes '(ibuffer-mode . edit1))
+                      (add-to-list 'purpose-user-mode-purposes '(fundamental-mode . terminal))
                       (add-to-list 'purpose-user-mode-purposes '(org-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(help-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(kotlin-mode . edit))

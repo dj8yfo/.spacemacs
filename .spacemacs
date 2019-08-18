@@ -44,7 +44,7 @@ This function should only modify configuration layer settings."
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t evil-snipe-auto-disable-substitute nil)
      gtags
      helm
-     treemacs
+     (neotree :variables neo-theme 'nerd neo-vc-integration '(face))
      ;; ----------------------------------------------------------------
      ;;ide-enhanced
      ;; dap
@@ -519,6 +519,7 @@ before packages are loaded."
   (spaceline-toggle-minor-modes-off)
   (spaceline-toggle-version-control-off)
   (global-evil-search-highlight-persist t)
+  (global-git-gutter-mode 1)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

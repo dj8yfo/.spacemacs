@@ -112,7 +112,9 @@
                                    (interactive)
                                    (spacemacs/kill-matching-buffers-rudely ".*[^o][^r][^g]$")))
 
-(spacemacs/set-leader-keys "b/" 'ibuffer)
+(spacemacs/set-leader-keys "b/" #'(lambda (arg)
+                                    (interactive "P")
+                                    (with-persp-buffer-list () (ibuffer arg))))
 (global-set-key (kbd "\C-x\C-b") 'ibuffer)
 (spacemacs/set-leader-keys "f/" 'helm-find)
 (spacemacs/set-leader-keys "sv" 'split-visual-region)

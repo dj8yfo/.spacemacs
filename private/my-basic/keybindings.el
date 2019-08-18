@@ -129,7 +129,7 @@
 
 (global-set-key (kbd "M-; a") 'custom-layout1)
 (global-set-key (kbd "M-; b") 'custom-layout2)
-(global-set-key (kbd "C-r") 'backward-delete-char)
+(global-set-key (kbd "M-f") 'backward-delete-char)
 
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
@@ -156,12 +156,13 @@
 (global-set-key (kbd "M-l") 'evil-window-right)
 
 (global-set-key (kbd "M-DEL") 'shell-command)
-(define-key dired-mode-map (kbd "M-DEL") 'shell-command)
+(with-eval-after-load 'dired-mode (define-key dired-mode-map (kbd "M-DEL") 'shell-command)
 
-(define-key dired-mode-map (kbd "C-j")
-  '(lambda ()
-     (interactive)
-     (async-start-process "xdg-open" "xdg-open" nil (dired-get-file-for-visit))))
+                      (define-key dired-mode-map (kbd "C-j")
+                        '(lambda ()
+                           (interactive)
+                           (async-start-process "xdg-open" "xdg-open" nil (dired-get-file-for-visit)))))
+
 
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
 (define-key yas-minor-mode-map (kbd "TAB") nil)

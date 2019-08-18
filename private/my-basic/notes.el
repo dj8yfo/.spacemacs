@@ -45,3 +45,5 @@
                            notes-org-dir "gtagsREADME.org") nil nil)
     (shell-command (format cp-template "/home/sysmanj/.emacs.d/layers/+email/mu4e/README.org"
                            notes-org-dir "mu4eREADME.org") nil nil)))
+
+(provide 'personal-sysj-notes-exporter)

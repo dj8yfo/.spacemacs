@@ -140,7 +140,6 @@
                    (command-history)
                    (lisp-interaction-mode)
                    (read-only-mode)))
-(global-set-key (kbd "\C-x]") 'ace-window)
 (global-set-key (kbd "\C-xg") 'magit-status)
 
 (global-set-key (kbd "C-M-n") 'evil-jump-forward)
@@ -150,6 +149,7 @@
 (global-set-key (kbd "M-\\") 'xref-find-definitions)
 (global-set-key (kbd "M-[") 'xref-pop-marker-stack)
 (global-set-key (kbd "\C-c4") 'xref-find-definitions-other-window)
+(global-set-key (kbd "\C-x]") 'ace-window)
 (global-set-key (kbd "M-j") 'evil-window-down)
 (global-set-key (kbd "M-k") 'evil-window-up)
 (global-set-key (kbd "M-h") 'evil-window-left)

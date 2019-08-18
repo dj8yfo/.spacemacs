@@ -66,9 +66,9 @@ Each entry is either:
     :ensure t
 
     :config (key-chord-mode 1)
-    (key-chord-define evil-normal-state-map "gh" 'ace-jump-char-mode)
+    (key-chord-define evil-normal-state-map "gk" 'ace-jump-char-mode)
     (key-chord-define evil-normal-state-map "gl" 'ace-jump-line-mode)
-    (key-chord-define evil-normal-state-map "gk" 'ace-jump-word-mode)
+    (key-chord-define evil-normal-state-map "gh" 'ace-jump-word-mode)
     (key-chord-define-global "UU" 'undo-tree-visualize)
     (key-chord-define-global "yy" 'helm-show-kill-ring)))
 

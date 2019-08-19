@@ -161,12 +161,12 @@
 (global-set-key (kbd "M-l") 'evil-window-right)
 
 (global-set-key (kbd "M-DEL") 'shell-command)
-(with-eval-after-load 'dired-mode (define-key dired-mode-map (kbd "M-DEL") 'shell-command)
-
-                      (define-key dired-mode-map (kbd "C-j")
-                        '(lambda ()
-                           (interactive)
-                           (async-start-process "xdg-open" "xdg-open" nil (dired-get-file-for-visit)))))
+(add-hook 'dired-mode-hook '(lambda () (define-key dired-mode-map (kbd "M-DEL") 'shell-command)
+                              (define-key dired-mode-map (kbd "C-j")
+                                '(lambda ()
+                                   (interactive)
+                                   (async-start-process "xdg-open" "xdg-open" nil (dired-get-file-for-visit)))))
+                      )
 
 
 (define-key yas-minor-mode-map (kbd "<tab>") nil)

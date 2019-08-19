@@ -496,8 +496,9 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
+  (setq xclip-method 'xsel)
   (xclip-mode 1)
-  (setq xclip-method 'emacs)
   ;; (setq desktop-files-not-to-save ".*")
   (find-file "/home/sysmanj/Documents/code/tasking/notes-org/notes.org")
   (find-file "/home/sysmanj/.emacs.d/doc/DOCUMENTATION.org")
@@ -518,6 +519,7 @@ before packages are loaded."
   (spacemacs/toggle-helm-ag-extra-args-off)
   (spaceline-toggle-minor-modes-off)
   (spaceline-toggle-version-control-off)
+  (spacemacs/toggle-nyan-cat-progress-bar-on)
   (global-evil-search-highlight-persist t)
   (global-git-gutter-mode 1)
   )

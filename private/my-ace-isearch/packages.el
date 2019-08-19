@@ -110,7 +110,12 @@ Each entry is either:
                           (key-chord-define evil-motion-state-map "//" 'rep-isearch-forward)
                           (key-chord-define evil-motion-state-map "??" 'rep-isearch-backward))
     (key-chord-define evil-normal-state-map "//" 'rep-isearch-forward)
-    (key-chord-define evil-normal-state-map "??" 'rep-isearch-backward)))
+    (key-chord-define evil-normal-state-map "??" 'rep-isearch-backward)
+    (with-eval-after-load 'ibuffer
+      (add-hook 'ibuffer-mode-hook 'spacemacs/toggle-helm-swoop-autojump-off))
+    (with-eval-after-load 'dired
+      (add-hook 'dired-mode-hook 'spacemacs/toggle-helm-swoop-autojump-off))
+    ))
 
 (defun my-ace-isearch/post-init-ace-isearch ()
   (defun ace-isearch--jumper-function ()

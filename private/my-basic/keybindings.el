@@ -121,11 +121,11 @@
 (spacemacs/set-leader-keys "b/" #'(lambda (arg)
                                     (interactive "P")
                                     (with-persp-buffer-list () (ibuffer arg)
-                                                            (spacemacs/toggle-helm-swoop-autojump-off))))
+                                                            )))
 (global-set-key (kbd "\C-x\C-b") '(lambda ()
                                     (interactive)
                                     (ibuffer)
-                                    (spacemacs/toggle-helm-swoop-autojump-off)))
+                                    ))
 (spacemacs/set-leader-keys "f/" 'helm-find)
 (spacemacs/set-leader-keys "sv" 'split-visual-region)
 (global-unset-key (kbd "M-l"))
@@ -173,5 +173,4 @@
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "C-c o") #'yas-expand)
 (define-key yas-minor-mode-map (kbd "M-'") #'yas-next-field)
-
 

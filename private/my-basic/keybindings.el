@@ -96,7 +96,7 @@
 (spacemacs/set-leader-keys "s]" '(lambda ()
                                    (interactive)
                                    (persp-save-state-to-file "~/.emacs.d/.cache/layouts/persp-my-layout")))
-(spacemacs/set-leader-keys "s[" '(lambda ()
+(spacemacs/set-leader-keys "sz" '(lambda ()
                                    (interactive)
                                    (persp-load-state-from-file "~/.emacs.d/.cache/layouts/persp-my-layout")))
 
@@ -120,8 +120,12 @@
 
 (spacemacs/set-leader-keys "b/" #'(lambda (arg)
                                     (interactive "P")
-                                    (with-persp-buffer-list () (ibuffer arg))))
-(global-set-key (kbd "\C-x\C-b") 'ibuffer)
+                                    (with-persp-buffer-list () (ibuffer arg)
+                                                            (spacemacs/toggle-helm-swoop-autojump-off))))
+(global-set-key (kbd "\C-x\C-b") '(lambda ()
+                                    (interactive)
+                                    (ibuffer)
+                                    (spacemacs/toggle-helm-swoop-autojump-off)))
 (spacemacs/set-leader-keys "f/" 'helm-find)
 (spacemacs/set-leader-keys "sv" 'split-visual-region)
 (global-unset-key (kbd "M-l"))
@@ -129,6 +133,7 @@
 
 (global-set-key (kbd "M-; a") 'custom-layout1)
 (global-set-key (kbd "M-; b") 'custom-layout2)
+(global-set-key (kbd "M-; e") 'custom-layout-eww)
 (global-set-key (kbd "M-f") 'backward-delete-char)
 
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)

@@ -45,6 +45,7 @@ buff                             evil-ace-jump-word-mode find-file evil-snipe-re
                                                                                              terminal))
                       (add-to-list 'purpose-user-mode-purposes '(eww-mode . eww))
                       (add-to-list 'purpose-user-mode-purposes '(eww-history-mode . eww-history))
+                      (add-to-list 'purpose-user-mode-purposes '(messages-buffer-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(compilation-mode . terminal))
                       (add-to-list 'purpose-user-mode-purposes '(ibuffer-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(fundamental-mode . terminal))

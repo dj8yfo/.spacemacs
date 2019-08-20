@@ -158,6 +158,8 @@
 (global-set-key (kbd "M-j") 'evil-window-down)
 (global-set-key (kbd "M-k") 'evil-window-up)
 (global-set-key (kbd "M-h") 'evil-window-left)
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd "M-h") 'evil-window-left))
 (global-set-key (kbd "M-l") 'evil-window-right)
 
 (global-set-key (kbd "M-DEL") 'shell-command)

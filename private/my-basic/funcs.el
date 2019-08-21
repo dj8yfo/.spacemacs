@@ -169,3 +169,14 @@ buffer in current window."
   :on-message "toggled EWW for browser related tasks"
   :off-message "toggled FIREFOXISH for browser related tasks"
   :evil-leader "t?")
+
+(defun toggle-imenu-index-func ()
+  "toggle imenu index function"
+  (interactive )
+  (if (eq imenu-create-index-function 'imenu-default-create-index-function)
+
+      (progn (message (format "set %s to %s" "imenu-create-index-function" "ggtags-build-imenu-index"))
+             (setq imenu-create-index-function #'ggtags-build-imenu-index))
+    (progn (message (format "set %s to %s" "imenu-create-index-function" "imenu-default-create-index-function"))
+           (setq imenu-create-index-function #'imenu-default-create-index-function)))
+  )

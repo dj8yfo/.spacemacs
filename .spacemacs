@@ -39,6 +39,7 @@ This function should only modify configuration layer settings."
      auto-completion
      syntax-checking
      spacemacs-purpose
+     imenu-list
      ;; ----------------------------------------------------------------
      ;; spacemacs-navigation
      (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t evil-snipe-auto-disable-substitute nil)

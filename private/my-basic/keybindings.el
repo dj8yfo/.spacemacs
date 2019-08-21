@@ -169,10 +169,8 @@
                                    (interactive)
                                    (async-start-process "xdg-open" "xdg-open" nil (dired-get-file-for-visit)))))
                       )
-
-
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "C-c o") #'yas-expand)
 (define-key yas-minor-mode-map (kbd "M-'") #'yas-next-field)
-
+(global-set-key (kbd "M-^") 'toggle-imenu-index-func)

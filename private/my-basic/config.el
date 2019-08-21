@@ -5,7 +5,7 @@
                        args)
                       (interactive)
                       (set-default-font
-                       "-xos4-Terminess Powerline-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1"
+                       "-RIXF-D2Coding-bold-normal-normal-*-22-*-*-*-d-0-iso10646-1"
                        nil nil)))
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -L --no-ignore --hidden"))
 (defvar jumping-commands-list

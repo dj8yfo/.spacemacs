@@ -113,7 +113,7 @@ Each entry is either:
     :defer t
     :commands (dictionary-search)
     :config (set-face-font 'dictionary-word-definition-face
-                           "-xos4-Terminess Powerline-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1")))
+                           "-RIXF-D2Coding-bold-normal-normal-*-22-*-*-*-d-0-iso10646-1")))
 (defun my-sengines-dicts/init-helm-eww ()
   (use-package
     helm-eww

@@ -31,7 +31,7 @@
 
 (defconst my-basic-packages
   '(key-chord ggtags ace-jump-mode helm helm-elisp evil-goggles org-alert helm-rg
-              (my-autocolor-html-pre-code-tags :location local))
+              (my-autocolor-html-pre-code-tags :location local) beacon)
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:
@@ -64,7 +64,6 @@ Each entry is either:
   (use-package
     key-chord
     :ensure t
-
     :config (key-chord-mode 1)
     (key-chord-define evil-normal-state-map "gk" 'ace-jump-char-mode)
     (key-chord-define evil-normal-state-map "gl" 'ace-jump-line-mode)
@@ -104,6 +103,12 @@ Each entry is either:
     :config (progn (org-alert-enable)
                    (setq alert-default-style 'libnotify))))
 
+(defun my-basic/init-beacon ()
+  (use-package
+    beacon
+    :ensure t
+    :config (beacon-mode 1)
+    (setq beacon-blink-delay 0.0 beacon-blink-duration 1.0)))
 
 (defun my-basic/init-helm-rg ()
   (use-package
@@ -119,26 +124,44 @@ Each entry is either:
 
 
 (defun my-basic/post-init-helm-elisp ()
-  (setq helm-source-complex-command-history
-        (helm-build-sync-source "Complex Command History"
-          :candidates (lambda ()
-                        ;; Use cdr to avoid adding
-                        ;; `helm-complex-command-history' here.
-                        (cl-loop for i in command-history unless (equal i
-                                                                        '(helm-complex-command-history))
-                                 collect (prin1-to-string i)))
-          :action (helm-make-actions "Eval" (lambda (candidate)
-                                              (and (boundp 'helm-sexp--last-sexp)
-                                                   (setq helm-sexp--last-sexp candidate))
-                                              (let ((command (read candidate)))
-                                                (unless (equal command (car command-history))
-                                                  (setq command-history (cons command
-                                                                              command-history))))
-                                              (run-with-timer 0.1 nil #'helm-sexp-eval candidate))
-                                     "Edit and eval" (lambda (candidate)
-                                                       (edit-and-eval-command "Eval: " (read
-                                                                                        candidate)))
-                                     "insert" (lambda (candidate)
-                                                (insert candidate)))
-          :persistent-action #'helm-sexp-eval
-          :multiline t)))
+  (setq helm-source-complex-command-history (helm-build-sync-source "Complex Command History"
+                                              :candidates (lambda ()
+                                                            ;; Use cdr to avoid adding
+                                                            ;; `helm-complex-command-history' here.
+                                                            (cl-loop for i in command-history unless
+                                                                     (equal i
+                                                                            '(helm-complex-command-history))
+                                                                     collect (prin1-to-string i)))
+                                              :action (helm-make-actions "Eval" (lambda (candidate)
+                                                                                  (and (boundp
+                                                                                        'helm-sexp--last-sexp)
+                                                                                       (setq
+                                                                                        helm-sexp--last-sexp
+                                                                                        candidate))
+                                                                                  (let ((command
+                                                                                         (read
+                                                                                          candidate)))
+                                                                                    (unless (equal
+                                                                                             command
+                                                                                             (car
+                                                                                              command-history))
+                                                                                      (setq
+                                                                                       command-history
+                                                                                       (cons command
+                                                                                             command-history))))
+                                                                                  (run-with-timer
+                                                                                   0.1 nil
+                                                                                   #'helm-sexp-eval
+                                                                                   candidate))
+                                                                         "Edit and eval" (lambda
+                                                                                           (candidate)
+                                                                                           (edit-and-eval-command
+                                                                                            "Eval: "
+                                                                                            (read
+                                                                                             candidate)))
+                                                                         "insert" (lambda
+                                                                                    (candidate)
+                                                                                    (insert
+                                                                                     candidate)))
+                                              :persistent-action #'helm-sexp-eval
+                                              :multiline t)))

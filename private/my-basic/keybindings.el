@@ -156,6 +156,8 @@
 (global-set-key (kbd "\C-c4") 'xref-find-definitions-other-window)
 (global-set-key (kbd "\C-x]") 'ace-window)
 (global-set-key (kbd "M-j") 'evil-window-down)
+(with-eval-after-load 'cc-cmds
+  (define-key c-mode-map (kbd "M-j") 'evil-window-down))
 (global-set-key (kbd "M-k") 'evil-window-up)
 (global-set-key (kbd "M-h") 'evil-window-left)
 (with-eval-after-load 'org

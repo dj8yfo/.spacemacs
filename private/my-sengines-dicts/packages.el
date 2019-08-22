@@ -113,7 +113,7 @@ Each entry is either:
     :defer t
     :commands (dictionary-search)
     :config (set-face-font 'dictionary-word-definition-face
-                           "-RIXF-D2Coding-bold-normal-normal-*-20-*-*-*-d-0-iso10646-1")))
+                           "-FBI -Input Mono Narrow-normal-normal-semicondensed-*-17-*-*-*-m-0-iso10646-1"  )))
 (defun my-sengines-dicts/init-helm-eww ()
   (use-package
     helm-eww

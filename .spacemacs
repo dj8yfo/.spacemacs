@@ -250,7 +250,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("-RIXF-D2Coding-bold-normal-normal-*-20-*-*-*-d-0-iso10646-1")
+   dotspacemacs-default-font '("-FBI -Input Mono Narrow-normal-normal-semicondensed-*-17-*-*-*-m-0-iso10646-1"  )
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -613,7 +613,6 @@ static char *gnus-pointer[] = {
 \"###....####.######\",
 \"###..######.######\",
 \"###########.######\" };")) t)
- '(helm-ag-base-command "rg --no-heading -L --no-ignore --hidden")
  '(helm-show-completion-display-function (quote helm-show-completion-default-display-function))
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
@@ -626,6 +625,7 @@ static char *gnus-pointer[] = {
      ("#A75B00" . 70)
      ("#F309DF" . 85)
      ("#3C3D37" . 100))))
+ '(history-length 10000)
  '(hl-bg-colors
    (quote
     ("#DEB542" "#F2804F" "#FF6E64" "#F771AC" "#9EA0E5" "#69B7F0" "#69CABF" "#B4C342")))

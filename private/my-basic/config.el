@@ -5,9 +5,9 @@
                        args)
                       (interactive)
                       (set-default-font
-                       "-RIXF-D2Coding-bold-normal-normal-*-20-*-*-*-d-0-iso10646-1"
+                       "-FBI -Input Mono Narrow-normal-normal-semicondensed-*-17-*-*-*-m-0-iso10646-1"
                        nil nil)))
-(custom-set-variables '(helm-ag-base-command "rg --no-heading -L --no-ignore --hidden"))
+(custom-set-variables '(helm-ag-base-command "rg --no-heading -L -S --no-ignore --hidden"))
 (defvar jumping-commands-list
   '(evil-backward-word-begin evil-forward-word-begin evil-ace-jump-char-mode evil-ace-jump-line-mode
                              evil-ace-jump-word-mode find-file
@@ -20,7 +20,7 @@
   (setq    dotspacemacs-mode-line-theme '(vim-powerline :separator slant
                                                         :separator-scale 1.1)))
 (setq evil-escape-key-sequence "z[")
-(setq list-command-history-max 10000 history-length 10000 evil-jumps-max-length 1000)
+(setq list-command-history-max 10000 evil-jumps-max-length 1000)
 
 (add-to-list 'load-path (expand-file-name "private/my-basic" user-emacs-directory))
 (require 'personal-sysj-notes-exporter "notes.el")

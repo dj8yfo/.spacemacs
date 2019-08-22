@@ -170,6 +170,14 @@ buffer in current window."
   :off-message "toggled FIREFOXISH for browser related tasks"
   :evil-leader "t?")
 
+(spacemacs|add-toggle purpose-mode-toggle
+  :status purpose-mode
+  :on (purpose-mode 1)
+  :off (purpose-mode -1)
+  :documentation "toggle purpose mode"
+  :on-message "toggled purpose-mode ON"
+  :off-message "toggled purpose-mode OFF"
+  :evil-leader "tx")
 (defun toggle-imenu-index-func ()
   "toggle imenu index function"
   (interactive )

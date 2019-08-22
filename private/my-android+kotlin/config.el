@@ -1,3 +1,8 @@
+(defvar sources-browse-jump-back nil)
+(defconst kotlin-stdlib-root "/home/sysmanj/Documents/code/kotlin/kotlin-stdlib-sources/")
+(defconst android-src-root "/home/sysmanj/Documents/code/ANDROID_SRC/")
+(defvar indexed-sources-subdir nil)
+
 (spacemacs|define-jump-handlers kotlin-mode)
 ;; (add-hook 'kotlin-mode-hook 'eglot-ensure)
 ;; (add-hook 'kotlin-mode-hook 'lsp)

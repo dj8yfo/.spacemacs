@@ -1,3 +1,4 @@
+(defvar helm-swoop-pattern "")        ; Keep helm-pattern value
 (advice-add 'evil-visualstar/begin-search-forward
             :before '(lambda (beg end)
                        (push

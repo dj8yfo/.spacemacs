@@ -32,9 +32,9 @@
 
 ;; (with-eval-after-loaefine-key eww-mode-map "z" 'evil-scroll-line-to-center)
 ;;                       )
-(with-eval-after-load 'evil-evilified-state
-  (define-key evil-evilified-state-map ":" 'eval-expression)
-  (define-key evil-evilified-state-map "zz" 'evil-scroll-line-to-center))
+(with-eval-after-load 'evil-evilified-state (define-key evil-evilified-state-map ":"
+                                              'eval-expression)
+                      (define-key evil-evilified-state-map "zz" 'evil-scroll-line-to-center))
 
 
 (with-eval-after-load 'eglot (spacemacs/set-leader-keys "," '(lambda ()
@@ -70,8 +70,8 @@
 (spacemacs/set-leader-keys "pn" 'export-notes-to-html)
 (spacemacs/set-leader-keys "rg" '(lambda ()
                                    (interactive)
-                                   (git-gutter-mode -1)
-                                   (git-gutter-mode 1)))
+                                   (diff-hl-mode -1)
+                                   (diff-hl-mode 1)))
 (spacemacs/set-leader-keys "ef" '(lambda ()
                                    (interactive)
                                    (elisp-format-file buffer-file-name)
@@ -95,10 +95,12 @@
                                    (call-interactively 'browse-url)))
 (spacemacs/set-leader-keys "s]" '(lambda ()
                                    (interactive)
-                                   (persp-save-state-to-file "~/.emacs.d/.cache/layouts/persp-my-layout")))
+                                   (persp-save-state-to-file
+                                    "~/.emacs.d/.cache/layouts/persp-my-layout")))
 (spacemacs/set-leader-keys "sz" '(lambda ()
                                    (interactive)
-                                   (persp-load-state-from-file "~/.emacs.d/.cache/layouts/persp-my-layout")))
+                                   (persp-load-state-from-file
+                                    "~/.emacs.d/.cache/layouts/persp-my-layout")))
 
 
 (defcustom helm-ag-always-set-extra-option nil
@@ -106,13 +108,13 @@
   :type 'boolean)
 
 (spacemacs|add-toggle helm-ag-extra-args
-      :status helm-ag-always-set-extra-option
-            :on (setq helm-ag-always-set-extra-option t)
-            :off (setq helm-ag-always-set-extra-option nil)
-            :documentation "toggle extra options for helm-ag (rg or the like)"
-            :on-message "extra options for helm-ag: ON"
-            :off-message "extra options for helm-ag: OFF"
-            :evil-leader "t/")
+  :status helm-ag-always-set-extra-option
+  :on (setq helm-ag-always-set-extra-option t)
+  :off (setq helm-ag-always-set-extra-option nil)
+  :documentation "toggle extra options for helm-ag (rg or the like)"
+  :on-message "extra options for helm-ag: ON"
+  :off-message "extra options for helm-ag: OFF"
+  :evil-leader "t/")
 (spacemacs/set-leader-keys "ek" 'kill-eww-buffers)
 (spacemacs/set-leader-keys "bk" '(lambda ()
                                    (interactive)
@@ -120,12 +122,12 @@
 
 (spacemacs/set-leader-keys "b/" #'(lambda (arg)
                                     (interactive "P")
-                                    (with-persp-buffer-list () (ibuffer arg)
-                                                            )))
-(global-set-key (kbd "\C-x\C-b") '(lambda ()
-                                    (interactive)
-                                    (ibuffer)
-                                    ))
+                                    (with-persp-buffer-list ()
+                                                            (ibuffer arg))))
+(global-set-key (kbd "\C-x\C-b")
+                '(lambda ()
+                   (interactive)
+                   (ibuffer)))
 (spacemacs/set-leader-keys "f/" 'helm-find)
 (spacemacs/set-leader-keys "sv" 'split-visual-region)
 (global-unset-key (kbd "M-l"))
@@ -156,21 +158,23 @@
 (global-set-key (kbd "\C-c4") 'xref-find-definitions-other-window)
 (global-set-key (kbd "\C-x]") 'ace-window)
 (global-set-key (kbd "M-j") 'evil-window-down)
-(with-eval-after-load 'cc-cmds
-  (define-key c-mode-map (kbd "M-j") 'evil-window-down))
+(with-eval-after-load 'cc-cmds (define-key c-mode-map (kbd "M-j") 'evil-window-down))
 (global-set-key (kbd "M-k") 'evil-window-up)
 (global-set-key (kbd "M-h") 'evil-window-left)
-(with-eval-after-load 'org
-  (define-key org-mode-map (kbd "M-h") 'evil-window-left))
+(with-eval-after-load 'org (define-key org-mode-map (kbd "M-h") 'evil-window-left))
 (global-set-key (kbd "M-l") 'evil-window-right)
 
 (global-set-key (kbd "M-DEL") 'shell-command)
-(add-hook 'dired-mode-hook '(lambda () (define-key dired-mode-map (kbd "M-DEL") 'shell-command)
+(add-hook 'dired-mode-hook '(lambda ()
+                              (define-key dired-mode-map (kbd "M-DEL") 'shell-command)
                               (define-key dired-mode-map (kbd "C-j")
                                 '(lambda ()
                                    (interactive)
-                                   (async-start-process "xdg-open" "xdg-open" nil (dired-get-file-for-visit)))))
-                      )
+                                   (async-start-process "xdg-open" "xdg-open" nil
+                                                        (dired-get-file-for-visit))))
+                              (define-key dired-mode-map (kbd "C-c w")
+                                'wdired-change-to-wdired-mode)
+                              (diff-hl-dired-mode 1)))
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "C-c o") #'yas-expand)

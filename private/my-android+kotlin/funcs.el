@@ -1,8 +1,3 @@
-(defvar sources-browse-jump-back nil)
-(defconst kotlin-stdlib-root "/home/sysmanj/Documents/code/kotlin/kotlin-stdlib-sources/")
-(defconst android-src-root "/home/sysmanj/Documents/code/ANDROID_SRC/")
-(defvar indexed-sources-subdir nil)
-
 (defun goto-sources-regex-dir (regexp subdirarg)
   (interactive "sRegexp:\nDDirectory:")
   (let ((subdirarg (if indexed-sources-subdir indexed-sources-subdir subdirarg)))

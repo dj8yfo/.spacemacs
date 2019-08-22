@@ -74,7 +74,8 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ;; version-control
      git
-     version-control
+     (version-control :variables version-control-diff-tool 'diff-hl
+                      version-control-diff-side 'left)
      ;; ----------------------------------------------------------------
      ;; mail
      (mu4e :variables
@@ -229,7 +230,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(apropospriate-light doom-molokai badwolf grandshell spolsky darkokai monokai moe-dark tangotango  farmhouse-dark
+   dotspacemacs-themes '(material-light doom-molokai badwolf grandshell spolsky darkokai monokai moe-dark tangotango  farmhouse-dark
                                  spacemacs-dark dracula)
 
 
@@ -516,13 +517,12 @@ before packages are loaded."
   (with-eval-after-load 'mu4e-alert
     ;; Enable Desktop notificatio
     (mu4e-alert-set-default-style 'libnotify))
-  (spacemacs/toggle-fringe-off)
   (spacemacs/toggle-helm-ag-extra-args-off)
   (spaceline-toggle-minor-modes-off)
   (spaceline-toggle-version-control-off)
   (spacemacs/toggle-nyan-cat-progress-bar-on)
   (global-evil-search-highlight-persist t)
-  (global-git-gutter-mode 1)
+  (global-diff-hl-mode 1)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

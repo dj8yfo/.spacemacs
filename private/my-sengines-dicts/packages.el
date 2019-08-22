@@ -136,7 +136,6 @@ Each entry is either:
       (with-temp-file (expand-file-name "eww-history" eww-bookmarks-directory)
         (insert ";; Auto-generated file; don't edit\n")
         (pp obj (current-buffer)))))
-  (defvar misc-data-eww-loadable nil)
   (defun eww-read-history ()
     (let ((file (expand-file-name "eww-history" eww-bookmarks-directory)))
       (setq misc-data-eww-loadable (unless (zerop (or (nth 7 (file-attributes file))

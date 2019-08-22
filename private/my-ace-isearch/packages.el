@@ -162,7 +162,6 @@ Each entry is either:
            (setq isearch--current-buffer (buffer-name (current-buffer)) isearch-string "")))))
 
 (defun my-ace-isearch/post-init-helm-swoop ()
-  (defvar helm-swoop-pattern "")        ; Keep helm-pattern value
   (add-hook 'helm-exit-minibuffer-hook '(lambda ()
                                           (if isearch-regexp
                                               (setq regexp-search-ring (cons helm-swoop-pattern

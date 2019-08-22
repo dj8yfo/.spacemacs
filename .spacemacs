@@ -230,7 +230,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(material-light doom-molokai badwolf grandshell spolsky darkokai monokai moe-dark tangotango  farmhouse-dark
+   dotspacemacs-themes '(doom-molokai material material-light badwolf grandshell spolsky darkokai monokai moe-dark tangotango  farmhouse-dark
                                  spacemacs-dark dracula)
 
 
@@ -250,7 +250,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("-FBI -Input Mono Narrow-normal-normal-semicondensed-*-17-*-*-*-m-0-iso10646-1"  )
+   dotspacemacs-default-font '("-1ASC-Droid Sans Mono Slashed for Powerline-normal-normal-normal-*-20-*-*-*-m-0-iso10646-1"   )
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"

@@ -5,7 +5,7 @@
                        args)
                       (interactive)
                       (set-default-font
-                       "-FBI -Input Mono Narrow-normal-normal-semicondensed-*-17-*-*-*-m-0-iso10646-1"
+                       "-1ASC-Droid Sans Mono Slashed for Powerline-normal-normal-normal-*-20-*-*-*-m-0-iso10646-1" 
                        nil nil)))
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -L -S --no-ignore --hidden"))
 (defvar jumping-commands-list

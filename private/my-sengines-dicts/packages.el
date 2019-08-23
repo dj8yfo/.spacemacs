@@ -113,7 +113,7 @@ Each entry is either:
     :defer t
     :commands (dictionary-search)
     :config (set-face-font 'dictionary-word-definition-face
-                           "-1ASC-Droid Sans Mono Slashed for Powerline-normal-normal-normal-*-20-*-*-*-m-0-iso10646-1"   )))
+                           "-DAMA-Ubuntu Mono derivative Powerline-normal-normal-normal-*-22-*-*-*-m-0-iso10646-1"     )))
 (defun my-sengines-dicts/init-helm-eww ()
   (use-package
     helm-eww

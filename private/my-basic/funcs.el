@@ -178,6 +178,16 @@ buffer in current window."
   :on-message "toggled purpose-mode ON"
   :off-message "toggled purpose-mode OFF"
   :evil-leader "tx")
+
+(spacemacs|add-toggle evil-search-highlight-persist
+  :status global-evil-search-highlight-persist
+  :on (global-evil-search-highlight-persist 1)
+  :off (global-evil-search-highlight-persist -1)
+  :documentation "toggle evil search highlight persist"
+  :on-message "toggled evil search highlight persist ON"
+  :off-message "toggled evil search highlight persist OFF"
+  :evil-leader "t,")
+
 (defun toggle-imenu-index-func ()
   "toggle imenu index function"
   (interactive )

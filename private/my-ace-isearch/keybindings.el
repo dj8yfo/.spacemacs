@@ -1,2 +1,6 @@
 (evil-global-set-key 'normal (kbd "n") 'evil-next-respect-isearch)
 (evil-global-set-key 'normal (kbd "N") 'evil-previous-respect-isearch)
+(add-hook 'dired-mode-hook '(lambda ()
+                              (evil-define-key 'normal dired-mode-map (kbd "n") 'evil-next-respect-isearch)
+                              (evil-define-key 'normal dired-mode-map (kbd "N") 'evil-previous-respect-isearch)
+                              ))

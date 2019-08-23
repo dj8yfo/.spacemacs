@@ -5,7 +5,7 @@
                        args)
                       (interactive)
                       (set-default-font
-                       "-PfEd-Meslo LG S for Powerline-normal-normal-normal-*-19-*-*-*-m-0-iso10646-1"
+                       "-ADBO-Hasklig-semibold-normal-normal-*-*-*-*-*-m-0-iso10646-1" 
                        nil nil)))
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -L -S --no-ignore --hidden"))
 (defvar jumping-commands-list

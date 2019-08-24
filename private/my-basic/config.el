@@ -42,7 +42,7 @@
 (with-eval-after-load 'volatile-highlights (volatile-highlights-mode -1))
 (with-eval-after-load 'window-purpose (add-to-list 'purpose-user-mode-purposes '(eshell-mode .
                                                                                              terminal))
-                      (add-to-list 'purpose-user-mode-purposes '(eww-mode . eww))
+                      (add-to-list 'purpose-user-mode-purposes '(eww-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(eww-history-mode . eww-history))
                       (add-to-list 'purpose-user-mode-purposes '(messages-buffer-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(compilation-mode . terminal))

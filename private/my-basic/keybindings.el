@@ -30,11 +30,9 @@
 (evil-define-key 'normal 'global "L" "y$")
 (evil-define-key 'normal 'global ":" 'eval-expression)
 
-;; (with-eval-after-loaefine-key eww-mode-map "z" 'evil-scroll-line-to-center)
-;;                       )
-(with-eval-after-load 'evil-evilified-state (define-key evil-evilified-state-map ":"
-                                              'eval-expression)
-                      (define-key evil-evilified-state-map "zz" 'evil-scroll-line-to-center))
+(with-eval-after-load 'evil-evilified-state (define-key evil-evilified-state-map-original (kbd ":") 'eval-expression)
+                      (define-key evil-evilified-state-map (kbd ":") 'eval-expression)
+                      )
 
 
 (with-eval-after-load 'eglot (spacemacs/set-leader-keys "," '(lambda ()
@@ -84,10 +82,7 @@
                                    (delete-window (get-buffer-window "*tex-shell*"))))
 (spacemacs/set-leader-keys "e<" 'eww-back-url)
 (spacemacs/set-leader-keys "e>" 'eww-forward-url)
-(spacemacs/set-leader-keys "s?" '(lambda ()
-                                   (interactive)
-                                   (let ((browse-url-browser-function 'eww-browse-url))
-                                     (call-interactively 'browse-url))))
+
 (spacemacs/set-leader-keys "s/" '(lambda ()
                                    (interactive)
                                    (call-interactively 'browse-url)))
@@ -177,6 +172,9 @@
                               (define-key dired-mode-map (kbd "C-c w")
                                 'wdired-change-to-wdired-mode)
                               (diff-hl-dired-mode 1)))
+(add-hook 'eww-mode-hook '(lambda ()
+                            (define-key eww-mode-map "zz" 'evil-scroll-line-to-center)))
+
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
 (define-key yas-minor-mode-map (kbd "TAB") nil)
 (define-key yas-minor-mode-map (kbd "C-c o") #'yas-expand)

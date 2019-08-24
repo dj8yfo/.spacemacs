@@ -7,6 +7,7 @@
                       (set-default-font
                        "-ADBO-Hasklig-semibold-normal-normal-*-*-*-*-*-m-0-iso10646-1" 
                        nil nil)))
+;test commit
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -L -S --no-ignore --hidden"))
 (defvar jumping-commands-list
   '(evil-backward-word-begin evil-forward-word-begin evil-ace-jump-char-mode evil-ace-jump-line-mode

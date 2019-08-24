@@ -40,14 +40,13 @@
 (with-eval-after-load 'shr
   (setq shr-use-fonts nil))
 (with-eval-after-load 'volatile-highlights (volatile-highlights-mode -1))
-(with-eval-after-load 'window-purpose (add-to-list 'purpose-user-mode-purposes '(eshell-mode .
-                                                                                             terminal))
+(with-eval-after-load 'window-purpose
                       (add-to-list 'purpose-user-mode-purposes '(eww-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(eww-history-mode . eww-history))
                       (add-to-list 'purpose-user-mode-purposes '(messages-buffer-mode . org))
-                      (add-to-list 'purpose-user-mode-purposes '(compilation-mode . terminal))
+                      (add-to-list 'purpose-user-mode-purposes '(compilation-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(ibuffer-mode . edit1))
-                      (add-to-list 'purpose-user-mode-purposes '(fundamental-mode . terminal))
+                      (add-to-list 'purpose-user-mode-purposes '(fundamental-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(org-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(help-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(kotlin-mode . edit))
@@ -55,8 +54,8 @@
                       (add-to-list 'purpose-user-mode-purposes '(doc-view-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(flymake-diagnostics-buffer-mode .
                                                                                                  edit1))
-                      (add-to-list 'purpose-user-mode-purposes '(magit-mode . terminal))
-                      (add-to-list 'purpose-user-mode-purposes '(ggtags-global-mode . terminal))
+                      (add-to-list 'purpose-user-mode-purposes '(magit-mode . edit1))
+                      (add-to-list 'purpose-user-mode-purposes '(ggtags-global-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(ivy-occur-grep-mode . org))
                       (purpose-compile-user-configuration))
 ;; (custom-layout2)

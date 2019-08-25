@@ -47,6 +47,7 @@
                       (add-to-list 'purpose-user-mode-purposes '(lisp-interaction-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(messages-buffer-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(compilation-mode . edit1))
+                      (add-to-list 'purpose-user-mode-purposes '(Man-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(ibuffer-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(fundamental-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(org-mode . org))

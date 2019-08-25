@@ -5,7 +5,7 @@
                        args)
                       (interactive)
                       (set-default-font
-                       "-ADBO-Hasklig-semibold-normal-normal-*-*-*-*-*-m-0-iso10646-1" 
+                       "-ADBO-Hasklig-extralight-normal-normal-*-15-*-*-*-m-0-iso10646-1"
                        nil nil)))
 ;test commit
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -L -S --no-ignore --hidden"))
@@ -44,6 +44,7 @@
 (with-eval-after-load 'window-purpose
                       (add-to-list 'purpose-user-mode-purposes '(eww-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(eww-history-mode . eww-history))
+                      (add-to-list 'purpose-user-mode-purposes '(lisp-interaction-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(messages-buffer-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(compilation-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(ibuffer-mode . edit1))

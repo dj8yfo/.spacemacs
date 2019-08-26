@@ -62,3 +62,8 @@
                       (add-to-list 'purpose-user-mode-purposes '(ivy-occur-grep-mode . org))
                       (purpose-compile-user-configuration))
 ;; (custom-layout2)
+
+(defvar highlight-regex-faces (list 'anzu-match-1 'anzu-match-2 'anzu-match-3
+                                    'avy-lead-face 'avy-lead-face-0 'avy-lead-face-1 'avy-lead-face-2))
+(defvar highlight-regex-faces-num 7)
+(defvar highlight-regex-faces-ind 0)

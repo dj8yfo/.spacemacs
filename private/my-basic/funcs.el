@@ -48,6 +48,20 @@
   (interactive)
   (goto-delimiter-backward nil))
 
+(defun highlight-visual-regexp ()
+  (interactive)
+  (let ((substring (buffer-substring-no-properties (region-beginning)
+                                                   (region-end) )))
+    (setq search-ring (cons substring
+                            search-ring))
+    (highlight-regexp substring (nth highlight-regex-faces-ind highlight-regex-faces))
+    (setq highlight-regex-faces-ind (% (+ 1 highlight-regex-faces-ind) highlight-regex-faces-num)))
+  )
+
+(defun clean-hightlight-regexp-all ()
+  (interactive)
+  (unhighlight-regexp t))
+
 (defun goto-delimiter-backward
     (&optional
      inter)

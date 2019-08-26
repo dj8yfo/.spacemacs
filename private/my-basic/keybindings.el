@@ -123,6 +123,8 @@
                    (ibuffer)))
 (spacemacs/set-leader-keys "f/" 'helm-find)
 (spacemacs/set-leader-keys "sv" 'split-visual-region)
+(spacemacs/set-leader-keys "hs" 'highlight-visual-regexp)
+(spacemacs/set-leader-keys "hc" 'clean-hightlight-regexp-all)
 (global-unset-key (kbd "M-l"))
 (global-unset-key (kbd "M-;"))
 

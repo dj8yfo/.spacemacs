@@ -72,14 +72,14 @@
   (purpose-load-window-layout-file
    "/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/MyFavIDE.window-layout")
   (message "MyFavIDE layout loaded")
-  (winum-select-window-3))
+  (winum-select-window-2))
 
 (defun custom-layout2 ()
   (interactive)
   (purpose-load-window-layout-file
    "/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/MyFavIDE2.window-layout")
   (message "MyFavIDE2 layout loaded")
-  (winum-select-window-3))
+  (winum-select-window-2))
 
 (defun custom-layout-eww ()
   (interactive)

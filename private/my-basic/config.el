@@ -5,17 +5,15 @@
                        args)
                       (interactive)
                       (set-default-font
-                       "-ADBO-Hasklig-extralight-normal-normal-*-15-*-*-*-m-0-iso10646-1"
-                       nil nil)))
-;test commit
+                       "-ADBO-Hasklig-extralight-normal-normal-*-15-*-*-*-m-0-iso10646-1" nil nil)))
+                                        ;test commit
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -L -S --no-ignore --hidden"))
 (defvar jumping-commands-list
   '(evil-backward-word-begin evil-forward-word-begin evil-ace-jump-char-mode evil-ace-jump-line-mode
-                             evil-ace-jump-word-mode find-file
-                             evil-snipe-repeat evil-next-respect-isearch
-                             evil-previous-respect-isearch evil-snipe-f evil-snipe-F evil-snipe-t
-                             evil-snipe-T evil-snipe-s evil-snipe-S evil-previous-line
-                             evil-next-line helm-gtags-dwim xref-find-definitions
+                             evil-ace-jump-word-mode find-file evil-snipe-repeat
+                             evil-next-respect-isearch evil-previous-respect-isearch evil-snipe-f
+                             evil-snipe-F evil-snipe-t evil-snipe-T evil-snipe-s evil-snipe-S
+                             evil-previous-line evil-next-line helm-gtags-dwim xref-find-definitions
                              goto-sources-regex-dir))
 (if (display-graphic-p) nil
   (setq    dotspacemacs-mode-line-theme '(vim-powerline :separator slant
@@ -41,8 +39,7 @@
 (with-eval-after-load 'shr
   (setq shr-use-fonts nil))
 (with-eval-after-load 'volatile-highlights (volatile-highlights-mode -1))
-(with-eval-after-load 'window-purpose
-                      (add-to-list 'purpose-user-mode-purposes '(eww-mode . org))
+(with-eval-after-load 'window-purpose (add-to-list 'purpose-user-mode-purposes '(eww-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(eww-history-mode . eww-history))
                       (add-to-list 'purpose-user-mode-purposes '(lisp-interaction-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(messages-buffer-mode . org))
@@ -63,7 +60,11 @@
                       (purpose-compile-user-configuration))
 ;; (custom-layout2)
 
-(defvar highlight-regex-faces (list 'anzu-match-1 'anzu-match-2 'anzu-match-3
-                                    'avy-lead-face 'avy-lead-face-0 'avy-lead-face-1 'avy-lead-face-2))
-(defvar highlight-regex-faces-num 7)
+(defvar highlight-regex-faces
+  (list 'eshell-ls-archive 'eshell-ls-backup 'eshell-ls-clutter 'eshell-ls-directory
+        'eshell-ls-executable 'eshell-ls-missing 'eshell-ls-product 'eshell-ls-readonly
+        'eshell-ls-special 'eshell-ls-symlink))
+
+
+(defvar highlight-regex-faces-num (length highlight-regex-faces))
 (defvar highlight-regex-faces-ind 0)

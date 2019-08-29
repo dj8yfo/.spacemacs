@@ -134,6 +134,7 @@
 (global-set-key (kbd "M-f") 'backward-delete-char)
 
 (spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
+(spacemacs/set-leader-keys-for-major-mode 'c-mode "g`" 'rtags-find-symbol)
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
 (with-eval-after-load 'esh-mode (add-hook 'eshell-mode-hook '(lambda ()
                                                                (define-key eshell-mode-map (kbd

@@ -31,7 +31,7 @@
 
 (defconst my-basic-packages
   '(key-chord ggtags ace-jump-mode helm helm-elisp evil-goggles org-alert helm-rg
-              (my-autocolor-html-pre-code-tags :location local) beacon)
+              (my-autocolor-html-pre-code-tags :location local) beacon wgrep)
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:
@@ -115,6 +115,19 @@ Each entry is either:
     helm-rg
     :defer t
     :commands (helm-rg)))
+
+(defun my-basic/init-wgrep ()
+  (use-package
+    wgrep
+    :commands (wgrep-change-to-wgrep-mode)
+    ))
+
+(defun my-basic/pre-init-wgrep ()
+  (with-eval-after-load 'helm-occur
+      (add-hook 'helm-occur-mode-hook
+                (lambda () (define-key helm-occur-mode-map (kbd "C-c w") 'wgrep-change-to-wgrep-mode))
+            ))
+  )
 
 (defun my-basic/init-my-autocolor-html-pre-code-tags ()
   (use-package

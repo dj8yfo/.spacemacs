@@ -63,6 +63,7 @@
 (spacemacs/set-leader-keys "dd" 'flymake-goto-purposed-window)
 (spacemacs/set-leader-keys "ss" 'helm-swoop)
 (spacemacs/set-leader-keys "s\\" 'helm-occur)
+(spacemacs/set-leader-keys "s|" 'helm-multi-occur-from-isearch)
 (spacemacs/set-leader-keys "pn" 'export-notes-to-html)
 (spacemacs/set-leader-keys "rg" '(lambda ()
                                    (interactive)
@@ -183,3 +184,4 @@
 (define-key yas-minor-mode-map (kbd "C-c o") #'yas-expand)
 (define-key yas-minor-mode-map (kbd "M-'") #'yas-next-field)
 (global-set-key (kbd "M-^") 'toggle-imenu-index-func)
+(global-set-key (kbd "C-M-i") 'helm-company)

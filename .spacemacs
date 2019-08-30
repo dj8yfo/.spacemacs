@@ -679,7 +679,8 @@ static char *gnus-pointer[] = {
  '(pos-tip-foreground-color "#272822")
  '(safe-local-variable-values
    (quote
-    ((eglot-workspace-configuration
+    ((company-clang-arguments "-I/usr/include")
+     (eglot-workspace-configuration
       (kotlin
        (compiler
         (jvm

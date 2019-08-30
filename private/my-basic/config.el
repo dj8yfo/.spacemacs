@@ -7,7 +7,7 @@
                       (set-default-font
                        "-ADBO-Hasklig-extralight-normal-normal-*-15-*-*-*-m-0-iso10646-1" nil nil)))
                                         ;test commit
-(custom-set-variables '(helm-ag-base-command "rg --no-heading -L -S --no-ignore --hidden"))
+(custom-set-variables '(helm-ag-base-command "rg --no-heading -z -L -S --no-ignore --hidden"))
 (defvar jumping-commands-list
   '(evil-backward-word-begin evil-forward-word-begin evil-ace-jump-char-mode evil-ace-jump-line-mode
                              evil-ace-jump-word-mode find-file evil-snipe-repeat
@@ -42,6 +42,8 @@
 (with-eval-after-load 'window-purpose (add-to-list 'purpose-user-mode-purposes '(eww-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(eww-history-mode . eww-history))
                       (add-to-list 'purpose-user-mode-purposes '(lisp-interaction-mode . edit1))
+                      (add-to-list 'purpose-user-mode-purposes '(helm-occur-mode . org))
+                      (add-to-list 'purpose-user-mode-purposes '(spacemacs-buffer-mode . edit))
                       (add-to-list 'purpose-user-mode-purposes '(messages-buffer-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(compilation-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(Man-mode . edit1))

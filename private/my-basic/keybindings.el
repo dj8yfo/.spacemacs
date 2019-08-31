@@ -185,3 +185,5 @@
 (define-key yas-minor-mode-map (kbd "M-'") #'yas-next-field)
 (global-set-key (kbd "M-^") 'toggle-imenu-index-func)
 (global-set-key (kbd "C-M-i") 'helm-company)
+(global-unset-key (kbd "M-o"))
+(global-set-key (kbd "M-o") 'helm-company)

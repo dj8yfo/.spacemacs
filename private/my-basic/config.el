@@ -25,6 +25,9 @@
 (require 'personal-sysj-notes-exporter "notes.el")
 (setq org-agenda-files (list (concat notes-org-dir "notes.org")))
 (setq purpose-layout-dirs '("/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/"))
+(setq c-default-style '((java-mode . "java")
+                       (awk-mode . "awk")
+                       (other . "stroustrup")))
 
 (with-eval-after-load 'company
   (setq company-dabbrev-ignore-case t))

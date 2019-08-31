@@ -5,7 +5,7 @@
                        args)
                       (interactive)
                       (set-default-font
-                       "-CTDB-Fira Mono-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1"   nil nil)))
+                       "-KrKo-Fairfax HD-normal-normal-normal-*-15-*-*-*-*-0-iso10646-1"   nil nil)))
                                         ;test commit
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -z -L -S --no-ignore --hidden"))
 (defvar jumping-commands-list

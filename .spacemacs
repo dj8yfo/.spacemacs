@@ -529,6 +529,7 @@ before packages are loaded."
   (spacemacs/toggle-nyan-cat-progress-bar-on)
   (spacemacs/toggle-indent-guide-globally-on)
   (global-diff-hl-mode 1)
+  (spacemacs/toggle-company-toggle-auto-popup-off)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

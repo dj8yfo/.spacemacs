@@ -202,6 +202,16 @@ buffer in current window."
   :off-message "toggled evil search highlight persist OFF"
   :evil-leader "t,")
 
+(spacemacs|add-toggle company-toggle-auto-popup
+  :status (< company-minimum-prefix-length 10)
+  :on (setq company-minimum-prefix-length 2)
+  :off (setq company-minimum-prefix-length 1000)
+  :documentation "toggle auto pop up of company completion list"
+  :on-message "toggle comapany completion list ON"
+  :off-message "toggle comapany completion list OFF"
+  :evil-leader "t0")
+
+
 (defun toggle-imenu-index-func ()
   "toggle imenu index function"
   (interactive )

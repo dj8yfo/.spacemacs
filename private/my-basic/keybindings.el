@@ -187,3 +187,6 @@
 (global-set-key (kbd "C-M-i") 'helm-company)
 (global-unset-key (kbd "M-o"))
 (global-set-key (kbd "M-o") 'helm-company)
+(global-set-key (kbd "C-M-p") '(lambda () (interactive)
+                                 (setq dotspacemacs-active-transparency 60)
+                                 (spacemacs/toggle-transparency)))

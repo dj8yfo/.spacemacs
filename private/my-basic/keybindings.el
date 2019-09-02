@@ -136,6 +136,7 @@
 
 (spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
 (spacemacs/set-leader-keys-for-major-mode 'c-mode "g`" 'rtags-find-symbol)
+(spacemacs/set-leader-keys-for-major-mode 'c-mode "el" 'rtags-diagnostics)
 (spacemacs/set-leader-keys "h`" 'helm-make)
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
 (with-eval-after-load 'esh-mode (add-hook 'eshell-mode-hook '(lambda ()

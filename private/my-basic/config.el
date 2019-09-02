@@ -49,6 +49,7 @@
                       (add-to-list 'purpose-user-mode-purposes '(spacemacs-buffer-mode . edit))
                       (add-to-list 'purpose-user-mode-purposes '(messages-buffer-mode . org))
                       (add-to-list 'purpose-user-mode-purposes '(compilation-mode . edit1))
+                      (add-to-list 'purpose-user-mode-purposes '(flycheck-error-list-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(Man-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(ibuffer-mode . edit1))
                       (add-to-list 'purpose-user-mode-purposes '(fundamental-mode . edit1))

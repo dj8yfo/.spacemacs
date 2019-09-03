@@ -41,7 +41,7 @@
                                                                  (eglot-help-at-point)
                                                                  (switch-to-buffer buffer)))))
 (spacemacs/set-leader-keys "o" 'helm-multi-swoop-org)
-(spacemacs/set-leader-keys "ao" 'org-agenda)
+;; (spacemacs/set-leader-keys "ao" 'org-agenda)
 (spacemacs/set-leader-keys "sgp" 'helm-projectile-rg)
 (spacemacs/set-leader-keys "r/" 'spacemacs/helm-dir-do-ag)
 (spacemacs/set-leader-keys "r?" 'helm-do-ag)
@@ -164,7 +164,18 @@
 (with-eval-after-load 'cc-cmds (define-key c-mode-map (kbd "M-j") 'evil-window-down))
 (global-set-key (kbd "M-k") 'evil-window-up)
 (global-set-key (kbd "M-h") 'evil-window-left)
-(with-eval-after-load 'org (define-key org-mode-map (kbd "M-h") 'evil-window-left))
+(add-hook 'org-mode-hook '(lambda ()
+                            (evil-define-key 'normal evil-org-mode-map
+                              ;; ctsr
+                              (kbd "M-h") 'evil-window-left
+                              (kbd "M-l") 'evil-window-right
+                              (kbd "M-k") 'evil-window-up
+                              (kbd "M-j") 'evil-window-down
+)
+                            )
+          t)
+
+
 (global-set-key (kbd "M-l") 'evil-window-right)
 
 (global-set-key (kbd "M-DEL") 'shell-command)

@@ -113,7 +113,7 @@ Each entry is either:
     :defer t
     :commands (dictionary-search)
     :config (set-face-font 'dictionary-word-definition-face
-                           "-ADBO-Source Code Pro-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"              )))
+                           "-ADBO-Source Code Pro-light-normal-normal-*-15-*-*-*-m-0-iso10646-1"               )))
 (defun my-sengines-dicts/init-helm-eww ()
   (use-package
     helm-eww
@@ -129,7 +129,9 @@ Each entry is either:
     ;; Code
     (setq search-engine-config-list '((emacs-stack-exchange :name "emacs stack exchange"
                                                             :url
-                                                            "https://emacs.stackexchange.com/search?q=%s")))))
+                                                            "https://emacs.stackexchange.com/search?q=%s")
+                                      (searx-baby :name "searx"
+                                                  :url "https://searx.me/?q=%s")))))
 (with-eval-after-load 'eww
   (defun eww-write-history ()
     (let ((obj (eww-desktop-misc-data ".")))

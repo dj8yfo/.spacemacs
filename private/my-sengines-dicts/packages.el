@@ -113,7 +113,7 @@ Each entry is either:
     :defer t
     :commands (dictionary-search)
     :config (set-face-font 'dictionary-word-definition-face
-                           "-KrKo-Fairfax HD-normal-normal-normal-*-15-*-*-*-*-0-iso10646-1"             )))
+                           "-ADBO-Source Code Pro-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1"              )))
 (defun my-sengines-dicts/init-helm-eww ()
   (use-package
     helm-eww

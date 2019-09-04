@@ -92,7 +92,7 @@
                                       ))) keymap))
     (progn (map-keymap '(lambda (event def)
                           (if (equal event (car chars--list))
-                              (progn(message (format "%d found %s" event def))
+                              (progn(message (format "keymap: {%s} event:[%d] found def:[%s]" symbol event def))
                                     (set result--list (cons (cons symbol def)(eval result--list)))
 
                                     ;;

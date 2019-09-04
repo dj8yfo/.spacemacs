@@ -221,3 +221,5 @@
 
 (unbind-key (kbd ",") evil-snipe-parent-transient-map)
 (unbind-key (kbd ";") evil-snipe-parent-transient-map)
+
+(global-set-key (kbd "s-'") 'helm-company)

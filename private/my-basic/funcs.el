@@ -81,6 +81,34 @@
                      (not (eq sym 'keymap))
                      (throw 'gotit sym))))))
 
+(defun contains-searched-key (keymap symbol chars--list result--list)
+  (if (> (seq-length chars--list) 1)
+      (progn (map-keymap '(lambda (event def)
+                            (if (equal event (car chars--list))
+                                (progn(message (format "%d recur" event))
+                                      (if (keymapp def)(contains-searched-key def symbol (cdr chars--list) result--list))
+
+                                      ;;
+                                      ))) keymap))
+    (progn (map-keymap '(lambda (event def)
+                          (if (equal event (car chars--list))
+                              (progn(message (format "%d found %s" event def))
+                                    (set result--list (cons (cons symbol def)(eval result--list)))
+
+                                    ;;
+                                    ))) keymap))))
+
+(defun collect-containing-keymaps (char-seqence result--list)
+  "(collect-containing-keymaps (kbd \"SPC s t p\") 'resultl)"
+  (let ((chars--list (string-to-list char-seqence)))
+    (dolist (sym chars--list)
+      (message (format "char %d " sym )))
+    (mapatoms (lambda (sym)
+                (and (boundp sym)
+                     (keymapp (symbol-value sym))
+                     (contains-searched-key (symbol-value sym) sym chars--list result--list))))
+    )
+  )
 (defun custom-layout1 ()
   (interactive)
   (purpose-load-window-layout-file

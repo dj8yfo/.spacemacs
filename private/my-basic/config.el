@@ -33,7 +33,10 @@
   (setq company-dabbrev-ignore-case t))
 
 (with-eval-after-load 'evil (dolist (sym jumping-commands-list)
-                              (add-jump-push-action sym)))
+                              (add-jump-push-action sym))
+                      (setq evil-move-cursor-back nil
+                            evil-want-fine-undo t
+                            evil-operator-state-cursor '("red" evil-half-cursor)))
 (add-jump-push-action 'evil-backward-word-begin)
 (with-eval-after-load 'evil-states
   (setq evil-emacs-state-modes (delete 'ibuffer-mode evil-emacs-state-modes )))

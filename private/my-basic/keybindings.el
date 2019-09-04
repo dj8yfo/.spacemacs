@@ -21,6 +21,7 @@
 (evil-define-key 'normal evil-matchit-mode-map "M" 'evilmi-jump-items)
 (evil-define-key 'visual evil-matchit-mode-map "M" 'evilmi-jump-items)
 (evil-define-key 'operator evil-matchit-mode-map "M" 'evilmi-jump-items)
+(evil-define-key 'lisp evil-matchit-mode-map "M" 'evilmi-jump-items)
 (evil-define-key 'normal flymake-diagnostics-buffer-mode-map (kbd "RET")
   '(lambda ()
      (interactive)
@@ -30,9 +31,9 @@
 (evil-define-key 'normal 'global "L" "y$")
 (evil-define-key 'normal 'global ":" 'eval-expression)
 
-(with-eval-after-load 'evil-evilified-state (define-key evil-evilified-state-map-original (kbd ":") 'eval-expression)
-                      (define-key evil-evilified-state-map (kbd ":") 'eval-expression)
-                      )
+(with-eval-after-load 'evil-evilified-state (define-key evil-evilified-state-map-original (kbd ":")
+                                              'eval-expression)
+                      (define-key evil-evilified-state-map (kbd ":") 'eval-expression))
 
 
 (with-eval-after-load 'eglot (spacemacs/set-leader-keys "," '(lambda ()
@@ -138,6 +139,22 @@
 (spacemacs/set-leader-keys-for-major-mode 'c-mode "g`" 'rtags-find-symbol)
 (spacemacs/set-leader-keys-for-major-mode 'c-mode "el" 'rtags-diagnostics)
 (spacemacs/set-leader-keys "h`" 'helm-make)
+(spacemacs/set-leader-keys "hd1" '(lambda ()
+                                    (interactive)
+                                    (message (format "%s"(keymap-symbol (current-local-map))))))
+(spacemacs/set-leader-keys "hd2" '(lambda ()
+                                    (interactive)
+                                    (let ((result '()))
+                                      (dolist (map (current-active-maps))
+                                        (setq result (cons (keymap-symbol map) result)))
+                                      (message (format "%s" result)) result)))
+(spacemacs/set-leader-keys "hd3" '(lambda (sequence)
+                                    (interactive "sString: ")
+                                    (let ((resultl '()))
+                                      (collect-containing-keymaps (kbd sequence) 'resultl)
+                                      (message (format "%s" resultl))
+                                      resultl)
+                                    ))
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
 (with-eval-after-load 'esh-mode (add-hook 'eshell-mode-hook '(lambda ()
                                                                (define-key eshell-mode-map (kbd
@@ -167,13 +184,9 @@
 (add-hook 'org-mode-hook '(lambda ()
                             (evil-define-key 'normal evil-org-mode-map
                               ;; ctsr
-                              (kbd "M-h") 'evil-window-left
-                              (kbd "M-l") 'evil-window-right
-                              (kbd "M-k") 'evil-window-up
-                              (kbd "M-j") 'evil-window-down
-)
-                            )
-          t)
+                              (kbd "M-h") 'evil-window-left (kbd "M-l") 'evil-window-right (kbd
+                                                                                            "M-k")
+                              'evil-window-up (kbd "M-j") 'evil-window-down)) t)
 
 
 (global-set-key (kbd "M-l") 'evil-window-right)
@@ -200,9 +213,11 @@
 (global-set-key (kbd "C-M-i") 'helm-company)
 (global-unset-key (kbd "M-o"))
 (global-set-key (kbd "M-o") 'helm-company)
-(global-set-key (kbd "C-M-p") '(lambda () (interactive)
-                                 (setq dotspacemacs-active-transparency 60)
-                                 (spacemacs/toggle-transparency)))
+(global-set-key (kbd "C-M-p")
+                '(lambda ()
+                   (interactive)
+                   (setq dotspacemacs-active-transparency 60)
+                   (spacemacs/toggle-transparency)))
 
 (unbind-key (kbd ",") evil-snipe-parent-transient-map)
 (unbind-key (kbd ";") evil-snipe-parent-transient-map)

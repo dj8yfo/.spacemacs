@@ -131,7 +131,7 @@ Each entry is either:
                                                             :url
                                                             "https://emacs.stackexchange.com/search?q=%s")
                                       (searx-baby :name "searx"
-                                                  :url "https://searx.me/?q=%s")))))
+                                                  :url "https://searx.me/?preferences=eJxtVMmO2zAM_Zr6YqTocujJh6JF0QIFZtDM9CrQEm2zlkRXkpNxv75U4i0zc4gDPS7viSIZMI42RcVeeTyrBHX1DWzEwjCpgJHtCUMVNR26sX6bzoUF347QYoX-8HgsLGuw-VAYilBbNGqwY0s-Vr_JHSz1qDpOPU7xzYcvdwP6nFUolSXfr7x14HPEkPmz3w_fkKeEKurA1i6Rn7XGGNXXux-S5BzEoSAnWtQQ-GmahcOYWLMbLCasiggNRoSgu-pdkTp0WHHUEAr0t2qPaBslvBwcJGKfZTwE0L2oevz1UwgdSykE_f7wcH9cBMj5eEmfb6IhYcthUhEt6rSVBL1wYKx60j3IDVRDFjNDExDLyE06Q8DSUJCwnEBREuuJISkVWRPY0qEhEDCgMfQSHn0cLMROQnNJcvKWubVYCjyVMAw7WkNtnbbjklJe4iLKBCazmf0EsEu7XuJEBvk5kRsjaaUuf2LSWh_SaecLuo08bg4tYp_IYZzvTB5e8X6dik-Eex3vn3Yy5zu-SLU6LMDzKqwODQTmtSod1AHyZxZaU6pHaY80n5sgDU2gXzyAUi16DJDbGIa-dBQCL1kS9xMnjh334LeqXEu-am8COLBUB5zDrvbFm2U4Ag68f2GRln8tl1c5O1nX4MXzmYKVc67fwvHMbYmWWfKhjCmMOo0h08iuQK_zYFznTrPBMn9m6e8_fvz0tH9RShbq2bj21oV2HdJlfibwBp_2BV0ebUNigpCGvBV24N8z-BuvrIxOWFLcoyhrKHf-hrjJyeCHqUwBfLQy4DfmiP88uD0yQZebZgO-jkZW1w6Y22rHmibHXvbhjeSWWrk8xBvZuQdA1GQk3mp3_EdGaY9sPXCDmrY0eNmvec2tpsJh6thU93fHh2LeZDJe1WK-rM1DTJOse8st5Sc9_Qc-TFoh&q=%s")))))
 (with-eval-after-load 'eww
   (defun eww-write-history ()
     (let ((obj (eww-desktop-misc-data ".")))

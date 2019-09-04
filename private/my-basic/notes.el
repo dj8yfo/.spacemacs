@@ -46,6 +46,8 @@
     (shell-command (format cp-template "/home/sysmanj/.emacs.d/layers/+email/mu4e/README.org"
                            notes-org-dir "mu4eREADME.org") nil nil)
     (shell-command (format cp-template "/home/sysmanj/.emacs.d/layers/+emacs/org/README.org"
-                           notes-org-dir "orgREADME.org") nil nil)))
+                           notes-org-dir "orgREADME.org") nil nil)
+    (shell-command (format cp-template "/home/sysmanj/.emacs.d/layers/+tools/ranger/README.org"
+                           notes-org-dir "rangerREADME.org") nil nil)))
 
 (provide 'personal-sysj-notes-exporter)

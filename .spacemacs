@@ -47,7 +47,8 @@ This function should only modify configuration layer settings."
             multi-term-program "/usr/bin/zsh")
      ;; ----------------------------------------------------------------
      ;; spacemacs-navigation
-     (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t evil-snipe-auto-disable-substitute nil)
+     (evil-snipe :variables evil-snipe-enable-alternate-f-and-t-behaviors t evil-snipe-auto-disable-substitute nil
+                 evil-snipe-override-evil-repeat-keys nil)
      gtags
      helm
      (ranger :variables

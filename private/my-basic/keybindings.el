@@ -203,3 +203,6 @@
 (global-set-key (kbd "C-M-p") '(lambda () (interactive)
                                  (setq dotspacemacs-active-transparency 60)
                                  (spacemacs/toggle-transparency)))
+
+(unbind-key (kbd ",") evil-snipe-parent-transient-map)
+(unbind-key (kbd ";") evil-snipe-parent-transient-map)

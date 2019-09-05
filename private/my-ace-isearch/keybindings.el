@@ -10,3 +10,9 @@
                               (evil-define-key 'normal dired-mode-map (kbd "n") 'evil-next-respect-isearch)
                               (evil-define-key 'normal dired-mode-map (kbd "N") 'evil-previous-respect-isearch)
                               ))
+(with-eval-after-load 'ranger
+  (add-hook 'ranger-mode-hook '(lambda ()
+                                 (define-key ranger-mode-map (kbd "/") 'isearch-forward)
+                                 (define-key ranger-mode-map (kbd "?") 'isearch-backward)
+                                 ))
+  )

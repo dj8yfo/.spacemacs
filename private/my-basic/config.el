@@ -5,7 +5,8 @@
                        args)
                       (interactive)
                       (set-default-font
-                       "-ADBO-Source Code Pro-light-normal-normal-*-15-*-*-*-m-0-iso10646-1"    nil nil)))
+                       "-ADBO-Source Code Pro-light-normal-normal-*-15-*-*-*-m-0-iso10646-1"    nil
+                       nil)))
                                         ;test commit
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -z -L -S --no-ignore --hidden"))
 (defvar jumping-commands-list
@@ -26,16 +27,15 @@
 (setq org-agenda-files (list (concat notes-org-dir "notes.org")))
 (setq purpose-layout-dirs '("/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/"))
 (setq c-default-style '((java-mode . "java")
-                       (awk-mode . "awk")
-                       (other . "stroustrup")))
+                        (awk-mode . "awk")
+                        (other . "stroustrup")))
 
 (with-eval-after-load 'company
   (setq company-dabbrev-ignore-case t))
 
 (with-eval-after-load 'evil (dolist (sym jumping-commands-list)
                               (add-jump-push-action sym))
-                      (setq evil-move-cursor-back nil
-                            evil-want-fine-undo t
+                      (setq evil-move-cursor-back nil evil-want-fine-undo t
                             evil-operator-state-cursor '("red" evil-half-cursor)))
 (add-jump-push-action 'evil-backward-word-begin)
 (with-eval-after-load 'evil-states
@@ -78,3 +78,20 @@
 
 (defvar highlight-regex-faces-num (length highlight-regex-faces))
 (defvar highlight-regex-faces-ind 0)
+
+(with-eval-after-load 'symbol-overlay
+  (defface symbol-overlay-face-9 '((t
+                                    (:background "light salmon"
+                                                 :foreground "black")))
+    "Symbol Overlay default candidate 1"
+    :group 'symbol-overlay)
+  (defface symbol-overlay-face-10 '((t
+                                     (:background "tomato"
+                                                  :foreground "black")))
+    "Symbol Overlay default candidate 1"
+    :group 'symbol-overlay)
+  (setq symbol-overlay-faces '(symbol-overlay-face-1 symbol-overlay-face-2 symbol-overlay-face-3
+                                                     symbol-overlay-face-4 symbol-overlay-face-5
+                                                     symbol-overlay-face-6 symbol-overlay-face-7
+                                                     symbol-overlay-face-8 symbol-overlay-face-9
+                                                     symbol-overlay-face-10)))

@@ -219,7 +219,7 @@
                    (spacemacs/toggle-transparency)))
 
 (unbind-key (kbd ",") evil-snipe-parent-transient-map)
-(unbind-key (kbd ";") evil-snipe-parent-transient-map)
+;; (unbind-key (kbd ";") evil-snipe-parent-transient-map)
 (evil-define-key 'normal 'evil-snipe-mode-map [remap evil-snipe-s] 'evil-forward-sentence-begin)
 (evil-define-key 'normal 'evil-snipe-mode-map (kbd "S") 'evil-backward-sentence-begin)
 (global-set-key (kbd "s-i") 'helm-company)

@@ -162,6 +162,7 @@
                                       (message (format "%s" resultl))
                                       resultl)
                                     ))
+(spacemacs/set-leader-keys "c`" 'create-checkpoint)
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
 (with-eval-after-load 'esh-mode (add-hook 'eshell-mode-hook '(lambda ()
                                                                (define-key eshell-mode-map (kbd

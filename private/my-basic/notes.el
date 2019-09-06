@@ -18,6 +18,20 @@
                                      :auto-preamble t)))
   (org-notes-sync-dependencies)
   (org-publish "org-notes" t))
+(with-eval-after-load 'org
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 4)))
+  (setq org-refile-allow-creating-parent-nodes 'confirm)
+  (setq org-outline-path-complete-in-steps nil)
+  (setq org-default-notes-file (concat notes-org-dir "notes.org"))
+  (setq org-capture-templates
+        '(("t" "Todo" entry (file+headline org-default-notes-file "workflow")
+           "* TODO %?\n  %i\n  %a")
+          ("j" "Journal" entry (file+headline org-default-notes-file "var info")
+           "* %?\nEntered on %U\n  %i\n  %a")
+          ("s" "source" entry (file+headline org-default-notes-file  "var info")
+           "* %?\n\t#+BEGIN_SRC shell-script-mode\n  %i\n\t#+END_SRC\n  %a")))
+  )
+
 
 (defun org-notes-sync-dependencies ()
   (interactive)

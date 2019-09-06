@@ -210,7 +210,10 @@
                                 'wdired-change-to-wdired-mode)
                               (diff-hl-dired-mode 1)))
 (add-hook 'eww-mode-hook '(lambda ()
-                            (define-key eww-mode-map "zz" 'evil-scroll-line-to-center)))
+                            (define-key eww-mode-map "zz" 'evil-scroll-line-to-center)
+                            (key-chord-define eww-mode-map "gk" 'ace-jump-char-mode)
+                            (key-chord-define eww-mode-map "gl" 'ace-jump-line-mode)
+                            (key-chord-define eww-mode-map "gh" 'ace-jump-word-mode)))
 
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
 (define-key yas-minor-mode-map (kbd "TAB") nil)

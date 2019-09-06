@@ -62,6 +62,15 @@
   (interactive)
   (unhighlight-regexp t))
 
+(defun clone-c-skeleton
+    (&optional
+     loc)
+  (interactive "DProject name:")
+  (message (format "cloning c-skeleton to: %s" loc))
+  (let ((command  "/home/sysmanj/Documents/.spacemacs/private/my-basic/templateC.sh %s")
+        (dir (if (equal loc "/") "." loc)))
+    (shell-command (format command dir))))
+
 (defun goto-delimiter-backward
     (&optional
      inter)

@@ -200,6 +200,7 @@
 
 (global-set-key (kbd "M-DEL") 'shell-command)
 (add-hook 'dired-mode-hook '(lambda ()
+                              (define-key dired-mode-map (kbd "\C-c c") 'clone-c-skeleton)
                               (define-key dired-mode-map (kbd "M-DEL") 'shell-command)
                               (define-key dired-mode-map (kbd "C-j")
                                 '(lambda ()

@@ -171,4 +171,5 @@ Each entry is either:
                               (add-hook 'kill-buffer-hook 'eww-write-history nil t)))
   )
 
-(add-hook 'kill-emacs-hook 'kill-eww-buffers)
+(add-hook 'kill-emacs-hook '(lambda () (interactive)
+                               (kill-buffers-by-major-mode 'eww-mode)))

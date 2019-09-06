@@ -80,13 +80,52 @@
 (defvar highlight-regex-faces-ind 0)
 
 (with-eval-after-load 'symbol-overlay
+
+  (face-spec-set 'symbol-overlay-face-1 '((t
+                                    (:weight ultrabold :background "dodger blue"
+                                                 :foreground "black")))
+    )
+
+  (face-spec-set 'symbol-overlay-face-2 '((t
+                                           (:weight ultrabold :background "hot pink"
+                                                    :foreground "black")))
+                 )
+  (face-spec-set 'symbol-overlay-face-3 '((t
+                                    (:weight ultrabold :background "yellow"
+                                                 :foreground "black")))
+                 )
+
+  (face-spec-set 'symbol-overlay-face-4 '((t
+                                    (:weight ultrabold :background "orchid"
+                                                 :foreground "black")))
+                 )
+
+  (face-spec-set 'symbol-overlay-face-5 '((t
+                                    (:weight ultrabold :background "red"
+                                                 :foreground "black")))
+                 )
+
+  (face-spec-set 'symbol-overlay-face-6 '((t
+                                    (:weight ultrabold :background "salmon"
+                                                 :foreground "black")))
+                 )
+
+  (face-spec-set 'symbol-overlay-face-7 '((t
+                                    (:weight ultrabold :background "spring green"
+                                                 :foreground "black")))
+                 )
+
+  (face-spec-set 'symbol-overlay-face-8 '((t
+                                    (:weight ultrabold :background "turquoise"
+                                                 :foreground "black")))
+                 )
   (defface symbol-overlay-face-9 '((t
-                                    (:background "light salmon"
+                                    (:weight ultrabold :background "light salmon"
                                                  :foreground "black")))
     "Symbol Overlay default candidate 1"
     :group 'symbol-overlay)
   (defface symbol-overlay-face-10 '((t
-                                     (:background "tomato"
+                                     (:weight ultrabold :background "tomato"
                                                   :foreground "black")))
     "Symbol Overlay default candidate 1"
     :group 'symbol-overlay)

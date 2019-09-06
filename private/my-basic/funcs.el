@@ -159,9 +159,15 @@
                           (&rest
                            args)
                           "unexpected jump push evil" (evil-set-jump))))
-(defun kill-eww-buffers ()
+
+(defun kill-buffers-by-major-mode (mode-symbol)
   (interactive)
-  (kill-matching-buffers ".*eww.*" t t))
+  (mapc (lambda (buffer)
+          (when (eq mode-symbol (buffer-local-value 'major-mode buffer))
+            (message (format "killing buffer %s" buffer))
+            (kill-buffer buffer)))
+        (buffer-list))
+  t)
 
 (defun toggle-browse-eww-system-browser
     (&optional

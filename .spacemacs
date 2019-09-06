@@ -53,6 +53,7 @@ This function should only modify configuration layer settings."
      helm
      (ranger :variables
              ranger-show-preview t
+             ranger-cleanup-on-disable t
              ranger-cleanup-eagerly t
              ranger-max-preview-size 10
              ranger-width-preview 0.55

@@ -110,7 +110,14 @@
   :on-message "extra options for helm-ag: ON"
   :off-message "extra options for helm-ag: OFF"
   :evil-leader "t/")
-(spacemacs/set-leader-keys "ek" 'kill-eww-buffers)
+(spacemacs/set-leader-keys "ek" '(lambda () (interactive)
+                                   (kill-buffers-by-major-mode 'eww-mode))
+  )
+(spacemacs/set-leader-keys "dk" '(lambda () (interactive)
+                                   (kill-buffers-by-major-mode 'dired-mode)
+                                   (kill-buffers-by-major-mode 'ranger-mode))
+  )
+
 (spacemacs/set-leader-keys "bk" '(lambda ()
                                    (interactive)
                                    (spacemacs/kill-matching-buffers-rudely ".*[^o][^r][^g]$")))

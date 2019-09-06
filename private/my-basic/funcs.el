@@ -71,6 +71,11 @@
         (dir (if (equal loc "/") "." loc)))
     (shell-command (format command dir))))
 
+(defun create-checkpoint (mess)
+  "docstring"
+  (interactive "SMessage of checkpoint:")
+  (shell-command (format  "git add -A && git commit -m '%s'" mess)))
+
 (defun goto-delimiter-backward
     (&optional
      inter)

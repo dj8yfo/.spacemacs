@@ -35,6 +35,18 @@
 
 (with-eval-after-load 'evil (dolist (sym jumping-commands-list)
                               (add-jump-push-action sym))
+                      (evil-define-operator evil-upcase (beg end type)
+                        "Convert text to upper case."
+                        :move-point nil
+                        (if (eq type 'block)
+                            (evil-apply-on-block #'evil-upcase beg end nil)
+                          (upcase-region beg end)))
+                      (evil-define-operator evil-downcase (beg end type)
+                        "Convert text to lower case."
+                        :move-point nil
+                        (if (eq type 'block)
+                            (evil-apply-on-block #'evil-downcase beg end nil)
+                          (downcase-region beg end)))
                       (setq evil-move-cursor-back nil evil-want-fine-undo t
                             evil-operator-state-cursor '("red" evil-half-cursor)))
 (add-jump-push-action 'evil-backward-word-begin)

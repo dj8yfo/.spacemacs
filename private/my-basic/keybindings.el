@@ -29,6 +29,16 @@
      (forward-char 20)
      (flymake-goto-diagnostic (point))))
 (evil-define-key 'normal 'global "L" "y$")
+
+(fset 'insert-upcase-macro  [escape ?h ?g ?U ?i ?o ?l ?i])
+(fset 'normal-upcase-macro [?h ?g ?U ?i ?o ?l ])
+(fset 'insert-downcase-macro  [escape ?h ?g ?u ?i ?o ?l ?i])
+(fset 'normal-downcase-macro [?h ?g ?u ?i ?o ?l ])
+(evil-define-key 'hybrid 'global (kbd "s-u") 'insert-upcase-macro)
+(evil-define-key 'normal 'global (kbd "s-u") 'normal-upcase-macro)
+(evil-define-key 'hybrid 'global (kbd "s-d") 'insert-downcase-macro)
+(evil-define-key 'normal 'global (kbd "s-d") 'normal-downcase-macro)
+
 (evil-define-key 'normal 'global ":" 'eval-expression)
 
 (with-eval-after-load 'evil-evilified-state (define-key evil-evilified-state-map-original (kbd ":")

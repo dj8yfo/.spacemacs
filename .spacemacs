@@ -692,7 +692,27 @@ static char *gnus-pointer[] = {
  '(pos-tip-foreground-color "#272822")
  '(safe-local-variable-values
    (quote
-    ((company-clang-arguments "-I./headers")
+    ((eval setq-local company-clang-arguments
+           (list
+            (format "-I%s"
+                    (nth 0
+                         (projectile-expand-paths
+                          (quote
+                           ("src")))))))
+     (eval setq-local
+           (quote company-clang-arguments)
+           (format "-I%s"
+                   (nth 0
+                        (projectile-expand-paths
+                         (quote
+                          ("src"))))))
+     (eval setq-local
+           (quote company-clang-arguments)
+           (format "-I%s"
+                   (expand-file-name "src")))
+     (company-clang-arguments "-I../src" "-I.")
+     (company-clang-arguments "-I./src")
+     (company-clang-arguments "-I./headers")
      (javascript-backend . tern)
      (javascript-backend . lsp)
      (company-clang-arguments "-I/usr/local/apr/include/apr-1")
@@ -750,7 +770,6 @@ static char *gnus-pointer[] = {
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:background nil))))
  '(evil-goggles-change-face ((t (:inherit diff-removed))))
  '(evil-goggles-delete-face ((t (:inherit diff-removed))))
  '(evil-goggles-paste-face ((t (:inherit diff-added))))

@@ -252,8 +252,11 @@ buffer in current window."
 
 (spacemacs|add-toggle company-toggle-auto-popup
   :status (< company-minimum-prefix-length 10)
-  :on (setq company-minimum-prefix-length 2)
-  :off (setq company-minimum-prefix-length 1000)
+  :on (progn (setq company-minimum-prefix-length 2)
+             (setq company-auto-complete-chars (list 32 41 46)))
+  :off (progn
+         (setq company-minimum-prefix-length 1000)
+         (setq company-auto-complete-chars (list)))
   :documentation "toggle auto pop up of company completion list"
   :on-message "toggle comapany completion list ON"
   :off-message "toggle comapany completion list OFF"

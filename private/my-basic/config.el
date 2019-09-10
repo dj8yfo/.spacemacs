@@ -28,7 +28,7 @@
 (setq purpose-layout-dirs '("/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/"))
 (setq c-default-style '((java-mode . "java")
                         (awk-mode . "awk")
-                        (other . "stroustrup")))
+                        (other . "linux")))
 
 (with-eval-after-load 'company
   (setq company-dabbrev-ignore-case t))

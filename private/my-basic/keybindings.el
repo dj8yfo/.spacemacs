@@ -38,7 +38,7 @@
 (evil-define-key 'normal 'global (kbd "s-u") 'normal-upcase-macro)
 (evil-define-key 'hybrid 'global (kbd "s-d") 'insert-downcase-macro)
 (evil-define-key 'normal 'global (kbd "s-d") 'normal-downcase-macro)
-(evil-define-key 'hybrid 'global (kbd "1=") "!=")
+(evil-define-key 'hybrid 'global (kbd "M-=") "!=")
 
 (evil-define-key 'normal 'global ":" 'eval-expression)
 

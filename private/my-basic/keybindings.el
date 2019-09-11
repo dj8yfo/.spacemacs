@@ -38,6 +38,7 @@
 (evil-define-key 'normal 'global (kbd "s-u") 'normal-upcase-macro)
 (evil-define-key 'hybrid 'global (kbd "s-d") 'insert-downcase-macro)
 (evil-define-key 'normal 'global (kbd "s-d") 'normal-downcase-macro)
+(evil-define-key 'hybrid 'global (kbd "1=") "!=")
 
 (evil-define-key 'normal 'global ":" 'eval-expression)
 
@@ -57,7 +58,6 @@
 (spacemacs/set-leader-keys "r/" 'spacemacs/helm-dir-do-ag)
 (spacemacs/set-leader-keys "r?" 'helm-do-ag)
 (spacemacs/set-leader-keys "io" 'org-insert-heading)
-(spacemacs/set-leader-keys ":" 'evil-ex)
 (spacemacs/set-leader-keys "ys" 'describe-variable-and-kill-value)
 (spacemacs/set-leader-keys "yc" '(lambda ()
                                    (interactive)
@@ -150,7 +150,6 @@
 (global-set-key (kbd "M-; a") 'custom-layout1)
 (global-set-key (kbd "M-; b") 'custom-layout2)
 (global-set-key (kbd "M-; e") 'custom-layout-eww)
-(global-set-key (kbd "M-f") 'backward-delete-char)
 
 (spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
 (spacemacs/set-leader-keys-for-major-mode 'c-mode "g`" 'rtags-find-symbol)
@@ -175,6 +174,7 @@
 (spacemacs/set-leader-keys "c`" 'create-checkpoint)
 (spacemacs/set-leader-keys "c'" '(lambda () (interactive) (rtags-toggle-diagnostics-suspended)
                                    (rtags-toggle-diagnostics-suspended)))
+(spacemacs/set-leader-keys "gg" 'ggtags-mode)
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
 (with-eval-after-load 'esh-mode (add-hook 'eshell-mode-hook '(lambda ()
                                                                (define-key eshell-mode-map (kbd
@@ -231,7 +231,8 @@
 
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
 (define-key yas-minor-mode-map (kbd "TAB") nil)
-(define-key yas-minor-mode-map (kbd "C-c o") #'yas-expand)
+(define-key yas-minor-mode-map (kbd "s-.") #'yas-insert-snippet)
+(define-key yas-minor-mode-map (kbd "s-v") #'yas-visit-snippet-file)
 (define-key yas-minor-mode-map (kbd "M-'") #'yas-next-field)
 (global-set-key (kbd "M-^") 'toggle-imenu-index-func)
 (global-unset-key (kbd "M-o"))
@@ -248,5 +249,9 @@
 (evil-define-key 'normal 'evil-snipe-mode-map [remap evil-snipe-s] 'evil-forward-sentence-begin)
 (evil-define-key 'normal 'evil-snipe-mode-map (kbd "S") 'evil-backward-sentence-begin)
 (global-set-key (kbd "s-i") 'helm-company)
+(global-set-key (kbd "s-;") 'evil-ex)
+(spacemacs/set-leader-keys ":" 'evil-ex)
+(global-set-key (kbd "M-f") 'backward-delete-char)
+(global-set-key (kbd "s-h") 'backward-delete-char)
 
 

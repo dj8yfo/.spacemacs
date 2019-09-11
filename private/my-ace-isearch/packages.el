@@ -99,6 +99,8 @@ Each entry is either:
             :evil-leader "t]")
     (evil-global-set-key 'normal (kbd "/") 'isearch-forward)
     (evil-global-set-key 'normal (kbd "?") 'isearch-backward)
+    (evil-global-set-key 'visual (kbd "/") 'evil-search-forward)
+    (evil-global-set-key 'visual (kbd "?") 'evil-search-backward)
     (with-eval-after-load 'evil-evilified-state (define-key evil-evilified-state-map-original "/"
                                                   'isearch-forward)
                          (define-key evil-evilified-state-map-original "?" 'isearch-backward)

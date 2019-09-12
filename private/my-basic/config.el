@@ -155,3 +155,9 @@
                                                     :foreground "white")))
                  )
     )
+
+(with-eval-after-load 'font-lock
+    (face-spec-set 'font-lock-comment-face '((t
+                                    (:weight ultralight :background "gray22"
+                                             :foreground "white")))
+                   ))

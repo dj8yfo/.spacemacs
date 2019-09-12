@@ -557,6 +557,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ace-isearch-function (quote ace-jump-word-mode))
+ '(eww-history-limit 10000)
  '(ace-isearch-function-from-isearch (quote helm-swoop-from-isearch-override))
  '(ace-isearch-input-length ace-isearch-normal-input-length)
  '(ace-isearch-jump-delay 1.5)

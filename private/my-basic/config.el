@@ -32,6 +32,9 @@
 
 (with-eval-after-load 'company
   (setq company-dabbrev-ignore-case t))
+(with-eval-after-load 'eww
+  (setq eww-history-limit 10000)
+    )
 
 (with-eval-after-load 'evil (dolist (sym jumping-commands-list)
                               (add-jump-push-action sym))

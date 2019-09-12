@@ -32,12 +32,16 @@
 
 (fset 'insert-upcase-macro  [escape ?h ?g ?U ?i ?o ?l ?i])
 (fset 'normal-upcase-macro [?h ?g ?U ?i ?o ?l ])
+(fset 'visual-upcase-macro [?g ?U])
 (fset 'insert-downcase-macro  [escape ?h ?g ?u ?i ?o ?l ?i])
 (fset 'normal-downcase-macro [?h ?g ?u ?i ?o ?l ])
+(fset 'visual-downcase-macro [?g ?u])
 (evil-define-key 'hybrid 'global (kbd "s-u") 'insert-upcase-macro)
 (evil-define-key 'normal 'global (kbd "s-u") 'normal-upcase-macro)
 (evil-define-key 'hybrid 'global (kbd "s-d") 'insert-downcase-macro)
 (evil-define-key 'normal 'global (kbd "s-d") 'normal-downcase-macro)
+(evil-define-key 'visual 'global (kbd "s-d") 'visual-downcase-macro)
+(evil-define-key 'visual 'global (kbd "s-u") 'visual-upcase-macro)
 (evil-define-key 'hybrid 'global (kbd "M-=") "!=")
 
 (evil-define-key 'normal 'global ":" 'eval-expression)

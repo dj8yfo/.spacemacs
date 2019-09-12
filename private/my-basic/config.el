@@ -149,3 +149,9 @@
                                                      symbol-overlay-face-6 symbol-overlay-face-7
                                                      symbol-overlay-face-8 symbol-overlay-face-9
                                                      symbol-overlay-face-10)))
+(with-eval-after-load 'faces
+  (face-spec-set 'line-number  '((t
+                                           (:weight ultralight :background "gray22"
+                                                    :foreground "white")))
+                 )
+    )

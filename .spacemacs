@@ -521,7 +521,7 @@ before packages are loaded."
   ;; (setq desktop-files-not-to-save ".*")
   (find-file "/home/sysmanj/Documents/code/tasking/notes-org/notes.org")
   (find-file "/home/sysmanj/.emacs.d/doc/DOCUMENTATION.org")
-  ;; (switch-to-buffer "*spacemacs*")
+  (switch-to-buffer "*spacemacs*")
   ;; (display-buffer "*spacemacs*" '(display-buffer-same-window . nil))
   ;; (global-set-key (kbd "TAB") 'my-insert-tab-char)
   (setq-default indent-tabs-mode nil)

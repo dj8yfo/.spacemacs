@@ -18,6 +18,10 @@
                         (interactive)
                         (progn (call-interactively (quote evil-shift-right))
                                (execute-kbd-macro "gv"))))
+(evil-global-set-key 'normal  "M" 'evil-jump-item)
+(evil-global-set-key 'visual  "M" 'evil-jump-item)
+(evil-global-set-key 'operator  "M" 'evil-jump-item)
+
 (evil-define-key 'normal evil-matchit-mode-map "M" 'evilmi-jump-items)
 (evil-define-key 'visual evil-matchit-mode-map "M" 'evilmi-jump-items)
 (evil-define-key 'operator evil-matchit-mode-map "M" 'evilmi-jump-items)
@@ -240,7 +244,6 @@
 (define-key yas-minor-mode-map (kbd "M-'") #'yas-next-field)
 (global-set-key (kbd "M-^") 'toggle-imenu-index-func)
 (global-unset-key (kbd "M-o"))
-(global-set-key (kbd "M-o") 'helm-company)
 (global-set-key (kbd "C-M-p")
                 '(lambda ()
                    (interactive)
@@ -252,7 +255,10 @@
 ;; (unbind-key (kbd ";") evil-snipe-parent-transient-map)
 (evil-define-key 'normal 'evil-snipe-mode-map [remap evil-snipe-s] 'evil-forward-sentence-begin)
 (evil-define-key 'normal 'evil-snipe-mode-map (kbd "S") 'evil-backward-sentence-begin)
+
+(global-set-key (kbd "M-o") 'helm-company)
 (global-set-key (kbd "s-i") 'helm-company)
+
 (global-set-key (kbd "s-;") 'evil-ex)
 (spacemacs/set-leader-keys ":" 'evil-ex)
 (global-set-key (kbd "M-f") 'backward-delete-char)

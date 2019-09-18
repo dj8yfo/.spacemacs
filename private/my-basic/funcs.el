@@ -223,6 +223,15 @@ buffer in current window."
   :off-message "toggled window dedicatedness to buffer OFF"
   :evil-leader "t%")
 
+(spacemacs|add-toggle toggle-evil-matchit
+  :status evil-matchit-mode
+  :on (evil-matchit-mode 1)
+  :off (evil-matchit-mode -1)
+  :documentation "toggle evil matchit mode"
+  :on-message "toggle evil matchit mode ON"
+  :off-message "toggle evil matchit mode OFF"
+  :evil-leader "t5")
+
 (spacemacs|add-toggle eww-or-external-browser
   :status (equal browse-url-browser-function 'eww-browse-url)
   :on (toggle-browse-eww-system-browser 1)

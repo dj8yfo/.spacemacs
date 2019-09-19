@@ -540,7 +540,6 @@ before packages are loaded."
     ;; Enable Desktop notificatio
     (mu4e-alert-set-default-style 'libnotify))
   (spacemacs/toggle-helm-ag-extra-args-off)
-  (spaceline-toggle-minor-modes-off)
   (spaceline-toggle-version-control-off)
   (spacemacs/toggle-nyan-cat-progress-bar-on)
   (spacemacs/toggle-indent-guide-globally-on)

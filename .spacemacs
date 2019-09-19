@@ -535,6 +535,7 @@ before packages are loaded."
   (global-evil-matchit-mode 1)
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (add-to-list 'exec-path "/home/sysmanj/Documents/soft/KotlinLanguageServer/server/build/install/server/bin")
+  (add-to-list 'exec-path "/home/sysmanj/.pyenv/versions/3.6.4/bin/")
   (with-eval-after-load 'mu4e-alert
     ;; Enable Desktop notificatio
     (mu4e-alert-set-default-style 'libnotify))

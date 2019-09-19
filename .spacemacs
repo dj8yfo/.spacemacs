@@ -75,6 +75,10 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ;;syntaxes
      (c-c++ :variables c-c++-backend 'rtags c-c++-enable-clang-support t)
+     ;; sudo apt-get install shellcheck
+     ;; pip install bashate
+     ;; ^ look above pls ^
+     shell-scripts
      (java :variables java-backend 'meghanada)
      (latex :variables latex-build-command "LaTeX")
      clojure

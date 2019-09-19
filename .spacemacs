@@ -90,7 +90,7 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ;; version-control
      git
-     (version-control :variables version-control-diff-tool 'diff-hl
+     (version-control :variables version-control-diff-tool 'git-gutter
                       version-control-diff-side 'left)
      ;; ----------------------------------------------------------------
      ;; mail
@@ -539,7 +539,7 @@ before packages are loaded."
   (spaceline-toggle-version-control-off)
   (spacemacs/toggle-nyan-cat-progress-bar-on)
   (spacemacs/toggle-indent-guide-globally-on)
-  (global-diff-hl-mode 1)
+  ;; (global-git-gutter-mode 1)
   (spacemacs/toggle-company-toggle-auto-popup-off)
   (global-evil-matchit-mode 1)
   (spacemacs/toggle-highlight-current-line-globally-off)

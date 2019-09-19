@@ -41,11 +41,23 @@
 (fset 'normal-downcase-macro [?h ?g ?u ?i ?o ?l ])
 (fset 'visual-downcase-macro [?g ?u])
 (evil-define-key 'hybrid 'global (kbd "s-u") 'insert-upcase-macro)
+(evil-define-key 'hybrid 'global (kbd "M-U") 'insert-upcase-macro)
+
 (evil-define-key 'normal 'global (kbd "s-u") 'normal-upcase-macro)
-(evil-define-key 'hybrid 'global (kbd "s-d") 'insert-downcase-macro)
-(evil-define-key 'normal 'global (kbd "s-d") 'normal-downcase-macro)
-(evil-define-key 'visual 'global (kbd "s-d") 'visual-downcase-macro)
+(evil-define-key 'normal 'global (kbd "M-U") 'normal-upcase-macro)
+
 (evil-define-key 'visual 'global (kbd "s-u") 'visual-upcase-macro)
+(evil-define-key 'visual 'global (kbd "M-U") 'visual-upcase-macro)
+
+(evil-define-key 'hybrid 'global (kbd "s-d") 'insert-downcase-macro)
+(evil-define-key 'hybrid 'global (kbd "M-D") 'insert-downcase-macro)
+
+(evil-define-key 'normal 'global (kbd "s-d") 'normal-downcase-macro)
+(evil-define-key 'normal 'global (kbd "M-D") 'normal-downcase-macro)
+
+(evil-define-key 'visual 'global (kbd "s-d") 'visual-downcase-macro)
+(evil-define-key 'visual 'global (kbd "M-D") 'visual-downcase-macro)
+
 (evil-define-key 'hybrid 'global (kbd "M-=") "!=")
 
 (evil-define-key 'normal 'global ":" 'eval-expression)
@@ -86,8 +98,8 @@
 (spacemacs/set-leader-keys "pn" 'export-notes-to-html)
 (spacemacs/set-leader-keys "rg" '(lambda ()
                                    (interactive)
-                                   (diff-hl-mode -1)
-                                   (diff-hl-mode 1)))
+                                   (git-gutter-mode -1)
+                                   (git-gutter-mode 1)))
 (spacemacs/set-leader-keys "ef" '(lambda ()
                                    (interactive)
                                    (elisp-format-file buffer-file-name)

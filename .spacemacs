@@ -250,9 +250,9 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(doom-molokai doom-snazzy tao-yin moe-dark grandshell material-light
-                                  badwolf spolsky monokai tangotango farmhouse-dark
-                                   spacemacs-dark dracula darkokai)
+   dotspacemacs-themes '(darkokai doom-molokai doom-snazzy tao-yin moe-dark grandshell material-light
+                                      spolsky badwolf monokai tangotango farmhouse-dark
+                                   spacemacs-dark dracula )
 
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',

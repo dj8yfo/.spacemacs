@@ -199,7 +199,10 @@
 (with-eval-after-load 'esh-mode (add-hook 'eshell-mode-hook '(lambda ()
                                                                (define-key eshell-mode-map (kbd
                                                                                             "M-l")
-                                                                 'evil-window-right)) t))
+                                                                 'evil-window-right)
+                                                               (evil-define-key 'motion eshell-mode-map (kbd "RET")
+                                                                 'eshell-send-input)
+                                                               ) t))
 (global-set-key (kbd "\C-x?") 'helm-complex-command-history)
 (global-set-key (kbd "\C-x,")
                 '(lambda ()

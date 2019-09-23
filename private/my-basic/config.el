@@ -161,3 +161,7 @@
                                     (:weight ultralight :background "gray22"
                                              :foreground "white")))
                    ))
+
+(with-eval-after-load 'evil-matchit
+  (setq evilmi-quote-chars (list 39 34 47 96))
+    )

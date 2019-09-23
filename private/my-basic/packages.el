@@ -31,7 +31,8 @@
 
 (defconst my-basic-packages
   '(key-chord ggtags ace-jump-mode helm helm-elisp evil-goggles org-alert helm-rg
-              (my-autocolor-html-pre-code-tags :location local) beacon wgrep)
+              (my-autocolor-html-pre-code-tags :location local) beacon wgrep
+              indent-tools)
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:
@@ -135,6 +136,11 @@ Each entry is either:
     :after shr
     :load-path "private/my-basic/local/my-autocolor-html-pre-code-tags"))
 
+(defun my-basic/init-indent-tools ()
+  (use-package
+    indent-tools
+    :commands ( indent-tools-hydra/body)
+    ))
 
 (defun my-basic/post-init-helm-elisp ()
   (setq helm-source-complex-command-history (helm-build-sync-source "Complex Command History"

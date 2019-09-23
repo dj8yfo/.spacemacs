@@ -281,5 +281,6 @@
 (global-set-key (kbd "s-s") 'beacon-blink)
 
 (spacemacs/set-leader-keys "9" 'spacemacs/copy-file-name)
+(spacemacs/set-leader-keys "," 'indent-tools-hydra/body)
 
 

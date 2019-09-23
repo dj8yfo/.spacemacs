@@ -547,6 +547,7 @@ before packages are loaded."
   (spacemacs/toggle-company-toggle-auto-popup-off)
   (global-evil-matchit-mode 1)
   (spacemacs/toggle-highlight-current-line-globally-off)
+  (show-paren-mode 1)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

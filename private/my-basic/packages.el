@@ -32,7 +32,7 @@
 (defconst my-basic-packages
   '(key-chord ggtags ace-jump-mode helm helm-elisp evil-goggles org-alert helm-rg
               (my-autocolor-html-pre-code-tags :location local) beacon wgrep
-              indent-tools)
+              indent-tools  flycheck-bashate)
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:
@@ -80,6 +80,9 @@ Each entry is either:
   (setq gtags-enable-by-default nil))
 
 
+(defun my-basic/post-init-flycheck-bashate ()
+  (remove-hook 'sh-mode-hook 'flycheck-bashate-setup)
+  )
 
 (defun my-basic/init-ace-jump-mode ()
   (use-package

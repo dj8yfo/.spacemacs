@@ -69,7 +69,7 @@ Each entry is either:
   (use-package
     ace-isearch
     :ensure t
-    :init (defconst ace-isearch-normal-input-length 3)
+    :init (defconst ace-isearch-normal-input-length 2)
     (defconst ace-isearch-infinity-input-length 140)
     (defun toggle-helm-swoop-autojump (arg)
       (if (< arg 0)

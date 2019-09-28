@@ -214,6 +214,11 @@ buffer in current window."
      "%s is up for grabs.")
    (current-buffer)))
 
+;;https://stackoverflow.com/questions/19054228/emacs-disable-theme-background-color-in-terminal
+(defun on-after-init ()
+  (unless (display-graphic-p (selected-frame))
+    (set-face-background 'default "unspecified-bg" (selected-frame))))
+
 (spacemacs|add-toggle toggle-window-dedicatedness
   :status (window-dedicated-p (get-buffer-window (current-buffer)))
   :on (toggle-window-dedicated)

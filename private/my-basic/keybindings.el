@@ -174,6 +174,7 @@
 (spacemacs/set-leader-keys "ec" 'eshell-copy-last-command-output)
 (spacemacs/set-leader-keys-for-major-mode 'c-mode "g`" 'rtags-find-symbol)
 (spacemacs/set-leader-keys-for-major-mode 'c-mode "el" 'rtags-diagnostics)
+(spacemacs/set-leader-keys-for-major-mode 'org-mode "g" 'org-global-cycle)
 (spacemacs/set-leader-keys "h`" 'helm-make)
 (spacemacs/set-leader-keys "hd1" '(lambda ()
                                     (interactive)

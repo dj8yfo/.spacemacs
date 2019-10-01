@@ -524,8 +524,8 @@ before packages are loaded."
   (setq xclip-method 'xsel)
   (xclip-mode 1)
   ;; (setq desktop-files-not-to-save ".*")
-  (find-file "/home/sysmanj/Documents/code/tasking/notes-org/notes.org")
-  (find-file "/home/sysmanj/.emacs.d/doc/DOCUMENTATION.org")
+  (find-file "/home/hypen9/Documents/code/tasking/notes-org/notes.org")
+  (find-file "/home/hypen9/.emacs.d/doc/DOCUMENTATION.org")
   (switch-to-buffer "*spacemacs*")
   ;; (display-buffer "*spacemacs*" '(display-buffer-same-window . nil))
   ;; (global-set-key (kbd "TAB") 'my-insert-tab-char)
@@ -535,8 +535,8 @@ before packages are loaded."
    (spacemacs-modeline/init-spaceline))
   (global-evil-matchit-mode 1)
   (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-  (add-to-list 'exec-path "/home/sysmanj/Documents/soft/KotlinLanguageServer/server/build/install/server/bin")
-  (add-to-list 'exec-path "/home/sysmanj/.pyenv/versions/3.6.4/bin/")
+  (add-to-list 'exec-path "/home/hypen9/Documents/soft/KotlinLanguageServer/server/build/install/server/bin")
+  (add-to-list 'exec-path "/home/hypen9/.pyenv/versions/3.6.4/bin/")
   (with-eval-after-load 'mu4e-alert
     ;; Enable Desktop notificatio
     (mu4e-alert-set-default-style 'libnotify))
@@ -567,7 +567,7 @@ This function is called at the very end of Spacemacs initialization."
  '(ace-isearch-input-length ace-isearch-normal-input-length)
  '(ace-isearch-jump-delay 1.5)
  '(ace-isearch-use-jump nil)
- '(android-env-emulator-command "/home/sysmanj/Android/Sdk/emulator/emulator")
+ '(android-env-emulator-command "/home/hypen9/Android/Sdk/emulator/emulator")
  '(android-env-hydra t)
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])

@@ -67,7 +67,7 @@
      loc)
   (interactive "DProject name:")
   (message (format "cloning c-skeleton to: %s" loc))
-  (let ((command  "/home/sysmanj/Documents/.spacemacs/private/my-basic/templateC.sh %s")
+  (let ((command  "/home/hypen9/Documents/.spacemacs/private/my-basic/templateC.sh %s")
         (dir (if (equal loc "/") "." loc)))
     (shell-command (format command dir))))
 
@@ -126,21 +126,21 @@
 (defun custom-layout1 ()
   (interactive)
   (purpose-load-window-layout-file
-   "/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/MyFavIDE.window-layout")
+   "/home/hypen9/Documents/.spacemacs/private/my-basic/layouts/MyFavIDE.window-layout")
   (message "MyFavIDE layout loaded")
   (winum-select-window-2))
 
 (defun custom-layout2 ()
   (interactive)
   (purpose-load-window-layout-file
-   "/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/MyFavIDE2.window-layout")
+   "/home/hypen9/Documents/.spacemacs/private/my-basic/layouts/MyFavIDE2.window-layout")
   (message "MyFavIDE2 layout loaded")
   (winum-select-window-2))
 
 (defun custom-layout-eww ()
   (interactive)
   (purpose-load-window-layout-file
-   "/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/eww.window-layout")
+   "/home/hypen9/Documents/.spacemacs/private/my-basic/layouts/eww.window-layout")
   (message "eww layout loaded")
   (winum-select-window-1))
 

@@ -25,7 +25,7 @@
 (add-to-list 'load-path (expand-file-name "private/my-basic" user-emacs-directory))
 (require 'personal-sysj-notes-exporter "notes.el")
 (setq org-agenda-files (list (concat notes-org-dir "notes.org")))
-(setq purpose-layout-dirs '("/home/sysmanj/Documents/.spacemacs/private/my-basic/layouts/"))
+(setq purpose-layout-dirs '("/home/hypen9/Documents/.spacemacs/private/my-basic/layouts/"))
 (setq c-default-style '((java-mode . "java")
                         (awk-mode . "awk")
                         (other . "linux")))

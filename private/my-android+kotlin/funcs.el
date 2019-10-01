@@ -63,7 +63,7 @@ _A_: frameworks goto
      loc)
   (interactive "DProject name:")
   (message (format "mes: %s" loc))
-  (let ((command  "/home/sysmanj/Documents/.spacemacs/private/my-basic/template.sh %s")
+  (let ((command  "/home/hypen9/Documents/.spacemacs/private/my-basic/template.sh %s")
         (dir (if (equal loc "/") "." loc)))
     (shell-command (format command dir))))
 

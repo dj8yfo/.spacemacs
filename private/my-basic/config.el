@@ -23,6 +23,7 @@
 (setq list-command-history-max 10000 evil-jumps-max-length 1000)
 
 (add-to-list 'load-path (expand-file-name "private/my-basic" user-emacs-directory))
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 (require 'personal-sysj-notes-exporter "notes.el")
 (setq org-agenda-files (list (concat notes-org-dir "notes.org")))
 (setq purpose-layout-dirs '("/home/hypen9/Documents/.spacemacs/private/my-basic/layouts/"))

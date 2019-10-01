@@ -5,7 +5,7 @@
                        args)
                       (interactive)
                       (set-default-font
-                       "-ADBO-Source Code Pro-light-normal-normal-*-15-*-*-*-m-0-iso10646-1"    nil
+                       "-PfEd-Agave-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1" nil
                        nil)))
                                         ;test commit
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -z -L -S --no-ignore --hidden"))

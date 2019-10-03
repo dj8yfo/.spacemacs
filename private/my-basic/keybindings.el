@@ -280,9 +280,11 @@
 (global-set-key (kbd "M-f") 'backward-delete-char)
 (global-set-key (kbd "s-h") 'backward-delete-char)
 (global-set-key (kbd "s-s") 'beacon-blink)
+(global-set-key (kbd "M-\"") 'evil-ex)
 
 (spacemacs/set-leader-keys "8" 'beacon-blink)
 (spacemacs/set-leader-keys "9" 'spacemacs/copy-file-name)
 (spacemacs/set-leader-keys "," 'indent-tools-hydra/body)
+(spacemacs/set-leader-keys "bc" 'imenu-list-show)
 
 

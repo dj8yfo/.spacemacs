@@ -2,7 +2,7 @@
 (defun export-notes-to-html ()
   (interactive)
   (message (format "%s" load-path))
-  (add-to-list 'load-path "/home/hypen9/.emacs.d/elpa/26.1/develop/htmlize-20180923.1829/")
+  (add-to-list 'load-path "/home/hypen9/.emacs.d/elpa/26.3/develop/htmlize-20180923.1829")
   (require 'ox-html)
   (require 'htmlize)
   (setq org-publish-project-alist `(

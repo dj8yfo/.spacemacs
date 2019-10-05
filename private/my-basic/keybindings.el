@@ -286,6 +286,6 @@
 (spacemacs/set-leader-keys "9" 'spacemacs/copy-file-name)
 (spacemacs/set-leader-keys "," 'indent-tools-hydra/body)
 (spacemacs/set-leader-keys "bc" 'imenu-list-show)
-(spacemacs/set-leader-keys "/" 'save-buffer)
-
-
+(spacemacs/set-leader-keys "/" '(lambda () (interactive) (delete-trailing-whitespace)
+                                  (save-buffer))
+  )

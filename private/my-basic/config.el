@@ -167,3 +167,4 @@
   (setq evilmi-quote-chars (list 39 34 47 96))
     )
 (add-hook 'window-setup-hook 'on-after-init)
+(add-hook 'prog-mode-hook 'spacemacs/toggle-relative-line-numbers-on)

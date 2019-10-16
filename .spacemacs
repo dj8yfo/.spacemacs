@@ -33,7 +33,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(php
      ;; basic ide features
      (spacemacs-completion :variables ido-enable-flex-matching t ido-use-faces t)
      auto-completion

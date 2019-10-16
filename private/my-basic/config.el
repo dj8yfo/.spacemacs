@@ -166,5 +166,9 @@
 (with-eval-after-load 'evil-matchit
   (setq evilmi-quote-chars (list 39 34 47 96))
     )
+
+(with-eval-after-load 'vc-hooks
+  (setq vc-follow-symlinks t)
+    )
 (add-hook 'window-setup-hook 'on-after-init)
 (add-hook 'prog-mode-hook 'spacemacs/toggle-relative-line-numbers-on)

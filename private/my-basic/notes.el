@@ -62,6 +62,8 @@
     (shell-command (format cp-template "/home/hypen9/.emacs.d/layers/+emacs/org/README.org"
                            notes-org-dir "orgREADME.org") nil nil)
     (shell-command (format cp-template "/home/hypen9/.emacs.d/layers/+tools/ranger/README.org"
-                           notes-org-dir "rangerREADME.org") nil nil)))
+                           notes-org-dir "rangerREADME.org") nil nil)
+    (shell-command (format cp-template "/home/hypen9/.emacs.d/layers/+lang/python/README.org"
+                           notes-org-dir "pythonREADME.org") nil nil)))
 
 (provide 'personal-sysj-notes-exporter)

@@ -69,10 +69,11 @@ Each entry is either:
             (spacemacs/set-leader-keys "dp" 'helm-dash-at-point)
             )
     :config (progn
-              (setq dash-docs-common-docsets '("LaTeX" "C" "Gradle DSL" "Gradle Java API"
-                                               "Gradle Groovy API" "Gradle User Guide"
-                                               "Android Gradle Plugin" "Python 3" "Android" "kotlin"
-                                               "Java"))
+              (setq dash-docs-common-docsets '("C"))
+              ;; (setq dash-docs-common-docsets '("LaTeX" "C" "Gradle DSL" "Gradle Java API"
+              ;;                                  "Gradle Groovy API" "Gradle User Guide"
+              ;;                                  "Android Gradle Plugin" "Python 3" "Android" "kotlin"
+              ;;                                  "Java"))
               (defun dash-docs-read-json-from-url (url)
                 (shell-command (concat "curl -s " url) "*helm-dash-download*")
                 (with-current-buffer "*helm-dash-download*" (json-read))))))

@@ -155,6 +155,10 @@
                                            (:weight ultralight :background "gray22"
                                                     :foreground "white")))
                  )
+  (face-spec-set 'region '((t
+                                  (:weight ultralight :background "gray22"
+                                           :foreground "white")))
+                 )
     )
 
 (with-eval-after-load 'font-lock

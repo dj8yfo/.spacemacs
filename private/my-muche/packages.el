@@ -108,8 +108,8 @@ Each entry is either:
 
        ;; alternatively, for emacs-24 you can use:
        (setq message-send-mail-function 'smtpmail-send-it smtpmail-stream-type 'starttls
-             smtpmail-auth-credentials '(("smtp.gmail.com" 587 "gisochrewhb@gmail.com" nil))
-             smtpmail-smtp-user "gisochrewhb@gmail.com" smtpmail-default-smtp-server
+             ;; smtpmail-auth-credentials '(("smtp.gmail.com" 587 "gisochrewhb@gmail.com" nil))
+             smtpmail-smtp-user "gisochrewhb" smtpmail-default-smtp-server
              "smtp.gmail.com" smtpmail-smtp-server "smtp.gmail.com" smtpmail-smtp-service 587)
 
        ;; don't keep message buffers around

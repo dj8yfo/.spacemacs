@@ -174,5 +174,8 @@
 (with-eval-after-load 'vc-hooks
   (setq vc-follow-symlinks t)
     )
+(with-eval-after-load 'column-enforce-mode
+  (setq column-enforce-column 100)
+    )
 (add-hook 'window-setup-hook 'on-after-init)
 (add-hook 'prog-mode-hook 'spacemacs/toggle-relative-line-numbers-on)

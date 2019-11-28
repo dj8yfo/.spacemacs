@@ -90,7 +90,7 @@ This function should only modify configuration layer settings."
      markdown
      csv
      org
-     (python :variables python-backend 'anaconda)
+     (python :variables python-fill-column 99 python-backend 'anaconda)
      systemd
      yaml
      ;; ----------------------------------------------------------------

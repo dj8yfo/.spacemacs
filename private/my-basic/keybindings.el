@@ -277,7 +277,8 @@
 
 (global-set-key (kbd "s-;") 'evil-ex)
 (spacemacs/set-leader-keys ":" 'evil-ex)
-(global-set-key (kbd "M-f") 'backward-delete-char)
+(global-set-key (kbd "C-h") 'backward-delete-char)
+(global-set-key (kbd "C-M-h") 'help-command)
 (global-set-key (kbd "s-h") 'backward-delete-char)
 (global-set-key (kbd "s-s") 'beacon-blink)
 (global-set-key (kbd "M-\"") 'evil-ex)

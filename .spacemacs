@@ -253,7 +253,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(darkokai moe-dark doom-molokai doom-snazzy tao-yin grandshell material-light
+   dotspacemacs-themes '(doom-molokai darkokai moe-dark  doom-snazzy tao-yin grandshell material-light
                                       spolsky badwolf monokai tangotango farmhouse-dark
                                    spacemacs-dark dracula )
 
@@ -527,6 +527,7 @@ before packages are loaded."
   (xclip-mode 1)
   ;; (setq desktop-files-not-to-save ".*")
   (find-file "/home/hypen9/Documents/code/tasking/notes-org/notes.org")
+  (find-file "/home/hypen9/Documents/code/tasking/notes-org/real_life.org")
   (find-file "/home/hypen9/.emacs.d/doc/DOCUMENTATION.org")
   (switch-to-buffer "*spacemacs*")
   ;; (display-buffer "*spacemacs*" '(display-buffer-same-window . nil))

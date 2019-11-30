@@ -28,8 +28,10 @@
            "* TODO %?\n  %i\n  %a")
           ("j" "Journal" entry (file+headline org-default-notes-file "var info")
            "* %?\nEntered on %U\n  %i\n  %a")
-          ("s" "source" entry (file+headline org-default-notes-file  "var info")
-           "* %?\n\t#+NAME: \n\t#+BEGIN_SRC shell-script-mode\n  %i\n\t#+END_SRC\n  %a")))
+          ("c" "shell-command" entry (file+headline org-default-notes-file  "var info")
+           "* %? :command \n\t#+NAME: \n\t#+BEGIN_SRC shell-script-mode\n  %i\n\t#+END_SRC\n  %a")
+          ("s" "source-snippet" entry (file+headline org-default-notes-file  "var info")
+           "* %? :snippet \n\t#+NAME: \n\t#+BEGIN_SRC python\n  %i\n\t#+END_SRC\n  %a")))
   )
 
 

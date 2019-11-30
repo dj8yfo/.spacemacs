@@ -157,6 +157,7 @@
                  )
   (face-spec-set 'region '((t
                                   (:weight ultralight :background "gray22"
+                                           :underline t
                                            :foreground "white")))
                  )
     )
@@ -167,6 +168,41 @@
                                              :foreground "white")))
                    ))
 
+(with-eval-after-load 'faces
+  (face-spec-set 'default'((t
+                                            ( :background "unspecified-bg"
+                                                     )))
+                 ))
+(with-eval-after-load 'evil-search-highlight-persist
+  (face-spec-set 'evil-search-highlight-persist-highlight-face '((t
+                            (:background "magenta"
+                                         :foreground "black"
+                                         :inverse nil)))
+                 ))
+(with-eval-after-load 'imenu-list
+  (face-spec-set 'imenu-list-entry-face '((t
+                                           (
+                                            :background "gray22")))
+                 )
+
+  (face-spec-set 'imenu-list-entry-face-0 '((t
+                                             (
+                                              :foreground "color-201")))
+                 )
+  (face-spec-set 'imenu-list-entry-face-1 '((t
+                                           (
+                                            :foreground "color-220")))
+                 )
+
+  (face-spec-set 'imenu-list-entry-face-2 '((t
+                                             (
+                                              :foreground "color-190")))
+                 )
+  (face-spec-set 'imenu-list-entry-face-3 '((t
+                                             (
+                                              :foreground "color-159")))
+                 )
+  )
 (with-eval-after-load 'evil-matchit
   (setq evilmi-quote-chars (list 39 34 47 96))
     )

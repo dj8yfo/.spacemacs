@@ -32,7 +32,7 @@
 (defconst my-basic-packages
   '(key-chord ggtags ace-jump-mode helm helm-elisp evil-goggles org-alert helm-rg
               (my-autocolor-html-pre-code-tags :location local) beacon wgrep
-              indent-tools  flycheck-bashate)
+              indent-tools  flycheck-bashate flycheck-mypy)
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:
@@ -188,3 +188,11 @@ Each entry is either:
                                                                                      candidate)))
                                               :persistent-action #'helm-sexp-eval
                                               :multiline t)))
+
+(defun my-basic/init-flycheck-mypy ()
+  (use-package
+    flycheck-mypy
+    :ensure t
+    :config
+    (flycheck-add-next-checker 'python-flake8 'python-mypy t)
+    ))

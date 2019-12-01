@@ -105,7 +105,8 @@ Each entry is either:
     org-alert
     :ensure t
     :config (progn (org-alert-enable)
-                   (setq alert-default-style 'libnotify))))
+                   (setq alert-default-style 'libnotify
+                         org-alert-interval 120))))
 
 (defun my-basic/init-beacon ()
   (use-package

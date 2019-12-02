@@ -167,6 +167,10 @@
     (face-spec-set 'font-lock-comment-face '((t
                                     (:weight ultralight :background "gray22"
                                              :foreground "white")))
+                   )
+    (face-spec-set 'font-lock-doc-face '((t
+                                              (:weight ultralight :background "gray22"
+                                                       :foreground "white")))
                    ))
 
 (with-eval-after-load 'faces

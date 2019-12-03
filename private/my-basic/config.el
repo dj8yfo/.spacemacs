@@ -163,6 +163,20 @@
                  )
     )
 
+(with-eval-after-load 'flycheck
+  (face-spec-set 'flycheck-error '((t
+                                    (:weight ultralight :background "gray22"
+                                             :foreground "#FF5F87")))
+                 )
+  (face-spec-set 'flycheck-warning '((t
+                                            (:weight ultralight :background "gray22"
+                                                     :foreground "#FFFF87")))
+                 )
+  (face-spec-set 'flycheck-error-list-highlight '((t
+                                                   (:background "black"
+                                                                :foreground "white")))
+                 )
+  )
 (with-eval-after-load 'font-lock
     (face-spec-set 'font-lock-comment-face '((t
                                     (:weight ultralight :background "gray22"
@@ -172,6 +186,18 @@
                                               (:weight ultralight :background "gray22"
                                                        :foreground "white")))
                    ))
+(with-eval-after-load 'helm
+  (face-spec-set 'helm-selection '((t
+                                            (:background "black"
+                                                     :foreground "white")))
+                 )
+  )
+(with-eval-after-load 'company
+  (face-spec-set 'company-tooltip-selection '((t
+                                    (:background "black"
+                                                 :foreground "white")))
+                 )
+  )
 
 (with-eval-after-load 'faces
   (face-spec-set 'default'((t

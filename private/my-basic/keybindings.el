@@ -217,7 +217,6 @@
 (global-set-key (kbd "C-M-n") 'evil-jump-forward)
 (global-set-key (kbd "C-o") 'evil-jump-backward)
 
-(global-set-key (kbd "C-M-]") 'company-complete)
 (global-set-key (kbd "M-\\") 'xref-find-definitions)
 (global-set-key (kbd "M-[") 'xref-pop-marker-stack)
 (global-set-key (kbd "\C-c4") 'xref-find-definitions-other-window)
@@ -273,7 +272,10 @@
 (evil-define-key 'normal 'evil-snipe-mode-map [remap evil-snipe-s] 'evil-forward-sentence-begin)
 (evil-define-key 'normal 'evil-snipe-mode-map (kbd "S") 'evil-backward-sentence-begin)
 
-(global-set-key (kbd "M-o") 'helm-company)
+(global-set-key (kbd "C-M-]") 'recenter-top-bottom)
+(global-set-key (kbd "C-o") 'helm-company)
+(global-set-key (kbd "C-l") 'helm-company)
+(global-set-key (kbd "M-o") 'evil-jump-backward)
 (global-set-key (kbd "s-i") 'helm-company)
 
 (global-set-key (kbd "s-;") 'evil-ex)

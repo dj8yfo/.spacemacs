@@ -58,7 +58,7 @@
 (evil-define-key 'visual 'global (kbd "s-d") 'visual-downcase-macro)
 (evil-define-key 'visual 'global (kbd "M-D") 'visual-downcase-macro)
 
-(evil-define-key 'hybrid 'global (kbd "M-=") "!=")
+(evil-define-key 'hybrid 'global (kbd "M-7") "!=")
 
 (evil-define-key 'normal 'global ":" 'eval-expression)
 
@@ -215,7 +215,6 @@
 (global-set-key (kbd "\C-xg") 'magit-status)
 
 (global-set-key (kbd "C-M-n") 'evil-jump-forward)
-(global-set-key (kbd "C-o") 'evil-jump-backward)
 
 (global-set-key (kbd "M-\\") 'xref-find-definitions)
 (global-set-key (kbd "M-[") 'xref-pop-marker-stack)

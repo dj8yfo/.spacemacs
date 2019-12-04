@@ -83,10 +83,10 @@ Each entry is either:
                           '(ace-isearch-function-from-isearch 'helm-swoop-from-isearch-override)
                           ;; '(search-nonincremental-instead nil)
                           )
-    (define-key isearch-mode-map (kbd "C-j") 'ace-isearch-jump-during-isearch-helm-swoop)
+    (define-key isearch-mode-map (kbd "C-l") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key isearch-mode-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key isearch-mode-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
-    (define-key helm-swoop-map (kbd "C-j") '(lambda nil (interactive) (helm-select-nth-action 0)))
+    (define-key helm-swoop-map (kbd "C-l") '(lambda nil (interactive) (helm-select-nth-action 0)))
     (define-key helm-swoop-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key helm-swoop-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
     (spacemacs|add-toggle helm-swoop-autojump

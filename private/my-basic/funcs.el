@@ -228,6 +228,16 @@ buffer in current window."
   :off-message "toggled window dedicatedness to buffer OFF"
   :evil-leader "t%")
 
+
+(spacemacs|add-toggle toggle-imenu-list-position
+  :status (eq imenu-list-position 'left)
+  :on (setq imenu-list-position 'left)
+  :off (setq imenu-list-position 'right)
+  :documentation "toggle imenu-list position right/left"
+  :on-message "oggled imenu-list buffer LEFT"
+  :off-message "toggled imenu-list buffer RIGHT"
+  :evil-leader "tq")
+
 (spacemacs|add-toggle toggle-evil-matchit
   :status evil-matchit-mode
   :on (evil-matchit-mode 1)

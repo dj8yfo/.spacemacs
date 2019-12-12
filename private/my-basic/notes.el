@@ -22,17 +22,11 @@
   (setq org-refile-targets '((org-agenda-files :maxlevel . 10)))
   (setq org-refile-allow-creating-parent-nodes 'confirm)
   (setq org-outline-path-complete-in-steps nil)
-  (setq org-default-notes-file (concat notes-org-dir "notes.org"))
   (setq org-default-real-file (concat notes-org-dir "real_life.org"))
   (setq org-capture-templates
         '(("t" "Todo" entry (file+headline org-default-real-file "life_kovach")
            "* TODO %?\n  %i\n  %a")
-          ("j" "Journal" entry (file+headline org-default-notes-file "var info")
-           "* %?\nEntered on %U\n  %i\n  %a")
-          ("c" "shell-command" entry (file+headline org-default-notes-file  "var info")
-           "* %? :command: \n\t#+NAME: \n\t#+BEGIN_SRC shell\n  %i\n\t#+END_SRC\n  %a")
-          ("s" "source-snippet" entry (file+headline org-default-notes-file  "var info")
-           "* %? :snippet: \n\t#+NAME: \n\t#+BEGIN_SRC python\n  %i\n\t#+END_SRC\n  %a")))
+          ))
   )
 
 

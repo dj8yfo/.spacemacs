@@ -4,9 +4,7 @@
                       (&rest
                        args)
                       (interactive)
-                      (set-default-font
-                       "-PfEd-Agave-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1" nil
-                       nil)))
+                      (set-default-font "-xos4-terminesspowerline-medium-r-normal--16-*-72-72-c-80-iso10646-1" nil nil)))
                                         ;test commit
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -z -L -S --no-ignore --hidden"))
 (defvar jumping-commands-list
@@ -199,11 +197,11 @@
                  )
   )
 
-(with-eval-after-load 'faces
-  (face-spec-set 'default'((t
-                                            ( :background "unspecified-bg"
-                                                     )))
-                 ))
+;; (with-eval-after-load 'faces
+;;   (face-spec-set 'default'((t
+;;                                             ( :background "unspecified-bg"
+;;                                                      )))
+;;                  ))
 (with-eval-after-load 'evil-search-highlight-persist
   (face-spec-set 'evil-search-highlight-persist-highlight-face '((t
                             (:background "magenta"

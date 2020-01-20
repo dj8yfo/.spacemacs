@@ -112,5 +112,7 @@ Each entry is either:
              smtpmail-smtp-user "you_use_gmail_feel_retarded" smtpmail-default-smtp-server
              "smtp.gmail.com" smtpmail-smtp-server "smtp.gmail.com" smtpmail-smtp-service 587)
 
+       (setq mu4e-compose-format-flowed t)
+       (add-hook 'mu4e-compose-mode-hook (lambda () (use-hard-newlines -1)) t)
        ;; don't keep message buffers around
        (setq message-kill-buffer-on-exit t))

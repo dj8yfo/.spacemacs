@@ -89,8 +89,8 @@ Each entry is either:
        (setq mu4e-get-mail-command "offlineimap")
 
        ;; something about ourselves
-       (setq user-mail-address "gisochrewhb@gmail.com" user-full-name  "Gis Ochre"
-             mu4e-compose-signature (concat "Gis Ochre"))
+       (setq user-mail-address "you_use_gmail_feel_retarded@gmail.com" user-full-name  "Fux Tocy"
+             mu4e-compose-signature (concat "Fux Tocy"))
 
        ;; sending mail -- replace USERNAME with your gmail username
        ;; also, make sure the gnutls command line utils are installed
@@ -108,8 +108,8 @@ Each entry is either:
 
        ;; alternatively, for emacs-24 you can use:
        (setq message-send-mail-function 'smtpmail-send-it smtpmail-stream-type 'starttls
-             ;; smtpmail-auth-credentials '(("smtp.gmail.com" 587 "gisochrewhb@gmail.com" nil))
-             smtpmail-smtp-user "gisochrewhb" smtpmail-default-smtp-server
+             ;; smtpmail-auth-credentials '(("smtp.gmail.com" 587 "you_use_gmail_feel_retarded@gmail.com" nil))
+             smtpmail-smtp-user "you_use_gmail_feel_retarded" smtpmail-default-smtp-server
              "smtp.gmail.com" smtpmail-smtp-server "smtp.gmail.com" smtpmail-smtp-service 587)
 
        ;; don't keep message buffers around

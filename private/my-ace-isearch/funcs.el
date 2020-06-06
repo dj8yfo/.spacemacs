@@ -70,7 +70,7 @@
   (let (($query isearch-string))
     (let (search-nonincremental-instead)
       (isearch-exit))
-    (helm-swoop :$query $query)))
+    (helm-swoop :query $query)))
 
 (defun evil-next-respect-isearch ()
   (interactive)

@@ -30,9 +30,11 @@
 ;;; Code:
 
 (defconst my-basic-packages
-  '(key-chord ggtags ace-jump-mode helm helm-elisp evil-goggles org-alert helm-rg
+  '(key-chord ggtags ace-jump-mode helm helm-elisp evil-goggles helm-rg
               (my-autocolor-html-pre-code-tags :location local) beacon wgrep
-              indent-tools  flycheck-bashate flycheck-mypy)
+              ;; indent-tools  flycheck-bashate flycheck-mypy
+              indent-tools  flycheck-bashate
+              jupyter python-black)
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:
@@ -99,14 +101,6 @@ Each entry is either:
   (setq evil-goggles-duration 0.3)
   (setq evil-goggles-async-duration 3)
   (evil-goggles-use-diff-faces))
-
-(defun my-basic/init-org-alert ()
-  (use-package
-    org-alert
-    :ensure t
-    :config (progn (org-alert-enable)
-                   (setq alert-default-style 'libnotify
-                         org-alert-interval 120))))
 
 (defun my-basic/init-beacon ()
   (use-package
@@ -189,10 +183,21 @@ Each entry is either:
                                               :persistent-action #'helm-sexp-eval
                                               :multiline t)))
 
-(defun my-basic/init-flycheck-mypy ()
+;; (defun my-basic/init-flycheck-mypy ()
+;;   (use-package
+;;     flycheck-mypy
+;;     :ensure t
+;;     :config
+;;     (flycheck-add-next-checker 'python-flake8 'python-mypy t)
+;;     ))
+
+(defun my-basic/init-jupyter ()
   (use-package
-    flycheck-mypy
+    jupyter
     :ensure t
-    :config
-    (flycheck-add-next-checker 'python-flake8 'python-mypy t)
     ))
+
+(defun my-basic/init-python-black ()
+        (use-package python-black
+          :demand t
+          :after python))

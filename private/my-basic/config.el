@@ -4,7 +4,9 @@
                       (&rest
                        args)
                       (interactive)
-                      (set-default-font "-xos4-terminesspowerline-medium-r-normal--16-*-72-72-c-80-iso10646-1" nil nil)))
+                      (set-default-font
+                       "-xos4-terminesspowerline-medium-r-normal--18-*-72-72-c-80-iso10646-1" nil
+                       nil)))
                                         ;test commit
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -z -L -S --no-ignore --hidden"))
 (defvar jumping-commands-list
@@ -23,8 +25,7 @@
 (add-to-list 'load-path (expand-file-name "private/my-basic" user-emacs-directory))
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 (require 'personal-sysj-notes-exporter "notes.el")
-(setq org-agenda-files (list (concat notes-org-dir "real_life.org")
-                             ))
+(setq org-agenda-files (list (concat notes-org-dir "real_life.org")))
 (setq purpose-layout-dirs '("/home/hypen9/Documents/.spacemacs/private/my-basic/layouts/"))
 (setq c-default-style '((java-mode . "java")
                         (awk-mode . "awk")
@@ -33,18 +34,21 @@
 (with-eval-after-load 'company
   (setq company-dabbrev-ignore-case t))
 (with-eval-after-load 'eww
-  (setq eww-history-limit 10000)
-    )
+  (setq eww-history-limit 10000))
 
 (with-eval-after-load 'evil (dolist (sym jumping-commands-list)
                               (add-jump-push-action sym))
-                      (evil-define-operator evil-upcase (beg end type)
+                      (evil-define-operator
+                        evil-upcase
+                        (beg end type)
                         "Convert text to upper case."
                         :move-point nil
                         (if (eq type 'block)
                             (evil-apply-on-block #'evil-upcase beg end nil)
                           (upcase-region beg end)))
-                      (evil-define-operator evil-downcase (beg end type)
+                      (evil-define-operator
+                        evil-downcase
+                        (beg end type)
                         "Convert text to lower case."
                         :move-point nil
                         (if (eq type 'block)
@@ -56,7 +60,6 @@
 (with-eval-after-load 'evil-states
   (setq evil-emacs-state-modes (delete 'ibuffer-mode evil-emacs-state-modes )))
 (with-eval-after-load 'helm-elisp)
-(with-eval-after-load 'magit (global-diff-hl-mode 1))
 (with-eval-after-load 'shr
   (setq shr-use-fonts nil))
 (with-eval-after-load 'volatile-highlights (volatile-highlights-mode -1))
@@ -95,53 +98,50 @@
 (defvar highlight-regex-faces-ind 0)
 
 (with-eval-after-load 'symbol-overlay
-
   (face-spec-set 'symbol-overlay-face-1 '((t
-                                    (:weight ultrabold :background "dodger blue"
-                                                 :foreground "black")))
-    )
-
+                                           (:weight ultrabold
+                                                    :background "dodger blue"
+                                                    :foreground "black"))))
   (face-spec-set 'symbol-overlay-face-2 '((t
-                                           (:weight ultrabold :background "hot pink"
-                                                    :foreground "black")))
-                 )
+                                           (:weight ultrabold
+                                                    :background "hot pink"
+                                                    :foreground "black"))))
   (face-spec-set 'symbol-overlay-face-3 '((t
-                                    (:weight ultrabold :background "yellow"
-                                                 :foreground "black")))
-                 )
-
+                                           (:weight ultrabold
+                                                    :background "yellow"
+                                                    :foreground "black"))))
   (face-spec-set 'symbol-overlay-face-4 '((t
-                                    (:weight ultrabold :background "orchid"
-                                                 :foreground "black")))
-                 )
-
+                                           (:weight ultrabold
+                                                    :background "orchid"
+                                                    :foreground "black"))))
   (face-spec-set 'symbol-overlay-face-5 '((t
-                                    (:weight ultrabold :background "red"
-                                                 :foreground "black")))
-                 )
-
+                                           (:weight ultrabold
+                                                    :background "red"
+                                                    :foreground "black"))))
   (face-spec-set 'symbol-overlay-face-6 '((t
-                                    (:weight ultrabold :background "salmon"
-                                                 :foreground "black")))
-                 )
-
+                                           (:weight ultrabold
+                                                    :background "salmon"
+                                                    :foreground "black"))))
   (face-spec-set 'symbol-overlay-face-7 '((t
-                                    (:weight ultrabold :background "spring green"
-                                                 :foreground "black")))
-                 )
-
+                                           (:weight ultrabold
+                                                    :background "spring green"
+                                                    :foreground "black"))))
   (face-spec-set 'symbol-overlay-face-8 '((t
-                                    (:weight ultrabold :background "turquoise"
-                                                 :foreground "black")))
-                 )
-  (defface symbol-overlay-face-9 '((t
-                                    (:weight ultrabold :background "light salmon"
-                                                 :foreground "black")))
+                                           (:weight ultrabold
+                                                    :background "turquoise"
+                                                    :foreground "black"))))
+  (defface symbol-overlay-face-9
+    '((t
+       (:weight ultrabold
+                :background "light salmon"
+                :foreground "black")))
     "Symbol Overlay default candidate 1"
     :group 'symbol-overlay)
-  (defface symbol-overlay-face-10 '((t
-                                     (:weight ultrabold :background "tomato"
-                                                  :foreground "black")))
+  (defface symbol-overlay-face-10
+    '((t
+       (:weight ultrabold
+                :background "tomato"
+                :foreground "black")))
     "Symbol Overlay default candidate 1"
     :group 'symbol-overlay)
   (setq symbol-overlay-faces '(symbol-overlay-face-1 symbol-overlay-face-2 symbol-overlay-face-3
@@ -149,98 +149,74 @@
                                                      symbol-overlay-face-6 symbol-overlay-face-7
                                                      symbol-overlay-face-8 symbol-overlay-face-9
                                                      symbol-overlay-face-10)))
-(with-eval-after-load 'faces
-  (face-spec-set 'line-number  '((t
-                                           (:weight ultralight :background "gray22"
-                                                    :foreground "white")))
-                 )
-  (face-spec-set 'region '((t
-                                  (:weight ultralight :background "gray22"
-                                           :underline t
-                                           :foreground "white")))
-                 )
-    )
+(with-eval-after-load 'faces (face-spec-set 'line-number  '((t
+                                                             (:weight ultralight
+                                                                      :background "gray22"
+                                                                      :foreground "white"))))
+                      (face-spec-set 'region '((t
+                                                (:weight ultralight
+                                                         :background "gray22"
+                                                         :underline t
+                                                         :foreground "white")))))
 
-(with-eval-after-load 'flycheck
-  (face-spec-set 'flycheck-error '((t
-                                    (:weight ultralight :background "gray22"
-                                             :foreground "#FF5F87")))
-                 )
-  (face-spec-set 'flycheck-warning '((t
-                                            (:weight ultralight :background "gray22"
-                                                     :foreground "#FFFF87")))
-                 )
-  (face-spec-set 'flycheck-error-list-highlight '((t
-                                                   (:background "black"
-                                                                :foreground "white")))
-                 )
-  )
-(with-eval-after-load 'font-lock
-    (face-spec-set 'font-lock-comment-face '((t
-                                    (:weight ultralight :background "gray22"
-                                             :foreground "white")))
-                   )
-    (face-spec-set 'font-lock-doc-face '((t
-                                              (:weight ultralight :background "gray22"
-                                                       :foreground "white")))
-                   ))
-(with-eval-after-load 'helm
-  (face-spec-set 'helm-selection '((t
-                                            (:background "black"
-                                                     :foreground "white")))
-                 )
-  )
-(with-eval-after-load 'company
-  (face-spec-set 'company-tooltip-selection '((t
-                                    (:background "black"
-                                                 :foreground "white")))
-                 )
-  )
+(with-eval-after-load 'flycheck (face-spec-set 'flycheck-error '((t
+                                                                  (:weight ultralight
+                                                                           :background "gray22"
+                                                                           :foreground "#FF5F87"))))
+                      (face-spec-set 'flycheck-warning '((t
+                                                          (:weight ultralight
+                                                                   :background "gray22"
+                                                                   :foreground "#FFFF87"))))
+                      (face-spec-set 'flycheck-error-list-highlight '((t
+                                                                       (:background "black"
+                                                                                    :foreground
+                                                                                    "white")))))
+(with-eval-after-load 'font-lock (face-spec-set 'font-lock-comment-face '((t
+                                                                           (:weight ultralight
+                                                                                    :background
+                                                                                    "gray22"
+                                                                                    :foreground
+                                                                                    "white"))))
+                      (face-spec-set 'font-lock-doc-face '((t
+                                                            (:weight ultralight
+                                                                     :background "gray22"
+                                                                     :foreground "white")))))
+(with-eval-after-load 'helm (face-spec-set 'helm-selection '((t
+                                                              (:background "black"
+                                                                           :foreground "white")))))
+(with-eval-after-load 'company (face-spec-set 'company-tooltip-selection '((t
+                                                                            (:background "black"
+                                                                                         :foreground
+                                                                                         "white")))))
 
 ;; (with-eval-after-load 'faces
 ;;   (face-spec-set 'default'((t
 ;;                                             ( :background "unspecified-bg"
 ;;                                                      )))
 ;;                  ))
-(with-eval-after-load 'evil-search-highlight-persist
-  (face-spec-set 'evil-search-highlight-persist-highlight-face '((t
-                            (:background "magenta"
-                                         :foreground "black"
-                                         :inverse nil)))
-                 ))
-(with-eval-after-load 'imenu-list
-  (face-spec-set 'imenu-list-entry-face '((t
-                                           (
-                                            :background "gray22")))
-                 )
-
-  (face-spec-set 'imenu-list-entry-face-0 '((t
-                                             (
-                                              :foreground "color-201")))
-                 )
-  (face-spec-set 'imenu-list-entry-face-1 '((t
-                                           (
-                                            :foreground "color-220")))
-                 )
-
-  (face-spec-set 'imenu-list-entry-face-2 '((t
-                                             (
-                                              :foreground "color-190")))
-                 )
-  (face-spec-set 'imenu-list-entry-face-3 '((t
-                                             (
-                                              :foreground "color-159")))
-                 )
-  )
+(with-eval-after-load 'evil-search-highlight-persist (face-spec-set
+                                                      'evil-search-highlight-persist-highlight-face
+                                                      '((t
+                                                         (:background "magenta"
+                                                                      :foreground "black"
+                                                                      :inverse nil)))))
+(with-eval-after-load 'imenu-list (face-spec-set 'imenu-list-entry-face '((t
+                                                                           (:background "gray22"))))
+                      (face-spec-set 'imenu-list-entry-face-0 '((t
+                                                                 (:foreground "color-201"))))
+                      (face-spec-set 'imenu-list-entry-face-1 '((t
+                                                                 (:foreground "color-220"))))
+                      (face-spec-set 'imenu-list-entry-face-2 '((t
+                                                                 (:foreground "color-190"))))
+                      (face-spec-set 'imenu-list-entry-face-3 '((t
+                                                                 (:foreground "color-159")))))
 (with-eval-after-load 'evil-matchit
-  (setq evilmi-quote-chars (list 39 34 47 96))
-    )
+  (setq evilmi-quote-chars (list 39 34 47 96)))
 
 (with-eval-after-load 'vc-hooks
-  (setq vc-follow-symlinks t)
-    )
+  (setq vc-follow-symlinks t))
 (with-eval-after-load 'column-enforce-mode
-  (setq column-enforce-column 100)
-    )
+  (setq column-enforce-column 100))
 (add-hook 'window-setup-hook 'on-after-init)
 (add-hook 'prog-mode-hook 'spacemacs/toggle-relative-line-numbers-on)
+(setq-default frame-title-format "%b (%f)")

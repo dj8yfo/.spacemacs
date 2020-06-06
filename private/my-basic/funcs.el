@@ -18,6 +18,10 @@
   (interactive)
   (insert "\t"))
 
+(defun buffer-nx ()
+  (interactive)
+  (insert buffer-file-name))
+
 (defun switch-to-eshell ()
   (interactive)
   (switch-to-buffer "*eshell*"))

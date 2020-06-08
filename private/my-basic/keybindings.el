@@ -40,22 +40,16 @@
 (fset 'insert-downcase-macro  [escape ?h ?g ?u ?i ?o ?l ?i])
 (fset 'normal-downcase-macro [?h ?g ?u ?i ?o ?l ])
 (fset 'visual-downcase-macro [?g ?u])
-(evil-define-key 'hybrid 'global (kbd "s-u") 'insert-upcase-macro)
 (evil-define-key 'hybrid 'global (kbd "M-U") 'insert-upcase-macro)
 
-(evil-define-key 'normal 'global (kbd "s-u") 'normal-upcase-macro)
 (evil-define-key 'normal 'global (kbd "M-U") 'normal-upcase-macro)
 
-(evil-define-key 'visual 'global (kbd "s-u") 'visual-upcase-macro)
 (evil-define-key 'visual 'global (kbd "M-U") 'visual-upcase-macro)
 
-(evil-define-key 'hybrid 'global (kbd "s-d") 'insert-downcase-macro)
 (evil-define-key 'hybrid 'global (kbd "M-D") 'insert-downcase-macro)
 
-(evil-define-key 'normal 'global (kbd "s-d") 'normal-downcase-macro)
 (evil-define-key 'normal 'global (kbd "M-D") 'normal-downcase-macro)
 
-(evil-define-key 'visual 'global (kbd "s-d") 'visual-downcase-macro)
 (evil-define-key 'visual 'global (kbd "M-D") 'visual-downcase-macro)
 
 (evil-define-key 'hybrid 'global (kbd "M-7") "!=")
@@ -96,10 +90,7 @@
 (spacemacs/set-leader-keys "s\\" 'helm-occur)
 (spacemacs/set-leader-keys "s|" 'helm-multi-occur-from-isearch)
 (spacemacs/set-leader-keys "pn" 'export-notes-to-html)
-(spacemacs/set-leader-keys "rg" '(lamgda ()
-                                   (interactive)
-                                   (global-git-gutter-mode -1)
-                                   (global-git-gutter-mode 1)))
+(spacemacs/set-leader-keys "rg" 'toggle-git-gutter-mode)
 (spacemacs/set-leader-keys "ef" '(lambda ()
                                    (interactive)
                                    (elisp-format-file buffer-file-name)
@@ -118,15 +109,30 @@
 (spacemacs/set-leader-keys "s/" '(lambda ()
                                    (interactive)
                                    (call-interactively 'browse-url)))
-(spacemacs/set-leader-keys "s]" '(lambda ()
+(spacemacs/set-leader-keys "s]1" '(lambda ()
                                    (interactive)
                                    (persp-save-state-to-file
-                                    "~/.emacs.d/.cache/layouts/persp-my-layout")))
-(spacemacs/set-leader-keys "sz" '(lambda ()
+                                    "~/.emacs.d/.cache/layouts/persp-my-layout1")))
+(spacemacs/set-leader-keys "sz1" '(lambda ()
                                    (interactive)
                                    (persp-load-state-from-file
-                                    "~/.emacs.d/.cache/layouts/persp-my-layout")))
-
+                                    "~/.emacs.d/.cache/layouts/persp-my-layout1")))
+(spacemacs/set-leader-keys "s]2" '(lambda ()
+                                    (interactive)
+                                    (persp-save-state-to-file
+                                     "~/.emacs.d/.cache/layouts/persp-my-layout2")))
+(spacemacs/set-leader-keys "sz2" '(lambda ()
+                                    (interactive)
+                                    (persp-load-state-from-file
+                                     "~/.emacs.d/.cache/layouts/persp-my-layout2")))
+(spacemacs/set-leader-keys "s]3" '(lambda ()
+                                    (interactive)
+                                    (persp-save-state-to-file
+                                     "~/.emacs.d/.cache/layouts/persp-my-layout3")))
+(spacemacs/set-leader-keys "sz3" '(lambda ()
+                                    (interactive)
+                                    (persp-load-state-from-file
+                                     "~/.emacs.d/.cache/layouts/persp-my-layout3")))
 
 (defcustom helm-ag-always-set-extra-option nil
   "Always set `ag' options of `helm-do-ag'."
@@ -216,12 +222,11 @@
 
 (global-set-key (kbd "C-M-n") 'evil-jump-forward)
 
-(global-set-key (kbd "M-\\") 'xref-find-definitions)
 (global-set-key (kbd "M-[") 'xref-pop-marker-stack)
 (global-set-key (kbd "\C-c4") 'xref-find-definitions-other-window)
 (global-set-key (kbd "\C-x]") 'ace-window)
 (global-set-key (kbd "M-j") 'evil-window-down)
-(with-eval-after-load 'cc-cmds (define-key c-mode-map (kbd "M-j") 'evil-window-down))
+;; (with-eval-after-load 'cc-cmds (define-key c-mode-map (kbd "M-j") 'evil-window-down))
 (global-set-key (kbd "M-k") 'evil-window-up)
 (global-set-key (kbd "M-h") 'evil-window-left)
 (add-hook 'org-mode-hook '(lambda ()
@@ -234,7 +239,7 @@
 
 (global-set-key (kbd "M-l") 'evil-window-right)
 
-(global-set-key (kbd "M-DEL") 'shell-command)
+(global-set-key (kbd "M-\\") 'shell-command)
 (add-hook 'dired-mode-hook '(lambda ()
                               (define-key dired-mode-map (kbd "\C-c c") 'clone-c-skeleton)
                               (define-key dired-mode-map (kbd "M-DEL") 'shell-command)
@@ -254,7 +259,7 @@
 
 (define-key yas-minor-mode-map (kbd "<tab>") nil)
 (define-key yas-minor-mode-map (kbd "TAB") nil)
-(define-key yas-minor-mode-map (kbd "s-.") #'yas-insert-snippet)
+(define-key yas-minor-mode-map (kbd "s-/") #'yas-insert-snippet)
 (define-key yas-minor-mode-map (kbd "s-v") #'yas-visit-snippet-file)
 (define-key yas-minor-mode-map (kbd "M-'") #'yas-next-field)
 (global-set-key (kbd "M-^") 'toggle-imenu-index-func)
@@ -268,21 +273,19 @@
 (unbind-key (kbd ",") evil-snipe-parent-transient-map)
 (unbind-key "M-." evil-normal-state-map)
 ;; (unbind-key (kbd ";") evil-snipe-parent-transient-map)
-(evil-define-key 'normal 'evil-snipe-mode-map [remap evil-snipe-s] 'evil-forward-sentence-begin)
-(evil-define-key 'normal 'evil-snipe-mode-map (kbd "S") 'evil-backward-sentence-begin)
+
 
 (global-set-key (kbd "C-M-]") 'recenter-top-bottom)
 (global-set-key (kbd "C-o") 'helm-company)
 (global-set-key (kbd "C-l") 'helm-company)
 (global-set-key (kbd "M-o") 'evil-jump-backward)
-(global-set-key (kbd "s-i") 'helm-company)
+(global-set-key (kbd "s-]") 'my-insert-tab-char)
 
 (global-set-key (kbd "s-;") 'evil-ex)
 (spacemacs/set-leader-keys ":" 'evil-ex)
 (global-set-key (kbd "C-h") 'backward-delete-char)
 (global-set-key (kbd "C-M-h") 'help-command)
-(global-set-key (kbd "s-h") 'backward-delete-char)
-(global-set-key (kbd "s-s") 'beacon-blink)
+(global-set-key (kbd "s-'") 'helm-company)
 (global-set-key (kbd "M-\"") 'evil-ex)
 
 (spacemacs/set-leader-keys "8" 'beacon-blink)
@@ -293,7 +296,20 @@
                                   (save-buffer))
   )
 
+(spacemacs/set-leader-keys "mm" 'helm-imenu)
+(spacemacs/set-leader-keys "mb" 'bookmark-set)
+(spacemacs/set-leader-keys "mj" 'bookmark-jump)
+(spacemacs/set-leader-keys "ze" 'flycheck-mode)
+
+(spacemacs/set-leader-keys "aa" '(lambda () (interactive)
+                                   (pyvenv-deactivate)
+                                   (pyvenv-activate "./.env")))
+
 (global-set-key (kbd "\C-cx") 'buffer-nx)
 (global-set-key (kbd "\C-cx") 'buffer-nx)
 (global-set-key (kbd "\C-x\C-n") 'spacemacs/workspaces-transient-state/eyebrowse-next-window-config)
 (global-set-key (kbd "\C-x\C-p") 'spacemacs/workspaces-transient-state/eyebrowse-prev-window-config)
+
+(evil-global-set-key 'normal (kbd "s") 'ace-jump-word-mode)
+(evil-define-key 'normal 'evil-snipe-mode-map [remap evil-snipe-s] 'ace-jump-word-mode)
+;; (evil-define-key 'normal 'evil-snipe-mode-map (kbd "S") 'evil-backward-sentence-begin)

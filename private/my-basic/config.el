@@ -88,67 +88,104 @@
                       (purpose-compile-user-configuration))
 ;; (custom-layout2)
 
+
+(with-eval-after-load 'symbol-overlay (face-spec-set 'symbol-overlay-face-1 '((t
+                                                                               (:weight ultrabold
+                                                                                        :background
+                                                                                        "black"
+                                                                                        :foreground
+                                                                                        "dodger blue"))))
+                      (face-spec-set 'symbol-overlay-face-2 '((t
+                                                               (:weight ultrabold
+                                                                        :background "black"
+                                                                        :foreground "hot pink"))))
+                      (face-spec-set 'symbol-overlay-face-3 '((t
+                                                               (:weight ultrabold
+                                                                        :background "black"
+                                                                        :foreground "yellow"))))
+                      (face-spec-set 'symbol-overlay-face-4 '((t
+                                                               (:weight ultrabold
+                                                                        :background "black"
+                                                                        :foreground "orchid"))))
+                      (face-spec-set 'symbol-overlay-face-5 '((t
+                                                               (:weight ultrabold
+                                                                        :background "black"
+                                                                        :foreground "red"))))
+                      (face-spec-set 'symbol-overlay-face-6 '((t
+                                                               (:weight ultrabold
+                                                                        :background "black"
+                                                                        :foreground "salmon"))))
+                      (face-spec-set 'symbol-overlay-face-7 '((t
+                                                               (:weight ultrabold
+                                                                        :background "black"
+                                                                        :foreground "spring green"))))
+                      (face-spec-set 'symbol-overlay-face-8 '((t
+                                                               (:weight ultrabold
+                                                                        :background "black"
+                                                                        :foreground "turquoise"))))
+                      (defface symbol-overlay-face-9
+                        '((t
+                           (:weight ultrabold
+                                    :background "black"
+                                    :foreground "light salmon")))
+                        "Symbol Overlay default candidate 1"
+                        :group 'symbol-overlay)
+                      (defface symbol-overlay-face-10
+                        '((t
+                           (:weight ultrabold
+                                    :background "black"
+                                    :foreground "tomato")))
+                        "Symbol Overlay default candidate 1"
+                        :group 'symbol-overlay)
+                      (setq symbol-overlay-faces '(symbol-overlay-face-1 symbol-overlay-face-2
+                                                                         symbol-overlay-face-3
+                                                                         symbol-overlay-face-4
+                                                                         symbol-overlay-face-5
+                                                                         symbol-overlay-face-6
+                                                                         symbol-overlay-face-7
+                                                                         symbol-overlay-face-8
+                                                                         symbol-overlay-face-9
+                                                                         symbol-overlay-face-10)))
+
 (defvar highlight-regex-faces
-  (list 'eshell-ls-archive 'eshell-ls-backup 'eshell-ls-clutter 'eshell-ls-directory
-        'eshell-ls-executable 'eshell-ls-missing 'eshell-ls-product 'eshell-ls-readonly
-        'eshell-ls-special 'eshell-ls-symlink))
+  '(symbol-overlay-face-1 symbol-overlay-face-2 symbol-overlay-face-3 symbol-overlay-face-4
+                          symbol-overlay-face-5 symbol-overlay-face-6 symbol-overlay-face-7
+                          symbol-overlay-face-8 symbol-overlay-face-9 symbol-overlay-face-10))
+(with-eval-after-load 'ace-jump-mode (face-spec-set 'ace-jump-face-foreground  '((t
+                                                                                  (:weight light
+                                                                                           :background
+                                                                                           "black"
+                                                                                           :foreground
+                                                                                           "springgreen")))))
+(with-eval-after-load 'helm (face-spec-set 'helm-selection  '((t
+                                                               (:weight light
+                                                                        :underline t
+                                                                        :foreground "yellow"
+                                                                        :background "black"))))
+                      (face-spec-set 'helm-header  '((t
+                                                      (:weight light
+                                                               :foreground "white"
+                                                               :background "black"))))
+                      (face-spec-set 'helm-match  '((t
+                                                     (:weight light
+                                                              :foreground "turquoise"
+                                                              :background "black")))))
+(with-eval-after-load 'helm-swoop (face-spec-set 'helm-swoop-target-word-face  '((t
+                                                                                  (:weight light
+                                                                                           :foreground
+                                                                                           "turquoise"
+                                                                                           :background
+                                                                                           "black"))))
+                      (face-spec-set 'helm-swoop-target-line-face  '((t
+                                                                      (:weight light
+                                                                               :underline t
+                                                                               :background "black"
+                                                                               :foreground "yellow")))))
+
 
 
 (defvar highlight-regex-faces-num (length highlight-regex-faces))
 (defvar highlight-regex-faces-ind 0)
-
-(with-eval-after-load 'symbol-overlay
-  (face-spec-set 'symbol-overlay-face-1 '((t
-                                           (:weight ultrabold
-                                                    :background "dodger blue"
-                                                    :foreground "black"))))
-  (face-spec-set 'symbol-overlay-face-2 '((t
-                                           (:weight ultrabold
-                                                    :background "hot pink"
-                                                    :foreground "black"))))
-  (face-spec-set 'symbol-overlay-face-3 '((t
-                                           (:weight ultrabold
-                                                    :background "yellow"
-                                                    :foreground "black"))))
-  (face-spec-set 'symbol-overlay-face-4 '((t
-                                           (:weight ultrabold
-                                                    :background "orchid"
-                                                    :foreground "black"))))
-  (face-spec-set 'symbol-overlay-face-5 '((t
-                                           (:weight ultrabold
-                                                    :background "red"
-                                                    :foreground "black"))))
-  (face-spec-set 'symbol-overlay-face-6 '((t
-                                           (:weight ultrabold
-                                                    :background "salmon"
-                                                    :foreground "black"))))
-  (face-spec-set 'symbol-overlay-face-7 '((t
-                                           (:weight ultrabold
-                                                    :background "spring green"
-                                                    :foreground "black"))))
-  (face-spec-set 'symbol-overlay-face-8 '((t
-                                           (:weight ultrabold
-                                                    :background "turquoise"
-                                                    :foreground "black"))))
-  (defface symbol-overlay-face-9
-    '((t
-       (:weight ultrabold
-                :background "light salmon"
-                :foreground "black")))
-    "Symbol Overlay default candidate 1"
-    :group 'symbol-overlay)
-  (defface symbol-overlay-face-10
-    '((t
-       (:weight ultrabold
-                :background "tomato"
-                :foreground "black")))
-    "Symbol Overlay default candidate 1"
-    :group 'symbol-overlay)
-  (setq symbol-overlay-faces '(symbol-overlay-face-1 symbol-overlay-face-2 symbol-overlay-face-3
-                                                     symbol-overlay-face-4 symbol-overlay-face-5
-                                                     symbol-overlay-face-6 symbol-overlay-face-7
-                                                     symbol-overlay-face-8 symbol-overlay-face-9
-                                                     symbol-overlay-face-10)))
 (with-eval-after-load 'faces (face-spec-set 'line-number  '((t
                                                              (:weight ultralight
                                                                       :background "gray22"
@@ -156,7 +193,6 @@
                       (face-spec-set 'region '((t
                                                 (:weight ultralight
                                                          :background "gray22"
-                                                         :underline t
                                                          :foreground "white")))))
 
 (with-eval-after-load 'flycheck (face-spec-set 'flycheck-error '((t
@@ -181,19 +217,37 @@
                                                             (:weight ultralight
                                                                      :background "gray22"
                                                                      :foreground "white")))))
-(with-eval-after-load 'helm (face-spec-set 'helm-selection '((t
-                                                              (:background "black"
-                                                                           :foreground "white")))))
+
 (with-eval-after-load 'company (face-spec-set 'company-tooltip-selection '((t
                                                                             (:background "black"
                                                                                          :foreground
                                                                                          "white")))))
 
-;; (with-eval-after-load 'faces
-;;   (face-spec-set 'default'((t
-;;                                             ( :background "unspecified-bg"
-;;                                                      )))
-;;                  ))
+(with-eval-after-load 'faces (face-spec-set 'show-paren-match '((t
+                                                                 (:foreground "purple"
+                                                                              :background "white"))))
+                      (face-spec-set 'show-paren-mismatch '((t
+                                                             (:foreground "turquoise"
+                                                                          :background "yellow")))))
+
+(with-eval-after-load 'ediff-init (face-spec-set 'ediff-odd-diff-A '((t (
+                                                                             :background "gray"
+                                                                                        ))))
+                      (face-spec-set 'ediff-odd-diff-B '((t (
+                                                                      :background "gray"
+                                                                                 ))))
+                      (face-spec-set 'ediff-odd-diff-C '((t (
+                                                                      :background "gray"
+                                                                                  ))))
+                      (face-spec-set 'ediff-even-diff-A '((t (
+                                                             :background "gray"
+                                                             ))))
+                      (face-spec-set 'ediff-even-diff-B '((t (
+                                                             :background "gray"
+                                                             ))))
+                      (face-spec-set 'ediff-even-diff-C '((t (
+                                                             :background "gray"
+                                                             )))))
 (with-eval-after-load 'evil-search-highlight-persist (face-spec-set
                                                       'evil-search-highlight-persist-highlight-face
                                                       '((t
@@ -219,4 +273,8 @@
   (setq column-enforce-column 100))
 (add-hook 'window-setup-hook 'on-after-init)
 (add-hook 'prog-mode-hook 'spacemacs/toggle-relative-line-numbers-on)
+(add-hook 'python-mode-hook '(lambda ()
+                               (setq flycheck-checkers (delete 'python-mypy flycheck-checkers))))
 (setq-default frame-title-format "%b (%f)")
+
+(setq backup-directory-alist '(("" . "~/.emacs.d/backup")))

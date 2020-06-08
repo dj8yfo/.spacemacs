@@ -19,7 +19,10 @@
   (org-notes-sync-dependencies)
   (org-publish "org-notes" t))
 (with-eval-after-load 'org
+  (require 'org-tempo)
+  (require 'ox-jira)
   (setq org-refile-targets '((org-agenda-files :maxlevel . 10)))
+  (setq org-export-use-babel nil)
   (setq org-refile-allow-creating-parent-nodes 'confirm)
   (setq org-outline-path-complete-in-steps nil)
   (setq org-default-real-file (concat notes-org-dir "real_life.org"))

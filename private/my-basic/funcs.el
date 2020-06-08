@@ -26,6 +26,10 @@
   (interactive)
   (switch-to-buffer "*eshell*"))
 
+(defun toggle-git-gutter-mode ()
+  (interactive)
+  (global-git-gutter-mode -1)
+  (global-git-gutter-mode nil))
 ;;kinda of an override))
 
 (defun describe-variable-and-kill-value (variable)
@@ -54,13 +58,13 @@
 
 (defun highlight-visual-regexp ()
   (interactive)
-  (let ((substring (buffer-substring-no-properties (region-beginning)
-                                                   (region-end) )))
-    (setq search-ring (cons substring
-                            search-ring))
+  (let ((substring
+         (buffer-substring-no-properties
+          (region-beginning)
+          (region-end))))
+    (setq search-ring (cons substring search-ring))
     (highlight-regexp substring (nth highlight-regex-faces-ind highlight-regex-faces))
-    (setq highlight-regex-faces-ind (% (+ 1 highlight-regex-faces-ind) highlight-regex-faces-num)))
-  )
+    (setq highlight-regex-faces-ind (% (+ 1 highlight-regex-faces-ind) highlight-regex-faces-num))))
 
 (defun clean-hightlight-regexp-all ()
   (interactive)
@@ -104,14 +108,18 @@
       (progn (map-keymap '(lambda (event def)
                             (if (equal event (car chars--list))
                                 (progn(message (format "%d recur" event))
-                                      (if (keymapp def)(contains-searched-key def symbol (cdr chars--list) result--list))
+                                      (if (keymapp def)
+                                          (contains-searched-key def symbol (cdr chars--list)
+                                                                 result--list))
 
                                       ;;
                                       ))) keymap))
     (progn (map-keymap '(lambda (event def)
                           (if (equal event (car chars--list))
-                              (progn(message (format "keymap: {%s} event:[%d] found def:[%s]" symbol event def))
-                                    (set result--list (cons (cons symbol def)(eval result--list)))
+                              (progn(message (format "keymap: {%s} event:[%d] found def:[%s]" symbol
+                                                     event def))
+                                    (set result--list (cons (cons symbol def)
+                                                            (eval result--list)))
 
                                     ;;
                                     ))) keymap))))
@@ -124,9 +132,7 @@
     (mapatoms (lambda (sym)
                 (and (boundp sym)
                      (keymapp (symbol-value sym))
-                     (contains-searched-key (symbol-value sym) sym chars--list result--list))))
-    )
-  )
+                     (contains-searched-key (symbol-value sym) sym chars--list result--list))))))
 (defun custom-layout1 ()
   (interactive)
   (purpose-load-window-layout-file
@@ -159,17 +165,22 @@
                                    (progn (delete-window cand-window))))
                              (switch-to-buffer (flymake--diagnostics-buffer-name)))))
 
-(defun split-visual-region (&optional separator)
+(defun split-visual-region
+    (&optional
+     separator)
   (interactive "sSeparator")
-  (if (equal separator "") (setq separator nil))
-  (let ((result (split-string (buffer-substring-no-properties (region-beginning)
-                                                              (region-end) ) separator)))
-    (delete-region (region-beginning) (region-end))
+  (if (equal separator "")
+      (setq separator nil))
+  (let ((result (split-string
+                 (buffer-substring-no-properties
+                  (region-beginning)
+                  (region-end))
+                 separator)))
+    (delete-region (region-beginning)
+                   (region-end))
     (dolist (elem result nil)
       (insert elem)
-      (insert "\n"))
-    )
-  )
+      (insert "\n"))))
 
 (defmacro add-jump-push-action (command-symbol)
   `(advice-add ,command-symbol
@@ -211,12 +222,10 @@
   "Control whether or not Emacs is allowed to display another
 buffer in current window."
   (interactive)
-  (message
-   (if (let (window (get-buffer-window (current-buffer)))
-         (set-window-dedicated-p window (not (window-dedicated-p window))))
-       "%s: Can't touch this!"
-     "%s is up for grabs.")
-   (current-buffer)))
+  (message (if (let (window (get-buffer-window (current-buffer)))
+                 (set-window-dedicated-p window (not (window-dedicated-p window))))
+               "%s: Can't touch this!" "%s is up for grabs.")
+           (current-buffer)))
 
 ;;https://stackoverflow.com/questions/19054228/emacs-disable-theme-background-color-in-terminal
 (defun on-after-init ()
@@ -251,6 +260,32 @@ buffer in current window."
   :off-message "toggle evil matchit mode OFF"
   :evil-leader "t5")
 
+(defvar doc-comments-face-toggle)
+(spacemacs|add-toggle toggle-doc-comments-face
+  :status doc-comments-face-toggle
+  :on (progn (face-spec-set 'font-lock-comment-face '((t
+                                                       (:weight ultralight
+                                                                :background "gray12"
+                                                                :foreground "gray12"))))
+             (face-spec-set 'font-lock-doc-face '((t
+                                                   (:weight ultralight
+                                                            :background "gray12"
+                                                            :foreground "gray12"))))
+             (setq doc-comments-face-toggle t))
+  :off (progn (face-spec-set 'font-lock-comment-face '((t
+                                                        (:weight ultralight
+                                                                 :background "gray22"
+                                                                 :foreground "white"))))
+              (face-spec-set 'font-lock-doc-face '((t
+                                                    (:weight ultralight
+                                                             :background "gray22"
+                                                             :foreground "white"))))
+              (setq doc-comments-face-toggle nil))
+  :documentation "toggle doc comment face"
+  :on-message "toggle doc comment mode ON"
+  :off-message "toggle doc comment mode OFF"
+  :evil-leader "zd")
+
 (spacemacs|add-toggle eww-or-external-browser
   :status (equal browse-url-browser-function 'eww-browse-url)
   :on (toggle-browse-eww-system-browser 1)
@@ -278,10 +313,20 @@ buffer in current window."
   :off-message "toggled evil search highlight persist OFF"
   :evil-leader "t,")
 
+(spacemacs|add-toggle evil-search-highlight-persist
+  :status global-evil-search-highlight-persist
+  :on (global-evil-search-highlight-persist 1)
+  :off (global-evil-search-highlight-persist -1)
+  :documentation "toggle evil search highlight persist"
+  :on-message "toggled evil search highlight persist ON"
+  :off-message "toggled evil search highlight persist OFF"
+  :evil-leader "t,")
+
 (spacemacs|add-toggle company-toggle-auto-popup
   :status (< company-minimum-prefix-length 10)
-  :on (progn (setq company-minimum-prefix-length 2)
-             (setq company-auto-complete-chars (list 32 41 46)))
+  :on (progn
+        (setq company-minimum-prefix-length 2)
+        (setq company-auto-complete-chars (list 32 41 46)))
   :off (progn
          (setq company-minimum-prefix-length 1000)
          (setq company-auto-complete-chars (list)))
@@ -295,9 +340,9 @@ buffer in current window."
   "toggle imenu index function"
   (interactive )
   (if (eq imenu-create-index-function 'imenu-default-create-index-function)
-
-      (progn (message (format "set %s to %s" "imenu-create-index-function" "ggtags-build-imenu-index"))
+      (progn (message (format "set %s to %s" "imenu-create-index-function"
+                              "ggtags-build-imenu-index"))
              (setq imenu-create-index-function #'ggtags-build-imenu-index))
-    (progn (message (format "set %s to %s" "imenu-create-index-function" "imenu-default-create-index-function"))
-           (setq imenu-create-index-function #'imenu-default-create-index-function)))
-  )
+    (progn (message (format "set %s to %s" "imenu-create-index-function"
+                            "imenu-default-create-index-function"))
+           (setq imenu-create-index-function #'imenu-default-create-index-function))))

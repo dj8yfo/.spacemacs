@@ -34,7 +34,9 @@
               (my-autocolor-html-pre-code-tags :location local) beacon wgrep
               ;; indent-tools  flycheck-bashate flycheck-mypy
               indent-tools  flycheck-bashate
-              jupyter python-black)
+              jupyter python-black importmagic)
+
+
   "The list of Lisp packages required by the basic-my layer.
 
 Each entry is either:
@@ -62,6 +64,12 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
+
+(defun my-basic/post-init-importmagic ()
+    (progn
+      (remove-hook 'python-mode-hook 'importmagic-mode)
+      ))
+
 ;;; packages.el ends here
 (defun my-basic/init-key-chord ()
   (use-package
@@ -70,7 +78,7 @@ Each entry is either:
     :config (key-chord-mode 1)
     (key-chord-define evil-normal-state-map "gk" 'ace-jump-char-mode)
     (key-chord-define evil-normal-state-map "gl" 'ace-jump-line-mode)
-    (key-chord-define evil-normal-state-map "gh" 'ace-jump-word-mode)
+    (key-chord-define evil-normal-state-map "gh" 'ace-jump-char-mode)
     (key-chord-define-global "UU" 'undo-tree-visualize)
     (key-chord-define-global "yy" 'helm-show-kill-ring)))
 
@@ -196,6 +204,7 @@ Each entry is either:
     jupyter
     :ensure t
     ))
+
 
 (defun my-basic/init-python-black ()
         (use-package python-black

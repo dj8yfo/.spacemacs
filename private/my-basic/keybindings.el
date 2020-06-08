@@ -294,3 +294,6 @@
   )
 
 (global-set-key (kbd "\C-cx") 'buffer-nx)
+(global-set-key (kbd "\C-cx") 'buffer-nx)
+(global-set-key (kbd "\C-x\C-n") 'spacemacs/workspaces-transient-state/eyebrowse-next-window-config)
+(global-set-key (kbd "\C-x\C-p") 'spacemacs/workspaces-transient-state/eyebrowse-prev-window-config)

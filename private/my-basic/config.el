@@ -5,7 +5,7 @@
                        args)
                       (interactive)
                       (set-default-font
-                       "-xos4-terminesspowerline-medium-r-normal--18-*-72-72-c-80-iso10646-1" nil
+                       "-xos4-terminesspowerline-medium-r-normal--12-*-72-72-c-80-iso10646-1" nil
                        nil)))
                                         ;test commit
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -z -L -S --no-ignore --hidden"))
@@ -191,9 +191,8 @@
                                                                       :background "gray22"
                                                                       :foreground "white"))))
                       (face-spec-set 'region '((t
-                                                (:weight ultralight
-                                                         :background "gray22"
-                                                         :foreground "white")))))
+                                                (:foreground "turquoise"
+                                                             :background "yellow")))))
 
 (with-eval-after-load 'flycheck (face-spec-set 'flycheck-error '((t
                                                                   (:weight ultralight
@@ -228,7 +227,8 @@
                                                                               :background "white"))))
                       (face-spec-set 'show-paren-mismatch '((t
                                                              (:foreground "turquoise"
-                                                                          :background "yellow")))))
+                                                                          :background "yellow"))))
+                      )
 
 (with-eval-after-load 'ediff-init (face-spec-set 'ediff-odd-diff-A '((t (
                                                                              :background "gray"

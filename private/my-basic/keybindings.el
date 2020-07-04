@@ -117,6 +117,15 @@
                                    (interactive)
                                    (persp-load-state-from-file
                                     "~/.emacs.d/.cache/layouts/persp-my-layout1")))
+
+(spacemacs/set-leader-keys "s," '(lambda ()
+                                    (interactive)
+                                    (persp-save-state-to-file
+                                     "~/.emacs.d/.cache/layouts/persp-my-layout1")))
+(spacemacs/set-leader-keys "sn" '(lambda ()
+                                    (interactive)
+                                    (persp-load-state-from-file
+                                     "~/.emacs.d/.cache/layouts/persp-my-layout1")))
 (spacemacs/set-leader-keys "s]2" '(lambda ()
                                     (interactive)
                                     (persp-save-state-to-file

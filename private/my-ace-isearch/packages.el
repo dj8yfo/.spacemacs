@@ -29,8 +29,7 @@
 
 ;;; Code:
 
-(defconst my-ace-isearch-packages
-  '(ace-isearch helm-swoop)
+(defconst my-ace-isearch-packages '(ace-isearch helm-swoop)
   "The list of Lisp packages required by the my-ace-isearch layer.
 
   ;; My incsearched setup worked seamlessly good:
@@ -71,57 +70,92 @@ Each entry is either:
     :ensure t
     :init (defconst ace-isearch-normal-input-length 2)
     (defconst ace-isearch-infinity-input-length 140)
+    (defconst ace-isearch-negative-input-length -10)
+    (setq jump-after-helm-swoop t)
     (defun toggle-helm-swoop-autojump (arg)
       (if (< arg 0)
           (set (make-local-variable 'ace-isearch-input-length) ace-isearch-infinity-input-length)
         (set (make-local-variable 'ace-isearch-input-length) ace-isearch-normal-input-length)))
+    (defun toggle-ace-isearch-mode (arg)
+      (if (< arg 0)
+          (progn
+            (setq search-nonincremental-instead nil)
+            (ace-isearch-mode -1)
+            (define-key isearch-mode-map (kbd "RET") 'isearch-exit)
+            (define-key isearch-mode-map (kbd "<return>") 'isearch-exit)
+            (set (make-local-variable 'ace-isearch-input-length) ace-isearch-negative-input-length))
+        (progn
+          (setq search-nonincremental-instead t)
+          (ace-isearch-mode 1)
+          (define-key isearch-mode-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
+          (define-key isearch-mode-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
+
+          (set (make-local-variable 'ace-isearch-input-length) ace-isearch-normal-input-length))))
     :config (global-ace-isearch-mode +1)
     (custom-set-variables '(ace-isearch-function 'ace-jump-word-mode)
                           '(ace-isearch-use-jump nil)
                           '(ace-isearch-input-length ace-isearch-normal-input-length)
-                          '(ace-isearch-jump-delay 1.5)
+                          '(ace-isearch-jump-delay 0.5)
                           '(ace-isearch-function-from-isearch 'helm-swoop-from-isearch-override)
                           ;; '(search-nonincremental-instead nil)
                           )
     (define-key isearch-mode-map (kbd "C-l") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key isearch-mode-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key isearch-mode-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
-    (define-key helm-swoop-map (kbd "C-l") '(lambda nil (interactive) (helm-select-nth-action 0)))
+    (define-key helm-swoop-map (kbd "C-l")
+      '(lambda nil
+         (interactive)
+         (helm-select-nth-action 0)))
     (define-key helm-swoop-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key helm-swoop-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
+    (spacemacs|add-toggle ace-isearch-my-basic
+      :status (equal ace-isearch-input-length ace-isearch-negative-input-length)
+      :on (toggle-ace-isearch-mode -1)
+      :off (toggle-ace-isearch-mode 1)
+      :documentation "toggle ace isearch mode"
+      :on-message "ace isearch mode disabled"
+      :off-message "ace isearch mode enabled"
+      :evil-leader "za")
     (spacemacs|add-toggle helm-swoop-autojump
       :status (equal ace-isearch-input-length ace-isearch-normal-input-length)
-            :on (toggle-helm-swoop-autojump 1)
-            :off (toggle-helm-swoop-autojump -1)
-            :documentation "toggle auto jump to helm-swoop from isearch"
-            :on-message "auto jump to helm-swoop enabled"
-            :off-message "auto jump to helm-swoop disabled"
-            :evil-leader "t]")
+      :on (toggle-helm-swoop-autojump 1)
+      :off (toggle-helm-swoop-autojump -1)
+      :documentation "toggle auto jump to helm-swoop from isearch"
+      :on-message "auto jump to helm-swoop enabled"
+      :off-message "auto jump to helm-swoop disabled"
+      :evil-leader "t]")
+    (spacemacs|add-toggle helm-swoop-ace-jump-after
+      :status jump-after-helm-swoop
+      :on (setq jump-after-helm-swoop t)
+      :off (setq jump-after-helm-swoop nil)
+      :documentation "toggle ace jump after swoop search"
+      :on-message "toggle ace jump after swoop on"
+      :off-message "toggle ace jump after swoop off"
+      :evil-leader "zc")
     (evil-global-set-key 'normal (kbd "/") 'isearch-forward)
     (evil-global-set-key 'normal (kbd "?") 'isearch-backward)
     (evil-global-set-key 'visual (kbd "/") 'evil-search-forward)
     (evil-global-set-key 'visual (kbd "?") 'evil-search-backward)
     (with-eval-after-load 'evil-evilified-state (define-key evil-evilified-state-map-original "/"
                                                   'isearch-forward)
-                         (define-key evil-evilified-state-map-original "?" 'isearch-backward)
-                          (key-chord-define evil-evilified-state-map-original "//" 'rep-isearch-forward)
-                          (key-chord-define evil-evilified-state-map-original "??" 'rep-isearch-backward))
-    (with-eval-after-load 'evil-states (define-key evil-motion-state-map "/"
-                                                  'isearch-forward)
+                          (define-key evil-evilified-state-map-original "?" 'isearch-backward)
+                          )
+    (with-eval-after-load 'evil-states (define-key evil-motion-state-map "/" 'isearch-forward)
                           (define-key evil-motion-state-map "?" 'isearch-backward)
-                          (key-chord-define evil-motion-state-map "//" 'rep-isearch-forward)
-                          (key-chord-define evil-motion-state-map "??" 'rep-isearch-backward))
-    (key-chord-define evil-normal-state-map "//" 'rep-isearch-forward)
-    (key-chord-define evil-normal-state-map "??" 'rep-isearch-backward)
-    (with-eval-after-load 'ibuffer
-      (add-hook 'ibuffer-mode-hook 'spacemacs/toggle-helm-swoop-autojump-off))
-    (with-eval-after-load 'dired
-      (add-hook 'dired-mode-hook 'spacemacs/toggle-helm-swoop-autojump-off))
-    ))
+                          )
+    (spacemacs/set-leader-keys "h/" 'rep-isearch-forward)
+    (spacemacs/set-leader-keys "h?" 'rep-isearch-backward)
+    (with-eval-after-load 'ibuffer (add-hook 'ibuffer-mode-hook
+                                             'spacemacs/toggle-helm-swoop-autojump-off))
+    (with-eval-after-load 'dired (add-hook 'dired-mode-hook
+                                           'spacemacs/toggle-helm-swoop-autojump-off))))
 
 (defun my-ace-isearch/post-init-ace-isearch ()
   (defun ace-isearch--jumper-function ()
-    (cond ((and
+    (if (< ace-isearch-input-length 0)
+        (nil)
+        ;; (message "here")
+      (cond ((and
             (= (length isearch-string) 1)
             (not (or isearch-regexp
                      (ace-isearch--isearch-regexp-function)))
@@ -161,7 +195,9 @@ Each entry is either:
            (isearch-exit)
            (funcall ace-isearch-function-from-isearch)
            ;; work-around for emacs 25.1
-           (setq isearch--current-buffer (buffer-name (current-buffer)) isearch-string "")))))
+           (setq isearch--current-buffer (buffer-name (current-buffer)) isearch-string "")))
+      )
+    ))
 
 (defun my-ace-isearch/post-init-helm-swoop ()
   (add-hook 'helm-exit-minibuffer-hook '(lambda ()

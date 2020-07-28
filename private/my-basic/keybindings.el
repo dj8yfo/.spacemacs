@@ -110,22 +110,22 @@
                                    (interactive)
                                    (call-interactively 'browse-url)))
 (spacemacs/set-leader-keys "s]1" '(lambda ()
-                                   (interactive)
-                                   (persp-save-state-to-file
-                                    "~/.emacs.d/.cache/layouts/persp-my-layout1")))
-(spacemacs/set-leader-keys "sz1" '(lambda ()
-                                   (interactive)
-                                   (persp-load-state-from-file
-                                    "~/.emacs.d/.cache/layouts/persp-my-layout1")))
-
-(spacemacs/set-leader-keys "s," '(lambda ()
                                     (interactive)
                                     (persp-save-state-to-file
                                      "~/.emacs.d/.cache/layouts/persp-my-layout1")))
-(spacemacs/set-leader-keys "sn" '(lambda ()
+(spacemacs/set-leader-keys "sz1" '(lambda ()
                                     (interactive)
                                     (persp-load-state-from-file
                                      "~/.emacs.d/.cache/layouts/persp-my-layout1")))
+
+(spacemacs/set-leader-keys "s," '(lambda ()
+                                   (interactive)
+                                   (persp-save-state-to-file
+                                    "~/.emacs.d/.cache/layouts/persp-my-layout1")))
+(spacemacs/set-leader-keys "sn" '(lambda ()
+                                   (interactive)
+                                   (persp-load-state-from-file
+                                    "~/.emacs.d/.cache/layouts/persp-my-layout1")))
 (spacemacs/set-leader-keys "s]2" '(lambda ()
                                     (interactive)
                                     (persp-save-state-to-file
@@ -155,13 +155,13 @@
   :on-message "extra options for helm-ag: ON"
   :off-message "extra options for helm-ag: OFF"
   :evil-leader "t/")
-(spacemacs/set-leader-keys "ek" '(lambda () (interactive)
-                                   (kill-buffers-by-major-mode 'eww-mode))
-  )
-(spacemacs/set-leader-keys "dk" '(lambda () (interactive)
+(spacemacs/set-leader-keys "ek" '(lambda ()
+                                   (interactive)
+                                   (kill-buffers-by-major-mode 'eww-mode)))
+(spacemacs/set-leader-keys "dk" '(lambda ()
+                                   (interactive)
                                    (kill-buffers-by-major-mode 'dired-mode)
-                                   (kill-buffers-by-major-mode 'ranger-mode))
-  )
+                                   (kill-buffers-by-major-mode 'ranger-mode)))
 
 (spacemacs/set-leader-keys "bk" '(lambda ()
                                    (interactive)
@@ -205,11 +205,11 @@
                                     (interactive "sString: ")
                                     (let ((resultl '()))
                                       (collect-containing-keymaps (kbd sequence) 'resultl)
-                                      (message (format "%s" resultl))
-                                      resultl)
-                                    ))
+                                      (message (format "%s" resultl)) resultl)))
 (spacemacs/set-leader-keys "c`" 'create-checkpoint)
-(spacemacs/set-leader-keys "c'" '(lambda () (interactive) (rtags-toggle-diagnostics-suspended)
+(spacemacs/set-leader-keys "c'" '(lambda ()
+                                   (interactive)
+                                   (rtags-toggle-diagnostics-suspended)
                                    (rtags-toggle-diagnostics-suspended)))
 (spacemacs/set-leader-keys "gg" 'ggtags-mode)
 (global-set-key (kbd "\C-x.") 'helm-eshell-history)
@@ -217,9 +217,9 @@
                                                                (define-key eshell-mode-map (kbd
                                                                                             "M-l")
                                                                  'evil-window-right)
-                                                               (evil-define-key 'motion eshell-mode-map (kbd "RET")
-                                                                 'eshell-send-input)
-                                                               ) t))
+                                                               (evil-define-key 'motion
+                                                                 eshell-mode-map (kbd "RET")
+                                                                 'eshell-send-input)) t))
 (global-set-key (kbd "\C-x?") 'helm-complex-command-history)
 (global-set-key (kbd "\C-x,")
                 '(lambda ()
@@ -258,8 +258,7 @@
                                    (async-start-process "xdg-open" "xdg-open" nil
                                                         (dired-get-file-for-visit))))
                               (define-key dired-mode-map (kbd "C-c w")
-                                'wdired-change-to-wdired-mode)
-                              ))
+                                'wdired-change-to-wdired-mode)))
 (add-hook 'eww-mode-hook '(lambda ()
                             (define-key eww-mode-map "zz" 'evil-scroll-line-to-center)
                             (key-chord-define eww-mode-map "gk" 'ace-jump-char-mode)
@@ -301,16 +300,18 @@
 (spacemacs/set-leader-keys "9" 'spacemacs/copy-file-name)
 (spacemacs/set-leader-keys "," 'indent-tools-hydra/body)
 (spacemacs/set-leader-keys "bc" 'imenu-list-show)
-(spacemacs/set-leader-keys "/" '(lambda () (interactive) (delete-trailing-whitespace)
-                                  (save-buffer))
-  )
+(spacemacs/set-leader-keys "/" '(lambda ()
+                                  (interactive)
+                                  (delete-trailing-whitespace)
+                                  (save-buffer)))
 
 (spacemacs/set-leader-keys "mm" 'helm-imenu)
 (spacemacs/set-leader-keys "mb" 'bookmark-set)
 (spacemacs/set-leader-keys "mj" 'bookmark-jump)
 (spacemacs/set-leader-keys "ze" 'flycheck-mode)
 
-(spacemacs/set-leader-keys "aa" '(lambda () (interactive)
+(spacemacs/set-leader-keys "aa" '(lambda ()
+                                   (interactive)
                                    (pyvenv-deactivate)
                                    (pyvenv-activate "./.env")))
 
@@ -322,3 +323,10 @@
 (evil-global-set-key 'normal (kbd "s") 'ace-jump-word-mode)
 (evil-define-key 'normal 'evil-snipe-mode-map [remap evil-snipe-s] 'ace-jump-word-mode)
 ;; (evil-define-key 'normal 'evil-snipe-mode-map (kbd "S") 'evil-backward-sentence-begin)
+
+
+(spacemacs/set-leader-keys "z'" '(lambda ()
+                                   (interactive)
+                                   (setq evil-normal-state-cursor '("green" box))
+                                   (setq evil-hybrid-state-cursor '("red" (bar . 2)))
+                                   (setq evil-visual-state-cursor '("white" (box . 2)))))

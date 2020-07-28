@@ -5,7 +5,7 @@
                        args)
                       (interactive)
                       (set-default-font
-                       "-xos4-terminesspowerline-medium-r-normal--12-*-72-72-c-80-iso10646-1" nil
+                       "-xos4-terminus-medium-r-normal--14-*-72-72-c-80-koi8-r" nil
                        nil)))
                                         ;test commit
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -z -L -S --no-ignore --hidden"))
@@ -184,6 +184,8 @@
 
 
 
+(global-highlight-parentheses-mode -1)
+
 (defvar highlight-regex-faces-num (length highlight-regex-faces))
 (defvar highlight-regex-faces-ind 0)
 (with-eval-after-load 'faces (face-spec-set 'line-number  '((t
@@ -191,8 +193,9 @@
                                                                       :background "gray22"
                                                                       :foreground "white"))))
                       (face-spec-set 'region '((t
-                                                (:foreground "turquoise"
-                                                             :background "yellow")))))
+                                                (:foreground "cyan"
+                                                             :background "black"))))
+                      )
 
 (with-eval-after-load 'flycheck (face-spec-set 'flycheck-error '((t
                                                                   (:weight ultralight
@@ -223,8 +226,8 @@
                                                                                          "white")))))
 
 (with-eval-after-load 'faces (face-spec-set 'show-paren-match '((t
-                                                                 (:foreground "purple"
-                                                                              :background "white"))))
+                                                                 (:foreground "yellow"
+                                                                              :background "black"))))
                       (face-spec-set 'show-paren-mismatch '((t
                                                              (:foreground "turquoise"
                                                                           :background "yellow"))))

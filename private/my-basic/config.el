@@ -184,7 +184,6 @@
 
 
 
-(global-highlight-parentheses-mode -1)
 
 (defvar highlight-regex-faces-num (length highlight-regex-faces))
 (defvar highlight-regex-faces-ind 0)

@@ -4,9 +4,8 @@
                       (&rest
                        args)
                       (interactive)
-                      (set-default-font
-                       "-xos4-terminus-medium-r-normal--14-*-72-72-c-80-koi8-r" nil
-                       nil)))
+                      (set-default-font "-xos4-terminus-medium-r-normal--14-*-72-72-c-80-koi8-r" nil
+                                        nil)))
                                         ;test commit
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -z -L -S --no-ignore --hidden"))
 (defvar jumping-commands-list
@@ -159,28 +158,26 @@
                                                                                            "springgreen")))))
 (with-eval-after-load 'helm (face-spec-set 'helm-selection  '((t
                                                                (:weight light
-                                                                        :underline t
-                                                                        :foreground "yellow"
+                                                                        :foreground "deep pink"
                                                                         :background "black"))))
                       (face-spec-set 'helm-header  '((t
                                                       (:weight light
                                                                :foreground "white"
                                                                :background "black"))))
                       (face-spec-set 'helm-match  '((t
-                                                     (:weight light
-                                                              :foreground "turquoise"
+                                                     (:weight bold
+                                                              :foreground "steel grey"
                                                               :background "black")))))
 (with-eval-after-load 'helm-swoop (face-spec-set 'helm-swoop-target-word-face  '((t
-                                                                                  (:weight light
+                                                                                  (:weight bold
                                                                                            :foreground
-                                                                                           "turquoise"
+                                                                                           "steel grey"
                                                                                            :background
                                                                                            "black"))))
                       (face-spec-set 'helm-swoop-target-line-face  '((t
                                                                       (:weight light
-                                                                               :underline t
                                                                                :background "black"
-                                                                               :foreground "yellow")))))
+                                                                               :foreground "deep pink")))))
 
 
 
@@ -193,8 +190,7 @@
                                                                       :foreground "white"))))
                       (face-spec-set 'region '((t
                                                 (:foreground "cyan"
-                                                             :background "black"))))
-                      )
+                                                             :background "black")))))
 
 (with-eval-after-load 'flycheck (face-spec-set 'flycheck-error '((t
                                                                   (:weight ultralight
@@ -225,31 +221,24 @@
                                                                                          "white")))))
 
 (with-eval-after-load 'faces (face-spec-set 'show-paren-match '((t
-                                                                 (:foreground "yellow"
+                                                                 (:underline t :foreground "violet"
                                                                               :background "black"))))
                       (face-spec-set 'show-paren-mismatch '((t
                                                              (:foreground "turquoise"
-                                                                          :background "yellow"))))
-                      )
+                                                                          :background "yellow")))))
 
-(with-eval-after-load 'ediff-init (face-spec-set 'ediff-odd-diff-A '((t (
-                                                                             :background "gray"
-                                                                                        ))))
-                      (face-spec-set 'ediff-odd-diff-B '((t (
-                                                                      :background "gray"
-                                                                                 ))))
-                      (face-spec-set 'ediff-odd-diff-C '((t (
-                                                                      :background "gray"
-                                                                                  ))))
-                      (face-spec-set 'ediff-even-diff-A '((t (
-                                                             :background "gray"
-                                                             ))))
-                      (face-spec-set 'ediff-even-diff-B '((t (
-                                                             :background "gray"
-                                                             ))))
-                      (face-spec-set 'ediff-even-diff-C '((t (
-                                                             :background "gray"
-                                                             )))))
+(with-eval-after-load 'ediff-init (face-spec-set 'ediff-odd-diff-A '((t
+                                                                      (:background "gray"))))
+                      (face-spec-set 'ediff-odd-diff-B '((t
+                                                          (:background "gray"))))
+                      (face-spec-set 'ediff-odd-diff-C '((t
+                                                          (:background "gray"))))
+                      (face-spec-set 'ediff-even-diff-A '((t
+                                                           (:background "gray"))))
+                      (face-spec-set 'ediff-even-diff-B '((t
+                                                           (:background "gray"))))
+                      (face-spec-set 'ediff-even-diff-C '((t
+                                                           (:background "gray")))))
 (with-eval-after-load 'evil-search-highlight-persist (face-spec-set
                                                       'evil-search-highlight-persist-highlight-face
                                                       '((t
@@ -280,3 +269,25 @@
 (setq-default frame-title-format "%b (%f)")
 
 (setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
+(with-eval-after-load 'rainbow-delimiters (face-spec-set 'rainbow-delimiters-depth-1-face '((t
+                                                                                   (:foreground
+                                                                                    "lime green"))))
+                      (face-spec-set 'rainbow-delimiters-depth-2-face '((t
+                                                                         (:foreground
+                                                                          "green yellow"))))
+                      (face-spec-set 'rainbow-delimiters-depth-3-face '((t
+                                                                         (:foreground
+                                                                          "khaki"))))
+                      (face-spec-set 'rainbow-delimiters-depth-4-face '((t
+                                                                         (:foreground
+                                                                          "light steel blue"))))
+                      (face-spec-set 'rainbow-delimiters-depth-5-face '((t
+                                                                         (:foreground
+                                                                          "grey"))))
+                      (face-spec-set 'rainbow-delimiters-depth-6-face '((t
+                                                                         (:foreground
+                                                                          "medium orchid"))))
+                      (face-spec-set 'rainbow-delimiters-depth-7-face '((t
+                                                                         (:foreground
+                                                                          "orchid"))))
+                      )

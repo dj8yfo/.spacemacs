@@ -11,10 +11,9 @@
 (defvar jumping-commands-list
   '(evil-backward-word-begin evil-forward-word-begin evil-ace-jump-char-mode evil-ace-jump-line-mode
                              evil-ace-jump-word-mode find-file evil-snipe-repeat
-                             evil-next-respect-isearch evil-previous-respect-isearch evil-snipe-f
-                             evil-snipe-F evil-snipe-t evil-snipe-T evil-snipe-s evil-snipe-S
-                             evil-previous-line evil-next-line helm-gtags-dwim xref-find-definitions
-                             goto-sources-regex-dir))
+                             evil-next-respect-isearch evil-previous-respect-isearch
+                             helm-gtags-dwim xref-find-definitions
+                             goto-sources-regex-dir goto-delimiter-forward goto-delimiter-backward goto-delimiter-backward-stop))
 (if (display-graphic-p) nil
   (setq    dotspacemacs-mode-line-theme '(vim-powerline :separator slant
                                                         :separator-scale 1.1)))
@@ -265,7 +264,11 @@
 (add-hook 'window-setup-hook 'on-after-init)
 (add-hook 'prog-mode-hook 'spacemacs/toggle-relative-line-numbers-on)
 (add-hook 'python-mode-hook '(lambda ()
-                               (setq flycheck-checkers (delete 'python-mypy flycheck-checkers))))
+                               (setq flycheck-checkers (delete 'python-mypy flycheck-checkers))
+                               (setq pylookup-db-file "/home/hypen9/Documents/code/pylookup/pylookup.db")
+                               (setq pylookup-dir "/home/hypen9/Documents/code/pylookup/"))
+
+          )
 (setq-default frame-title-format "%b (%f)")
 
 (setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
@@ -291,5 +294,3 @@
                                                                          (:foreground
                                                                           "orchid"))))
                       )
-
-(setq pylookup-db-file "/home/hypen9/Documents/code/pylookup/pylookup.db")

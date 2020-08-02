@@ -34,7 +34,7 @@
               (my-autocolor-html-pre-code-tags :location local) beacon wgrep
               ;; indent-tools  flycheck-bashate flycheck-mypy
               indent-tools  flycheck-bashate
-              jupyter python-black importmagic)
+              jupyter python-black importmagic )
 
 
   "The list of Lisp packages required by the basic-my layer.

@@ -158,8 +158,8 @@
                                                                                            "springgreen")))))
 (with-eval-after-load 'helm (face-spec-set 'helm-selection  '((t
                                                                (:weight light
-                                                                        :foreground "deep pink"
-                                                                        :background "black"))))
+                                                                        :foreground "cyan"
+                                                                        :background "gray22"))))
                       (face-spec-set 'helm-header  '((t
                                                       (:weight light
                                                                :foreground "white"
@@ -176,7 +176,7 @@
                                                                                            "black"))))
                       (face-spec-set 'helm-swoop-target-line-face  '((t
                                                                       (:weight light
-                                                                               :background "black"
+                                                                               :background "gray20"
                                                                                :foreground "deep pink")))))
 
 
@@ -291,3 +291,5 @@
                                                                          (:foreground
                                                                           "orchid"))))
                       )
+
+(setq pylookup-db-file "/home/hypen9/Documents/code/pylookup/pylookup.db")

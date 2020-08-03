@@ -11,9 +11,9 @@
 (defvar jumping-commands-list
   '(evil-backward-word-begin evil-forward-word-begin evil-ace-jump-char-mode evil-ace-jump-line-mode
                              evil-ace-jump-word-mode find-file evil-snipe-repeat
-                             evil-next-respect-isearch evil-previous-respect-isearch
-                             helm-gtags-dwim xref-find-definitions
-                             goto-sources-regex-dir goto-delimiter-forward goto-delimiter-backward goto-delimiter-backward-stop))
+                             evil-next-respect-isearch evil-previous-respect-isearch helm-gtags-dwim
+                             xref-find-definitions goto-sources-regex-dir goto-delimiter-forward
+                             goto-delimiter-backward goto-delimiter-backward-stop))
 (if (display-graphic-p) nil
   (setq    dotspacemacs-mode-line-theme '(vim-powerline :separator slant
                                                         :separator-scale 1.1)))
@@ -176,7 +176,8 @@
                       (face-spec-set 'helm-swoop-target-line-face  '((t
                                                                       (:weight light
                                                                                :background "gray20"
-                                                                               :foreground "deep pink")))))
+                                                                               :foreground
+                                                                               "deep pink")))))
 
 
 
@@ -220,24 +221,53 @@
                                                                                          "white")))))
 
 (with-eval-after-load 'faces (face-spec-set 'show-paren-match '((t
-                                                                 (:underline t :foreground "violet"
-                                                                              :background "black"))))
+                                                                 (:underline t
+                                                                             :foreground "violet"
+                                                                             :background "black"))))
                       (face-spec-set 'show-paren-mismatch '((t
                                                              (:foreground "turquoise"
                                                                           :background "yellow")))))
 
 (with-eval-after-load 'ediff-init (face-spec-set 'ediff-odd-diff-A '((t
                                                                       (:background "gray"))))
+                      (face-spec-set 'ediff-odd-diff-A '((t
+                                                          (:background "gray21"))))
                       (face-spec-set 'ediff-odd-diff-B '((t
-                                                          (:background "gray"))))
+                                                          (:background "gray21"))))
                       (face-spec-set 'ediff-odd-diff-C '((t
-                                                          (:background "gray"))))
+                                                          (:background "gray21"))))
                       (face-spec-set 'ediff-even-diff-A '((t
-                                                           (:background "gray"))))
+                                                           (:background "gray21"))))
                       (face-spec-set 'ediff-even-diff-B '((t
-                                                           (:background "gray"))))
+                                                           (:background "gray21"))))
                       (face-spec-set 'ediff-even-diff-C '((t
-                                                           (:background "gray")))))
+                                                           (:background "gray21"))))
+                      (face-spec-set 'ediff-current-diff-A '((t
+                                                              (:background "LightSteelBlue4"))))
+                      (face-spec-set 'ediff-current-diff-B '((t
+                                                              (:background "LightSteelBlue4"))))
+                      (face-spec-set 'ediff-current-diff-C '((t
+                                                              (:background "LightSteelBlue4"))))
+                      (face-spec-set 'ediff-fine-diff-A '((t
+                                                           (:foreground "white" :background "purple4"))))
+                      (face-spec-set 'ediff-fine-diff-B '((t
+                                                           (:foreground "white" :background "purple4"))))
+                      (face-spec-set 'ediff-fine-diff-C '((t
+                                                           (:foreground "white" :background "purple4")))))
+(with-eval-after-load 'magit-diff
+  (face-spec-set 'magit-diff-removed '((t
+                                      (:background "DarkOrange4" :foreground "white"))))
+  (face-spec-set 'magit-diff-added '((t
+                                      (:background "gray22" :foreground "white"))))
+  (face-spec-set 'magit-diff-removed-highlight '((t
+                                        (:background "DarkOrange4" :foreground "white"))))
+  (face-spec-set 'magit-diff-added-highlight '((t
+                                      (:background "gray22" :foreground "white"))))
+  (face-spec-set 'magit-diff-context-highlight '((t
+                                                (:background "gray33" :foreground "white"))))
+  (face-spec-set 'magit-diff-context '((t
+                                                  (:background "gray33" :foreground "white"))))
+  )
 (with-eval-after-load 'evil-search-highlight-persist (face-spec-set
                                                       'evil-search-highlight-persist-highlight-face
                                                       '((t
@@ -265,32 +295,26 @@
 (add-hook 'prog-mode-hook 'spacemacs/toggle-relative-line-numbers-on)
 (add-hook 'python-mode-hook '(lambda ()
                                (setq flycheck-checkers (delete 'python-mypy flycheck-checkers))
-                               (setq pylookup-db-file "/home/hypen9/Documents/code/pylookup/pylookup.db")
-                               (setq pylookup-dir "/home/hypen9/Documents/code/pylookup/"))
-
-          )
+                               (setq pylookup-db-file
+                                     "/home/hypen9/Documents/code/pylookup/pylookup.db")
+                               (setq pylookup-dir "/home/hypen9/Documents/code/pylookup/")))
 (setq-default frame-title-format "%b (%f)")
 
 (setq backup-directory-alist '(("" . "~/.emacs.d/backup")))
 (with-eval-after-load 'rainbow-delimiters (face-spec-set 'rainbow-delimiters-depth-1-face '((t
-                                                                                   (:foreground
-                                                                                    "lime green"))))
+                                                                                             (:foreground
+                                                                                              "lime green"))))
                       (face-spec-set 'rainbow-delimiters-depth-2-face '((t
-                                                                         (:foreground
-                                                                          "green yellow"))))
+                                                                         (:foreground "green yellow"))))
                       (face-spec-set 'rainbow-delimiters-depth-3-face '((t
-                                                                         (:foreground
-                                                                          "khaki"))))
+                                                                         (:foreground "khaki"))))
                       (face-spec-set 'rainbow-delimiters-depth-4-face '((t
                                                                          (:foreground
                                                                           "light steel blue"))))
                       (face-spec-set 'rainbow-delimiters-depth-5-face '((t
-                                                                         (:foreground
-                                                                          "grey"))))
+                                                                         (:foreground "grey"))))
                       (face-spec-set 'rainbow-delimiters-depth-6-face '((t
                                                                          (:foreground
                                                                           "medium orchid"))))
                       (face-spec-set 'rainbow-delimiters-depth-7-face '((t
-                                                                         (:foreground
-                                                                          "orchid"))))
-                      )
+                                                                         (:foreground "orchid")))))

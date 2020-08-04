@@ -330,3 +330,8 @@
                                    (setq evil-normal-state-cursor '("green" box))
                                    (setq evil-hybrid-state-cursor '("red" (bar . 2)))
                                    (setq evil-visual-state-cursor '("white" (box . 2)))))
+
+(spacemacs/set-leader-keys "zP" '(lambda ()
+                                   (interactive)
+                                   (global-highlight-parentheses-mode -1)
+                                   ))

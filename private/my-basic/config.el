@@ -4,7 +4,7 @@
                       (&rest
                        args)
                       (interactive)
-                      (set-default-font "-xos4-terminus-medium-r-normal--14-*-72-72-c-80-koi8-r" nil
+                      (set-default-font "-xos4-terminus-medium-r-normal--16-*-72-72-c-80-koi8-r" nil
                                         nil)))
                                         ;test commit
 (custom-set-variables '(helm-ag-base-command "rg --no-heading -z -L -S --no-ignore --hidden"))

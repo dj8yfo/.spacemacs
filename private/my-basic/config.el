@@ -267,6 +267,12 @@
                                                 (:background "gray33" :foreground "white"))))
   (face-spec-set 'magit-diff-context '((t
                                                   (:background "gray33" :foreground "white"))))
+  (face-spec-set 'magit-diff-file-heading-highlight '((t
+                                        (:background "gray12" :foreground "white"))))
+  (face-spec-set 'magit-diff-hunk-heading-highlight '((t
+                                                       (:background "dark slate gray" :foreground "white"))))
+  (face-spec-set 'magit-diff-hunk-heading '((t
+                                                       (:background "slate gray" :foreground "white"))))
   )
 (with-eval-after-load 'evil-search-highlight-persist (face-spec-set
                                                       'evil-search-highlight-persist-highlight-face

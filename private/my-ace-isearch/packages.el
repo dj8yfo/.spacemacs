@@ -100,6 +100,9 @@ Each entry is either:
                           ;; '(search-nonincremental-instead nil)
                           )
     (define-key isearch-mode-map (kbd "C-l") 'ace-isearch-jump-during-isearch-helm-swoop)
+    (key-chord-define-global "//" (quote rep-isearch-forward))
+    (key-chord-define-global "??" (quote rep-isearch-backward))
+
     (define-key isearch-mode-map (kbd "RET") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key isearch-mode-map (kbd "<return>") 'ace-isearch-jump-during-isearch-helm-swoop)
     (define-key helm-swoop-map (kbd "C-l")

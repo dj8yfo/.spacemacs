@@ -570,7 +570,7 @@ This function is called at the very end of Spacemacs initialization."
  '(ace-isearch-function (quote ace-jump-word-mode))
  '(ace-isearch-function-from-isearch (quote helm-swoop-from-isearch-override))
  '(ace-isearch-input-length ace-isearch-normal-input-length)
- '(ace-isearch-jump-delay 1.5)
+ '(ace-isearch-jump-delay 0.5)
  '(ace-isearch-use-jump nil)
  '(android-env-emulator-command "/home/hypen9/Android/Sdk/emulator/emulator")
  '(android-env-hydra t)

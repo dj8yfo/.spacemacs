@@ -1,4 +1,6 @@
 (toggle-browse-eww-system-browser 2)
+(set-default-font "-xos4-terminus-medium-r-normal--16-*-72-72-c-80-koi8-r" nil
+                  nil)
 (advice-add 'server-create-window-system-frame
             :after '(lambda
                       (&rest
@@ -219,6 +221,10 @@
                                                                             (:background "black"
                                                                                          :foreground
                                                                                          "white")))))
+(with-eval-after-load 'hl-todo (face-spec-set 'hl-todo '((t
+                                                                            (:background "black"
+                                                                                         :foreground
+                                                                                         "pink")))))
 
 (with-eval-after-load 'faces (face-spec-set 'show-paren-match '((t
                                                                  (:underline t
